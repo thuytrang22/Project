@@ -20,3 +20,4 @@ Route::get('/', [HomeController::class, 'index']);
 Route::get('/order', [HomeController::class, 'order'])->name('order');
 
 Route::get('/admin', [AdminController::class, 'dashboard'])->name('admin');
+Route::get('/menu', [AdminController::class, 'menu'])->name('menu');

@@ -1,8 +1,11 @@
-@extends('main')
+@extends('.layouts.main')
 @section('content')
 <div class="home-center">
     <form>
-        <h3 class="text-center">Cơm Mẹ Nấu xin chào quý khách!</h3>
+        <div class="d-flex">
+            <img src="images/logo.png" alt="">
+            <h3 class="text-center">xin chào quý khách!</h3>
+        </div>
         <label>Bạn vui lòng cho nhà hàng biết thông tin của bạn để phục vụ nhanh chóng và chính xác hơn nhé.</lable>
         <div class="form-group">
             <label for="inputName">Tên của bạn:</label>

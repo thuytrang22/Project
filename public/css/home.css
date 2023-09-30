@@ -4,3 +4,13 @@
     align-items: center;
     justify-content: center;
 }
+
+.d-flex {
+    justify-content: center;
+    align-items: center;
+}
+
+.logo-home {
+    width: 270px;
+    height: 85px;
+}

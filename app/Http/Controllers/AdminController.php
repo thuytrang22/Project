@@ -10,4 +10,9 @@ class AdminController extends Controller
     {
         return view('admins.dashboards.dashboard');
     }
+
+    public function menu()
+    {
+        return view('admins.menu.index');
+    }
 }

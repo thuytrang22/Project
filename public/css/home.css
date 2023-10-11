@@ -4,3 +4,13 @@
     align-items: center;
     justify-content: center;
 }
+
+.bg-menu {
+    /* background-color: #FFF2C0; */
+    background-image: url('/images/bg.png');
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center center;
+    width: 100%;
+    height: 100vh;
+}

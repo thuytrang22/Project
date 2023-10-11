@@ -1,0 +1,1 @@
+$('body').addClass("bg-menu")

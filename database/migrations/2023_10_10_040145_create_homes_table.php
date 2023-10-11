@@ -17,7 +17,7 @@ return new class extends Migration
             $table->id();
             $table->string('name');
             $table->string('phone');
-            $table->integer('table_number');
+            $table->string('table_number');
             $table->timestamps();
         });
     }
@@ -32,3 +32,4 @@ return new class extends Migration
         Schema::dropIfExists('homes');
     }
 };
+

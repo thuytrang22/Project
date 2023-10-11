@@ -7,8 +7,7 @@ $(document).ready(function() {
             phoneNumber = phoneNumber.substring(0, 10);
         }
 
-        if (phoneNumber.length !== 10) {
-            $('#inputPhone').val(phoneNumber);
+        if (phoneNumber.length < 10) {
             alert('Lỗi: Số điện thoại phải có đúng 10 ký tự.');
         } else if (!phoneRegex.test(phoneNumber)) {
             alert('Lỗi: Số điện thoại nhập sai.');

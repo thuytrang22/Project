@@ -11,7 +11,7 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js"></script>
 </head>
 <body>
-<div class="">
+<div class="container-fluid">
     @yield('content')
     @stack('modal')
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
@@ -22,5 +22,6 @@
             <p>{{ $message }}</p>
         </div>
     @endif
+</div>
 </body>
 </html>

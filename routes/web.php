@@ -21,3 +21,5 @@ Route::post('/infor', [HomeController::class, 'infor'])->name('infor');
 Route::get('/order', [HomeController::class, 'order'])->name('order');
 
 Route::get('/admin', [AdminController::class, 'dashboard'])->name('admin');
+
+Route::get('/admin', [AdminController::class, 'dashboard'])->name('admin');

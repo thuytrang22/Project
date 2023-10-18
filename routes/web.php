@@ -3,6 +3,8 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\AdminController;
+use App\Http\Controllers\DishesController;
+use App\Http\Controllers\DrinksController;
 
 /*
 |--------------------------------------------------------------------------
@@ -20,4 +22,9 @@ Route::get('/', [HomeController::class, 'index']);
 Route::get('/order', [HomeController::class, 'order'])->name('order');
 
 Route::get('/admin', [AdminController::class, 'dashboard'])->name('admin');
-Route::get('/menu', [AdminController::class, 'menu'])->name('menu');
+
+Route::get('/dishes', [DishesController::class, 'index'])->name('dishes');
+Route::get('/dishes/create', [DishesController::class, 'create'])->name('create');
+Route::post('/dishes/store', [DishesController::class, 'store'])->name('store');
+
+Route::get('/drinks', [DrinksController::class, 'index'])->name('drinks');

@@ -21,10 +21,19 @@ hr {
     margin-top: unset;
 }
 
-.nav-pills .nav-link.active {
+.dropdown-item.active {
     background-color: #8B083F;
 }
 
+.dropdown-item:hover {
+    color: #fff;
+    text-decoration: none;
+    background-color: #8B083F;
+}
+
+.button:focus {
+    outline: 1px dotted;
+}
 .nav-pills a {
     color: #000;
 }

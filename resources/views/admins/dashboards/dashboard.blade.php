@@ -1,4 +1,4 @@
-@extends('.layouts.marter')
+@extends('.layouts.master')
 @section('content')
 <div class="scroll">
   <div class="d-flex mt-2" >
@@ -7,7 +7,7 @@
         <div class="card-body">
           <h5 class="card-title">Món Ăn</h5>
           <p class="card-text">Số lượng:</p>
-          <a href="#" class="btn btn-primary">Go somewhere</a>
+          <a href="#" class="btn btn-primary">Xem Thêm</a>
         </div>
       </div>
     </div>
@@ -16,16 +16,16 @@
         <div class="card-body">
           <h5 class="card-title">Đồ Uống</h5> 
           <p class="card-text">Số lượng:</p>
-          <a href="#" class="btn btn-primary">Go somewhere</a>
+          <a href="#" class="btn btn-primary">Xem Thêm</a>
         </div>
       </div>
     </div>
     <div class="col-sm-4">
       <div class="card">
         <div class="card-body">
-          <h5 class="card-title"></h5>
-          <p class="card-text"></p>
-          <a href="#" class="btn btn-primary">Go somewhere</a>
+          <h5 class="card-title">Đồ Uống</h5> 
+          <p class="card-text">Số lượng:</p>
+          <a href="#" class="btn btn-primary">Xem Thêm</a>
         </div>
       </div>
     </div>

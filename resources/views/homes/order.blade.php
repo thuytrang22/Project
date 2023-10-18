@@ -28,9 +28,9 @@
                     <h5 class="card-title">Special title treatment</h5>
                     <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
                     <div class="d-flex h-icon">
-                        <img src="./images/minus.png" alt="">
-                        <p class="text-icon"></p>
-                        <img src="./images/plus.png" alt="">
+                        <button type="button" class="minus-button" data-quantity="minus" data-field="quantity"></button>
+                        <input class="text-icon" type="number" name="quantity" value="0">
+                        <button type="button" class="plus-button" data-quantity="plus" data-field="quantity"></button>
                     </div>
                 </div>
             </div>
@@ -46,7 +46,7 @@
                     <h5 class="card-title">Special title treatment</h5>
                     <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
                     <div class="d-flex h-icon">
-                        <button type="button" class="plus-button" data-quantity="minus" data-field="quantity"></button>
+                        <button type="button" class="minus-button" data-quantity="minus" data-field="quantity"></button>
                         <input class="text-icon" type="number" name="quantity" value="0">
                         <button type="button" class="plus-button" data-quantity="plus" data-field="quantity"></button>
                     </div>

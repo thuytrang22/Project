@@ -5,53 +5,57 @@
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav mr-auto">
             <li class="nav-item active">
-                <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+                <a class="nav-link" href="#">Món Ăn</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="#">Link</a>
+                <a class="nav-link" href="#">Đồ Uống</a>
             </li>
-            <li class="nav-item dropdown">
-                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                    Dropdown
-                </a>
-                <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                    <a class="dropdown-item" href="#">Action</a>
-                    <a class="dropdown-item" href="#">Another action</a>
-                    <div class="dropdown-divider"></div>
-                    <a class="dropdown-item" href="#">Something else here</a>
-                </div>
+            <li class="nav-item">
+                <a class="nav-link" href="#">Gọi Thêm</a>
             </li>
         </ul>
-        <form class="form-inline my-2 my-lg-0">
+        <form class="d-flex my-2 my-lg-0">
             <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
             <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
         </form>
     </div>
 </nav>
-<div class="col row">
-    <div class="col-sm-3">
-        <div class="card">
-            <div class="card-body">
-                <h5 class="card-title">Special title treatment</h5>
-                <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
-                <a href="#" class="btn btn-primary">Go somewhere</a>
+<div class="d-flex gap-2 mt-2 container-fluid">
+    <div class="col-6 card ">
+        <div class="d-flex justify-content-between align-items-center">
+            <div class="col-sm-7">
+                <div class="card-body">
+                    <h5 class="card-title">Special title treatment</h5>
+                    <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
+                    <div class="d-flex h-icon">
+                        <img src="./images/minus.png" alt="">
+                        <p class="text-icon"></p>
+                        <img src="./images/plus.png" alt="">
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-4">
+                <img src="./images/gio-tai.jpg" alt="" class="img-thumbnail">
             </div>
         </div>
     </div>
-    <div class="col-sm-3">
-    <img src="./images/gio-tai.jpg" alt="" class="img-thumbnail">
-    </div>
-    <div class="col-sm-3">
-        <div class="card">
-            <div class="card-body">
-                <h5 class="card-title">Special title treatment</h5>
-                <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
-                <a href="#" class="btn btn-primary">Go somewhere</a>
+    <div class="col-6 card ">
+        <div class="d-flex justify-content-between align-items-center">
+            <div class="col-sm-7">
+                <div class="card-body">
+                    <h5 class="card-title">Special title treatment</h5>
+                    <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
+                    <div class="d-flex h-icon">
+                        <button type="button" class="plus-button" data-quantity="minus" data-field="quantity"></button>
+                        <input class="text-icon" type="number" name="quantity" value="0">
+                        <button type="button" class="plus-button" data-quantity="plus" data-field="quantity"></button>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-4">
+                <img src="./images/gio-tai.jpg" alt="" class="img-thumbnail">
             </div>
         </div>
-    </div>
-    <div class="col-sm-3">
-    <img src="./images/ca-kho.jpg" alt="" class="img-thumbnail">
     </div>
 </div>
 <script src="js/order.js"></script>

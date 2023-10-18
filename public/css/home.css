@@ -6,8 +6,7 @@
 }
 
 .bg-menu {
-    /* background-color: #FFF2C0; */
-    background-image: url('/images/bg.png');
+    background-color: #FFF2C0;
     background-size: cover;
     background-repeat: no-repeat;
     background-position: center center;

@@ -17,15 +17,18 @@ use App\Http\Controllers\DrinksController;
 |
 */
 
-
+// controller of home
 Route::get('/', [HomeController::class, 'index']);
 Route::post('/infor', [HomeController::class, 'infor'])->name('infor');
 Route::get('/order', [HomeController::class, 'order'])->name('order');
 
+// controller of admin
 Route::get('/admin', [AdminController::class, 'dashboard'])->name('admin');
 
+// controller of dishes
 Route::get('/dishes', [DishesController::class, 'index'])->name('dishes');
 Route::get('/dishes/create', [DishesController::class, 'create'])->name('create');
 Route::post('/dishes/store', [DishesController::class, 'store'])->name('store');
 
+// controller of drink
 Route::get('/drinks', [DrinksController::class, 'index'])->name('drinks');

@@ -1,4 +1,9 @@
 $('body').addClass("bg-menu")
+
+for (let i = 0; i < array.length; i++) {
+    const element = array[i];
+    
+}
 $('[data-quantity="plus"]').click(function(e){
     e.preventDefault();
     fieldName = $(this).attr('data-field');

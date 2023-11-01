@@ -5,12 +5,23 @@ if (currentUrl.includes("admin")) {
     dashboasd.classList.add("active");
 } 
 
-if (currentUrl.includes("dishes")) {
-    let dishes = document.getElementById("btn-dishes");
+if (currentUrl.includes("menus")) {
+    let dishes = document.getElementById("btn-menus");
     dishes.classList.add("active");
 } 
 
-if (currentUrl.includes("drinks")) {
-    let dishes = document.getElementById("btn-drinks");
-    dishes.classList.add("active");
-} 
+function btnDashboasd() {
+    window.location.href = 'admin'
+}
+
+function btnMenus() {
+    window.location.href = 'menus'
+}
+
+setTimeout(removeAlert, 3000);
+
+function removeAlert() {
+    $('#store').remove();
+    $('#update').remove();
+    $('#destroy').remove();
+}

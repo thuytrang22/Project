@@ -6,7 +6,7 @@
       <div class="card">
         <div class="card-body">
           <h5 class="card-title">Món Ăn</h5>
-          <p class="card-text">Số lượng:</p>
+          <p class="card-text">Số lượng: </p>
           <a href="#" class="btn btn-primary">Xem Thêm</a>
         </div>
       </div>
@@ -23,7 +23,7 @@
     <div class="col-sm-4">
       <div class="card">
         <div class="card-body">
-          <h5 class="card-title">Đồ Uống</h5> 
+          <h5 class="card-title">Món Gọi Thêm</h5> 
           <p class="card-text">Số lượng:</p>
           <a href="#" class="btn btn-primary">Xem Thêm</a>
         </div>

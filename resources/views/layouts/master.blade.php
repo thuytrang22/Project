@@ -23,10 +23,9 @@
                 </div>
                 <hr />
                 <button class="dropdown-item" id="btn-dashboasd" onclick="btnDashboasd()">Bảng Điều Khiển</button>
-                <button class="dropdown-item" id="btn-dishes" onclick="btnDishes()">Món Ăn</button>
-                <button class="dropdown-item" id="btn-drinks" onclick="btnDrinks()">Đồ Uống</button>
+                <button class="dropdown-item" id="btn-menus" onclick="btnMenus()">Menu</button>
             </div>
-            <div class="col-10">
+            <div class="col-10 scoll-right">
                 <div class="text-white bg-header row align-items-center justify-content-end">
                     <a href="#">Home</a>
                 </div>
@@ -36,7 +35,6 @@
         @stack('modal')
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-        <script src="/js/btnGloble.js"></script>
         <script src="/js/master.js"></script>
         @stack('js')
         @if ($message = Session::get('success'))

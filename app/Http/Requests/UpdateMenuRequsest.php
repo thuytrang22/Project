@@ -4,7 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class DishesRequest extends FormRequest
+class UpdateMenuRequsest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -24,17 +24,18 @@ class DishesRequest extends FormRequest
     public function rules()
     {
         return [
-            'name_dishe' => 'required|string',
-            'public' => 'required|string',
-            'detail' => 'required|string',
-            'price' => 'required|string'
-         ];
+            'name' => 'sometimes|required|string',
+            'public' => 'sometimes|required|image|mimes:jpg,png,jpeg,gif,svg|max:2048',
+            'detail' => 'sometimes|required|string',
+            'option' => 'sometimes|required|integer',
+            'price' => 'sometimes|required|string'
+        ];
     }
 
     public function messages()
     {
         return [
-            'name_dishe.required' => 'Không được bỏ trống tên.',
+            'name.required' => 'Không được bỏ trống tên.',
             'public.required' => 'Không được bỏ trống ảnh.',
             'detail.required' => 'Không được bỏ trống chi tiết món.',
             'price.required' => 'Không được bỏ trống giá.',

@@ -3,8 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\AdminController;
-use App\Http\Controllers\DishesController;
-use App\Http\Controllers\DrinksController;
+use App\Http\Controllers\MenuController;
 
 /*
 |--------------------------------------------------------------------------
@@ -18,17 +17,22 @@ use App\Http\Controllers\DrinksController;
 */
 
 // controller of home
-Route::get('/', [HomeController::class, 'index']);
-Route::post('/infor', [HomeController::class, 'infor'])->name('infor');
-Route::get('/order', [HomeController::class, 'order'])->name('order');
+Route::prefix('')->group(function () {
+    Route::get('/', [HomeController::class, 'index']);
+    Route::post('/infor', [HomeController::class, 'infor'])->name('infor');
+    Route::get('/order', [HomeController::class, 'order'])->name('order');
+});
 
 // controller of admin
 Route::get('/admin', [AdminController::class, 'dashboard'])->name('admin');
 
-// controller of dishes
-Route::get('/dishes', [DishesController::class, 'index'])->name('dishes');
-Route::get('/dishes/create', [DishesController::class, 'create'])->name('create');
-Route::post('/dishes/store', [DishesController::class, 'store'])->name('store');
-
-// controller of drink
-Route::get('/drinks', [DrinksController::class, 'index'])->name('drinks');
+// controller of menus
+Route::prefix('menus')->group(function () {
+    Route::get('/', [MenuController::class, 'index'])->name('menu');
+    Route::get('/create', [MenuController::class, 'create'])->name('menu.create');
+    Route::post('/store', [MenuController::class, 'store'])->name('menu.store');
+    Route::get('/show', [MenuController::class, 'show'])->name('menu.show');
+    Route::get('/edit', [MenuController::class, 'edit'])->name('menu.edit');
+    Route::put('/update', [MenuController::class, 'update'])->name('menu.update');
+    Route::delete('/menu/{id}', [MenuController::class, 'destroy'])->name('menu.destroy');
+});

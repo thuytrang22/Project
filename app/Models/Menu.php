@@ -4,14 +4,16 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
-class Dishe extends Model
+class Menu extends Model
 {
     use HasFactory;
-
+    use SoftDeletes;
+    protected $table = 'menus';
     public $timestamps = true;
-    
-     /**
+
+    /**
      * The attributes that are mass assignable.
      *
      * @var array<int, string>
@@ -20,6 +22,7 @@ class Dishe extends Model
         'name',
         'public',
         'detail',
+        'option',
         'price'
     ];
 }

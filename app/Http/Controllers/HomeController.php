@@ -16,14 +16,13 @@ class HomeController extends Controller
 
     public function infor(HomeRequest $request)
     {
-        Home::create([
+        $data = [
             'name' => $request->input('name'),
             'phone' => $request->input('phone'),
             'table_number' => $request->input('table_number'),
-        ]);
-    
+        ];
+        Home::create($data);
         return redirect()->route('order')->with('infor', 'success');
-    
     }
 
     public function order()

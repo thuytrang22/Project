@@ -13,4 +13,5 @@ $(document).ready(function() {
             alert('Lỗi: Số điện thoại nhập sai.');
         }
     });
+    $('#modalOption').modal('show');
 });

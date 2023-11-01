@@ -6,7 +6,7 @@
     color: #fff;
 }
 
-.bg-menu {
+.bg-dashboasd {
     background: #FFDE59;
     height:100vh;
 }
@@ -43,4 +43,48 @@ hr {
     height: 93vh;
     position: relative;
     overflow-y: scroll;
+}
+
+.btn-background {
+    background-color: #8B083F;
+    color: #fff;
+}
+
+.img-table {
+    width: 80px;
+    height: 80px;
+}
+
+.img-table img {
+    width: 100%;
+    height: 100%;
+}
+
+.btn-icon {
+    width: 50px;
+}
+
+.btn-icon img {
+    width: 80%;
+    height: 80%;
+}
+
+.image {
+    max-width: 300px; 
+    max-height: 300px;
+}
+
+.gap-10 {
+    gap: 10px;
+}
+
+.scoll-right {
+    height: 100vh;
+    overflow: auto;
+}
+
+.img-show {
+    max-width: 300px;
+    max-height: 300px;
+    margin: 10px;
 }

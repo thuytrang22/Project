@@ -22,12 +22,12 @@ class MenuController extends Controller
 
         $menus = $query->paginate(6);
 
-        return view('admins.menu', compact('menus', 'keywords'));
+        return view('admins.menus.menu', compact('menus', 'keywords'));
     }
 
     public function create()
     {
-        return view('admins.menu');
+        return view('admins.menus.create');
     }
 
     public function store(CreateMenuRequsest $request)
@@ -43,18 +43,17 @@ class MenuController extends Controller
         return redirect()->route('menu')->with('store', 'success');
     }
 
-    public function show(Menu $menu)
+    public function show(Menu $id)
     {
-
-        return view('admins.menu', [
-            'menu' => $menu
+        return view('admins.menus.show', [
+            'menu' => $id
         ]);
     }
 
-    public function edit(Menu $menu)
+    public function edit(Menu $id)
     {
-        return view('admins.menu', [
-            'menu' => $menu
+        return view('admins.menus.edit', [
+            'menu' => $id
         ]);
     }
 

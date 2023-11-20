@@ -29,10 +29,10 @@ Route::get('/admin', [AdminController::class, 'dashboard'])->name('admin');
 // controller of menus
 Route::prefix('menus')->group(function () {
     Route::get('/', [MenuController::class, 'index'])->name('menu');
-    Route::get('/create', [MenuController::class, 'create'])->name('menu.create');
-    Route::post('/store', [MenuController::class, 'store'])->name('menu.store');
-    Route::get('/show', [MenuController::class, 'show'])->name('menu.show');
-    Route::get('/edit', [MenuController::class, 'edit'])->name('menu.edit');
-    Route::put('/update', [MenuController::class, 'update'])->name('menu.update');
-    Route::delete('/menu/{id}', [MenuController::class, 'destroy'])->name('menu.destroy');
+    Route::get('/create', [MenuController::class, 'create'])->name('create');
+    Route::post('/store', [MenuController::class, 'store'])->name('store');
+    Route::get('/{id}', [MenuController::class, 'show'])->name('show');
+    Route::get('{id}/edit', [MenuController::class, 'edit'])->name('edit');
+    Route::put('/update', [MenuController::class, 'update'])->name('update');
+    Route::delete('/{id}', [MenuController::class, 'destroy'])->name('destroy');
 });

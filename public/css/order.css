@@ -1,6 +1,9 @@
+body th td {
+	font-size: 16px !important;
+}
 .bg-header {
     background-color: #FFDE59;
-    height: 80px;
+    height: 75px;
     margin-top: 20px;
 }
 .bg-header img {

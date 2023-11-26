@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\MenuController;
+use App\Http\Controllers\CartController;
 
 /*
 |--------------------------------------------------------------------------
@@ -27,7 +28,7 @@ Route::prefix('')->group(function () {
 Route::get('/admin', [AdminController::class, 'dashboard'])->name('admin');
 
 // controller of menus
-Route::prefix('menus')->group(function () {
+Route::prefix('menu')->group(function () {
     Route::get('/', [MenuController::class, 'index'])->name('menu');
     Route::get('/create', [MenuController::class, 'create'])->name('create');
     Route::post('/store', [MenuController::class, 'store'])->name('store');
@@ -35,4 +36,12 @@ Route::prefix('menus')->group(function () {
     Route::get('{id}/edit', [MenuController::class, 'edit'])->name('edit');
     Route::put('/update', [MenuController::class, 'update'])->name('update');
     Route::delete('/{id}', [MenuController::class, 'destroy'])->name('destroy');
+});
+
+// controller of cart
+Route::prefix('cart')->group(function () {
+    Route::get('/', [CartController::class, 'index'])->name('cart');
+    Route::post('/add/{dish}', [CartController::class, 'add'])->name('add');
+    Route::delete('/remove/{id}', [CartController::class, 'remove'])->name('remove');
+    Route::delete('/clear', [CartController::class, 'clear'])->name('clear');
 });

@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Http\Requests\HomeRequest;
 use App\Models\Home;
-use App\Http\Model;
+use Illuminate\Support\Facades\DB;
 
 class HomeController extends Controller
 {
@@ -27,6 +27,7 @@ class HomeController extends Controller
 
     public function order()
     {
-        return view('homes.order');
+        $dishs = DB::table('menus')->where('option', '=', 1)->get();
+        return view('homes.order', compact('dishs'));
     }
 }

@@ -34,8 +34,10 @@ $('[data-quantity="plus"]').click(function(e){
         $('input[name='+fieldName+']').val(0);
     }
 });
-$('[data-quantity="minus"]').click(function(e) {
+$('[data-id="minus"]').click(function(e) {
     e.preventDefault();
+    let id = $(".img-show").data("id");
+    let btnMinus = $("#minus-" + id );
     fieldName = $(this).attr('data-field');
     let currentVal = parseInt($('input[name='+fieldName+']').val());
     if (!isNaN(currentVal) && currentVal > 0) {

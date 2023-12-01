@@ -67,44 +67,29 @@
     </div>
 </nav>
 <h4 id="headerDish">Món ăn</h4>
-<div class="d-flex gap-2 mt-2 container-fluid">
-    <div class="col-6 card">
-        <div class="d-flex justify-content-between align-items-center">
-            <div class="col-sm-7">
-                <div class="card-body">
-                    <h5 class="card-title">Special title treatment</h5>
-                    <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
-                    <div class="d-flex h-icon">
-                        <button type="button" class="minus-button" data-quantity="minus" data-field="quantity"></button>
-                        <input class="text-icon" type="number" name="quantity" value="0">
-                        <button type="button" class="plus-button" data-quantity="plus" data-field="quantity"></button>
-                    </div>
+<!-- <div class="d-flex gap-2 mt-2 container-fluid"> -->
+@foreach($dishs as $dish)
+<div class="col-6 card">
+    <div class="d-flex justify-content-between align-items-center">
+        <div class="col-sm-7">
+            <div class="card-body">
+                <h5 class="card-title">{{ $dish->name }}</h5>
+                <p class="card-text">{{ $dish->detail }}</p>
+                <div class="d-flex h-icon">
+                    <button type="button" id="minus-{{ $dish->id }}" class="minus-button" data-id="{{ $dish->id }}" data-quantity="minus" data-field="quantity"></button>
+                    <input class="text-icon" type="number" name="quantity" value="0">
+                    <button type="button" class="plus-button" data-quantity="plus" data-field="quantity"></button>
+                    <div class="ml-3">Giá: {{ $dish->price }} <u>đ</u></div>
                 </div>
-            </div>
-            <div class="col-sm-3">
-                <img src="./images/gio-tai.jpg" alt="" class="img-thumbnail">
             </div>
         </div>
-    </div>
-    <div class="col-6 card">
-        <div class="d-flex justify-content-between align-items-center">
-            <div class="col-sm-7">
-                <div class="card-body">
-                    <h5 class="card-title">Special title treatment</h5>
-                    <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
-                    <div class="d-flex h-icon">
-                        <button type="button" class="minus-button" data-quantity="minus" data-field="quantity"></button>
-                        <input class="text-icon" type="number" name="quantity" value="0">
-                        <button type="button" class="plus-button" data-quantity="plus" data-field="quantity"></button>
-                    </div>
-                </div>
-            </div>
-            <div class="col-sm-3">
-                <img src="./images/gio-tai.jpg" alt="" class="img-thumbnail">
-            </div>
+        <div class="col-sm-3">
+            <img src="{{ asset('storage/' .substr($dish->public, 7)) }}" class="img-thumbnail">
         </div>
     </div>
 </div>
+@endforeach
+<!-- </div> -->
 <h4 id="headerCallMore">Món Gọi Thêm</h4>
 <div class="d-flex gap-2 mt-2 container-fluid">
     <div class="col-6 card">

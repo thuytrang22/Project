@@ -41,7 +41,9 @@
                 <span class="text-red-500 text-danger">{{ $message }}</span>
                 @enderror
             </div>
+            <div class="mt-3">
             <button type="submit" class="btn btn-primary" id="btnHome">Bắt Đầu</button>
+            </div>
     </form>
 </div>
 <script src="js/home.js"></script>

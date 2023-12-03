@@ -3,6 +3,7 @@
 namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
+use App\Rules\PhoneNumber;
 
 class HomeRequest extends FormRequest
 {
@@ -25,7 +26,7 @@ class HomeRequest extends FormRequest
     {
         return [
            'name' => 'sometimes|required|string',
-           'phone' => 'sometimes|required|string',
+           'phone' => ['required', new PhoneNumber],
            'table_number' => 'sometimes|required|string'
         ];
     }

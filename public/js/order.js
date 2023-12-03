@@ -1,6 +1,6 @@
 
 $('#modalMenuOder').modal('show');
-
+$('#modalOption').modal('show');
 $('body').addClass("bg-menu")
 
 $("#scrollDish").click(function() {
@@ -24,16 +24,23 @@ $("#scrollDrink").click(function() {
     }, 100);
 });
 
-$('[data-quantity="plus"]').click(function(e) {
-    e.preventDefault();
-    adjustQuantity(e, 'plus');
-    checkAndShowModal();
-});
-
 $('[data-quantity="minus"]').click(function(e) {
     e.preventDefault();
     adjustQuantity(e, 'minus');
     checkAndShowModal();
+});
+
+$('[data-id="minus"]').click(function(e) {
+    e.preventDefault();
+    let id = $(".img-show").data("id");
+    let btnMinus = $("#minus-" + id );
+    fieldName = $(this).attr('data-field');
+    let currentVal = parseInt($('input[name='+fieldName+']').val());
+    if (!isNaN(currentVal) && currentVal > 0) {
+        $('input[name='+fieldName+']').val(currentVal - 1);
+    } else {
+        $('input[name='+fieldName+']').val(0);
+    }
 });
 
 function adjustQuantity(e, action) {

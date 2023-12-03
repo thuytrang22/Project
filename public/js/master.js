@@ -5,19 +5,10 @@ if (currentUrl.includes("admin")) {
     dashboasd.classList.add("active");
 } 
 
-if (currentUrl.includes("menus")) {
+if (currentUrl.includes("menu")) {
     let dishes = document.getElementById("btn-menus");
     dishes.classList.add("active");
 } 
-
-function btnDashboasd() {
-    window.location.href = 'admin'
-}
-
-function btnMenus() {
-    window.location.href = 'menus'
-}
-
 setTimeout(removeAlert, 3000);
 
 function removeAlert() {

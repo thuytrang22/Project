@@ -18,10 +18,10 @@ use App\Http\Controllers\CartController;
 */
 
 // controller of home
-Route::prefix('')->group(function () {
-    Route::get('/', [HomeController::class, 'index']);
+Route::prefix('qr')->group(function () {
+    Route::get('/{table}', [HomeController::class, 'index']);
     Route::post('/infor', [HomeController::class, 'infor'])->name('infor');
-    Route::get('/order', [HomeController::class, 'order'])->name('order');
+    Route::get('/{table}/order', [HomeController::class, 'order'])->name('order');
 });
 
 // controller of admin

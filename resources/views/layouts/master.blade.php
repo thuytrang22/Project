@@ -22,8 +22,8 @@
                     <img src="/images/logo-color.png" alt="">
                 </div>
                 <hr />
-                <button class="dropdown-item" id="btn-dashboasd" onclick="btnDashboasd()">Bảng Điều Khiển</button>
-                <button class="dropdown-item" id="btn-menus" onclick="btnMenus()">Menu</button>
+                <a class="dropdown-item" id="btn-dashboasd" href="{{route('admin')}}">Bảng Điều Khiển</a>
+                <a class="dropdown-item" id="btn-menus" href="{{route('menu')}}">Menu</a>
             </div>
             <div class="col-10 scoll-right">
                 <div class="text-white bg-header row align-items-center justify-content-end">

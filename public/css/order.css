@@ -109,3 +109,7 @@ body th td {
 .img-thumbnail {
 	height: 110px;
 }
+
+.card img {
+	height: 200px;
+}

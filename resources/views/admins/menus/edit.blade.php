@@ -81,9 +81,9 @@
     </div>
 </form>
 <script >
-        $('#updateImage').on('change', function () {
+    $('#updateImage').on('change', function () {
         let input = this;
-        let dataId = $(".img-show").data("id");
+        let dataId = $(".minus-button").data("id");
         if (dataId) {
             let image = $('#changeImage-'+ dataId);
 

@@ -35,9 +35,9 @@
 </div>
 <div class="card-body p-0">
     <!-- show all data -->
-    <table class="table table-striped table-hover m-0">
+    <table class="table table-bordered ">
         <thead>
-            <tr>
+            <tr class="text-center table-active">
                 <th>STT</th>
                 <th>Tên Món</th>
                 <th>Hình Ảnh</th>
@@ -50,13 +50,13 @@
         <tbody>
             @if(count($menus) > 0)
             @foreach($menus as $menu)
-            <tr>
+            <tr class="text-center">
                 <td>{{$menu->id}}</td>
                 <td>{{$menu->name}}</td>
                 <td>
                     <div class="img-table">
                         @if ($menu->public)
-                        <img src="{{ asset('storage/' .substr($menu->public, 7)) }}" alt="Hình ảnh">
+                            <img src="{{ asset('storage/' .substr($menu->public, 7)) }}" alt="Hình ảnh">
                         @endif
                     </div>
                 </td>

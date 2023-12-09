@@ -18,11 +18,21 @@
 
 <div class="card-body">
     <div class="row justify-content-between">
-        <div class="col-auto">
+        <div class="col-auto d-flex">
             <!-- feature create -->
             <a class="btn btn-warning" href="{{route('create')}}">
                 Thêm Món
             </a>
+            <div class="dropdown ml-3">
+                <button class="btn btn-warning dropdown-toggle" type="button" id="dropdownMenu2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    Danh Mục Thực Đơn
+                </button>
+                <div class="dropdown-menu" aria-labelledby="dropdownMenu2">
+                    <button class="dropdown-item" type="button">Món ăn <input type="text" value></button>
+                    <button class="dropdown-item" type="button">Đồ uống</button>
+                    <button class="dropdown-item" type="button">Món gọi thêm</button>
+                </div>
+            </div>
         </div>
         <!-- feature search -->
         <form action="?" class="col-auto ms-auto">
@@ -38,7 +48,15 @@
     <table class="table table-bordered ">
         <thead>
             <tr class="text-center table-active">
-                <th>STT</th>
+                <th>
+                    <a class="d-flex justify-content-center align-items-center" href="{{ route('menu', ['sortBy' => 'id', 'sortDirection' => ($sortDirection == 'asc' && $sortBy == 'id') ? 'desc' : 'asc']) }}">
+                        STT
+                        <div class="sort">
+                            <div class="arrow-up"></div>
+                            <div class="arrow-down"></div>
+                        </div>
+                    </a>
+                </th>
                 <th>Tên Món</th>
                 <th>Hình Ảnh</th>
                 <th>Chi Tiết</th>
@@ -61,7 +79,11 @@
                     </div>
                 </td>
                 <td>{{$menu->detail}}</td>
-                <td>{{$menu->option}}</td>
+                <td>
+                    @if($menu->option == 1) Món ăn @endif
+                    @if($menu->option == 2) Đồ uống @endif
+                    @if($menu->option == 3) Món gọi thêm @endif
+                </td>
                 <td>{{$menu->price}}</td>
                 <td>
                     <div class="d-flex gap-10">
@@ -109,5 +131,7 @@
             <a class="page-link" href="{{ $menus->url($menus->lastPage()) }}"><span aria-hidden="true">&raquo;</span></a>
         </li>
 </ul>
+<script>
 
+</script>
 @endsection

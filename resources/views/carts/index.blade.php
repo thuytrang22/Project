@@ -2,7 +2,6 @@
 @section('content')
 <div class="card-header d-flex justify-content-between">
     <h4 class="modal-title">Giỏ hàng của bạn</h4> 
-    <a class="btn btn-outline-warning"  href="{{ route('order') }}">Quay lại menu</a>
 </div>
 <div class="card-body p-0">
     <!-- show all data -->
@@ -47,7 +46,7 @@
             @else
             <tr>
                 <td colspan="7" class="text-center">Giỏ hàng không có món nào!!!
-                    <a href="{{route('order')}}"> Đến menu </a>
+                    
                 </td>
             </tr>
             @endif

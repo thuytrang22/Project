@@ -53,6 +53,7 @@ hr {
 .img-table {
     width: 80px;
     height: 80px;
+    margin: auto;
 }
 
 .img-table img {
@@ -88,3 +89,49 @@ hr {
     max-height: 300px;
     margin: 10px;
 }
+
+.table td, .table th {
+    padding: 0.2rem;
+}
+
+.table-bordered tr td,
+.table-bordered tr th {
+    text-align: center;
+    vertical-align: middle;
+    line-height: 1.5;
+}
+
+th a {
+    text-decoration: none;
+    color: #000;
+}
+
+th a:hover {
+    color: unset;
+    text-decoration: none;
+}
+
+.arrow-up {
+    width: 0;
+    height: 0;
+    border-left: 4px solid transparent;
+    border-right: 4px solid transparent;
+    border-bottom: 5px solid #3b3a3a;
+  }
+  
+  .arrow-down {
+    margin-top: 2px;
+    width: 0;
+    height: 0;
+    border-left: 4px solid transparent;
+    border-right: 4px solid transparent;
+    border-top: 5px solid #3b3a3a; 
+  }
+
+  .sort {
+    margin-left: 5px;
+  }
+
+  .dropdown-item:hover {
+    color: #000;
+  }

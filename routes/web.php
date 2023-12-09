@@ -22,6 +22,7 @@ Route::prefix('qr')->group(function () {
     Route::get('/{table}', [HomeController::class, 'index']);
     Route::post('/infor', [HomeController::class, 'infor'])->name('infor');
     Route::get('/{table}/order', [HomeController::class, 'order'])->name('order');
+    Route::get('/{table}/get-menu/{option}', [HomeController::class, 'getMenu'])->name('getmenu');
 });
 
 // controller of admin

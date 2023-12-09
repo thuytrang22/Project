@@ -15,10 +15,10 @@ body th td {
 }
 
 .text-icon {
-    width: 30px;
+    width: 50px;
     border: none;
     text-align: center;
-    margin-left: 12px !important;
+	background-color: unset !important;;
 }
 
 .plus-button {
@@ -95,7 +95,7 @@ body th td {
 }
 
 .p-circle {
-	padding: 6px;
+	padding: 5px;
 }
 
 .w-cart {
@@ -112,4 +112,40 @@ body th td {
 
 .card img {
 	height: 200px;
+}
+
+@media (max-width: 1024px) {
+    .mr-auto{
+		background-color: white;
+		text-align: center;
+		padding: 20px;
+	}
+}
+body {
+	padding-top: 56px; 
+}
+
+#headerDish {
+	padding-top: 50px; 
+}
+.price {
+	color: red;
+}
+
+.search-header {
+	width: 250px;
+	margin-left: 20px;
+}
+
+.navbar-light .navbar-nav .nav-link:hover {
+	color:#000;
+}
+
+.badge {
+	margin-left: 15px;
+}
+
+.bg-footer {
+	background-color: #FFDE59;
+    height: 75px;
 }

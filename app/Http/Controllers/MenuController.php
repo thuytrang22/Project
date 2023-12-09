@@ -11,20 +11,26 @@ use App\Http\Requests\UpdateMenuRequsest;
 class MenuController extends Controller
 {
     public function index(Request $request)
-    {
-        $keywords = $request->input('keywords');
+{
+    $keywords = $request->input('keywords');
+    $sortBy = $request->input('sortBy', 'id');
+    $sortDirection = $request->input('sortDirection', 'desc');
 
-        $query = Menu::orderBy('id', 'desc');
+    $query = Menu::orderBy($sortBy, $sortDirection);
 
-        if (!empty($keywords)) {
-            $query->where('name', 'like', '%' . $keywords . '%');
-        }
-
-        $menus = $query->paginate(6);
-
-        return view('admins.menus.menu', compact('menus', 'keywords'));
+    if (!empty($keywords)) {
+        $query->where(function ($query) use ($keywords) {
+            $query->where('name', 'like', '%' . $keywords . '%')
+                ->orWhere('option', 'like', '%' . $keywords . '%');
+        });
     }
 
+    $menus = $query->paginate(6);
+
+    return view('admins.menus.menu', compact('menus', 'keywords', 'sortBy', 'sortDirection'));
+}
+
+    
     public function create()
     {
         return view('admins.menus.create');

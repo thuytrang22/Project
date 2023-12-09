@@ -1,6 +1,6 @@
 
-$('#modalMenuOder').modal('show');
-$('#modalOption').modal('show');
+// $('#modalMenuOder').modal('show');
+
 $('body').addClass("bg-menu")
 
 $("#scrollDish").click(function() {
@@ -24,46 +24,67 @@ $("#scrollDrink").click(function() {
     }, 100);
 });
 
-$('[data-quantity="minus"]').click(function(e) {
-    e.preventDefault();
-    adjustQuantity(e, 'minus');
-    checkAndShowModal();
-});
-
-$('[data-id="minus"]').click(function(e) {
-    e.preventDefault();
-    let id = $(".img-show").data("id");
-    let btnMinus = $("#minus-" + id );
-    fieldName = $(this).attr('data-field');
-    let currentVal = parseInt($('input[name='+fieldName+']').val());
-    if (!isNaN(currentVal) && currentVal > 0) {
-        $('input[name='+fieldName+']').val(currentVal - 1);
+let cart = {};
+$('.badge').hide();
+$('#tabFooter').hide();
+function addToCart(dishId, quantity, price) {
+    if (cart[dishId]) {
+        cart[dishId].quantity += quantity;
     } else {
-        $('input[name='+fieldName+']').val(0);
+        cart[dishId] = {
+            quantity: quantity,
+            price: price
+        };
     }
-});
-
-function adjustQuantity(e, action) {
-    let fieldName = $(e.currentTarget).attr('data-field');
-    let inputField = $('input[name=' + fieldName + ']');
-    let currentVal = parseInt(inputField.val());
-
-    if (!isNaN(currentVal)) {
-        if (action === 'plus') {
-            inputField.val(currentVal + 1);
-        } else if (action === 'minus' && currentVal > 0) {
-            inputField.val(currentVal - 1);
-        } else {
-            inputField.val(0);
-        }
+    updateLocalStorage();
+    displayCart(price);
+}
+function removeFromCart(dishId, price) {
+    if (cart[dishId]) {
+        delete cart[dishId];
+        updateLocalStorage();
+        displayCart(price);
     }
 }
-
-function checkAndShowModal() {
-    let inputField = $('input[name="yourFieldName"]');
-    
-    if (inputField.val() !== '0') {
-        $('#modalCart').modal('show');
+function updateLocalStorage() {
+    localStorage.setItem('cart', JSON.stringify(cart));
+    let cartJSON = localStorage.getItem('cart', JSON.stringify(cart));
+    let cartArray = JSON.parse(cartJSON);
+    console.log(cartArray);
+}
+let arrayPrice = []
+function displayCart(price) {
+    arrayPrice = [price]
+    let totalQuantity = Object.values(cart).reduce((total, item) => total + item.quantity, 0);
+    console.log(price);
+    if (totalQuantity > 0) {
+        $('#tabFooter').show();
+        $('.badge').show();
+        $('#gia').val(arrayPrice);
+    } else {
+        $('#tabFooter').hide();
+        $('.badge').hide();
     }
 }
-
+function increaseQuantity(button) {
+    let btnGroup = $(button).closest('.btn-group');
+    let dishId = btnGroup.data('id');
+    let priceText = btnGroup.find('.price').text();
+    let priceValue = parseFloat(priceText.replace(/[^\d.]/g, ''));
+    let quantityInput = button.parentNode.querySelector('.ip-number');
+    let currentQuantity = parseInt(quantityInput.value);
+    quantityInput.value = currentQuantity + 1;
+    addToCart(dishId, 1, priceValue);
+}
+function decreaseQuantity(button) {
+    let btnGroup = $(button).closest('.btn-group');
+    let dishId = btnGroup.data('id');
+    let priceText = btnGroup.find('.price').text();
+    let priceValue = parseFloat(priceText.replace(/[^\d.]/g, ''));
+    let quantityInput = button.parentNode.querySelector('.ip-number');
+    let currentQuantity = parseInt(quantityInput.value);
+    if (currentQuantity > 0) {
+        quantityInput.value = currentQuantity - 1;
+        removeFromCart(dishId,  priceValue);
+    }
+}

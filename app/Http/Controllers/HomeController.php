@@ -45,4 +45,11 @@ class HomeController extends Controller
         $allMores = DB::table('menus')->where('option', '=', 3)->get();
         return view('homes.order', compact('dishs', 'drinks', 'allMores'));
     }
+
+    public function getMenu (Request $request, $table, $option)
+    {
+        $menus = DB::table('menus')->where('option', '=', $option)->get();
+
+        return response()->json($menus);
+    }
 }

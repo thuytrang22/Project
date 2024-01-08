@@ -40,9 +40,8 @@
 
     <div class="collapse navbar-collapse justify-content-between px-4" id="navbarSupportedContent">
         <ul class="navbar-nav mr-auto">
-            <li class="nav-item">
+            <li class="nav-item d-flex">
                 <a class="nav-link" href="#" id="scrollDish">Món Ăn</a>
-                <p id="gia"></p>
             </li>
             <li class="nav-item">
                 <a class="nav-link" href="#" id="scrollDrink">Đồ Uống</a>
@@ -77,11 +76,7 @@
 
 <nav class="navbar navbar-expand-lg navbar-light bg-footer fixed-bottom" id="tabFooter">
     <div class="collapse navbar-collapse justify-content-between px-4" id="footer">
-        <ul class="navbar-nav mr-auto">
-            <li class="nav-item">
-                <a class="nav-link" href="#" id="scrollDish">Món Ăn</a>
-            </li>
-        </ul>
+        <input id="gia" type="text" value="">
     </div>
 </nav>
 <h4 id="headerDish">Món ăn</h4>
@@ -108,7 +103,7 @@
 <div class="row">
     @foreach ($allMores as $more)
         <div class="col-12 col-sm-6 col-md-4 col-lg-3 mb-3">
-            <div class="card" style="width: 18rem;">
+            <div class="card">
                 <img src="{{ asset('storage/' .substr($more->public, 7)) }}">
                 <div class="card-body">
                     <h5 class="card-title">{{ $more->name }}</h5>
@@ -127,7 +122,7 @@
 <div class="row">
     @foreach ($drinks as $drink)
         <div class="col-12 col-sm-6 col-md-4 col-lg-3 mb-3">
-            <div class="card" style="width: 18rem;">
+            <div class="card">
                 <img src="{{ asset('storage/' .substr($drink->public, 7)) }}">
                 <div class="card-body">
                     <h5 class="card-title">{{ $drink->name }}</h5>

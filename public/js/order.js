@@ -24,6 +24,7 @@ $("#scrollDrink").click(function() {
     }, 100);
 });
 
+let arrPrice = [];
 let cart = {};
 $('.badge').hide();
 $('#tabFooter').hide();
@@ -36,27 +37,27 @@ function addToCart(dishId, quantity, price) {
             price: price
         };
     }
-    updateLocalStorage();
+    arrPrice.push(cart[dishId]);
     displayCart(price);
 }
 function removeFromCart(dishId, price) {
     if (cart[dishId]) {
         delete cart[dishId];
-        updateLocalStorage();
+    arrPrice.splice(cart[dishId],1);
         displayCart(price);
     }
-}
-function updateLocalStorage() {
-    localStorage.setItem('cart', JSON.stringify(cart));
-    let cartJSON = localStorage.getItem('cart', JSON.stringify(cart));
-    let cartArray = JSON.parse(cartJSON);
-    console.log(cartArray);
 }
 let arrayPrice = []
 function displayCart(price) {
     arrayPrice = [price]
     let totalQuantity = Object.values(cart).reduce((total, item) => total + item.quantity, 0);
-    console.log(price);
+    for (let i = 0; i < arrPrice.length; i++) {
+        let price = arrPrice[i].price
+        let quantity = arrPrice[i].quantity
+        let j = i+1 ;
+            console.log(price* j);
+    }
+   
     if (totalQuantity > 0) {
         $('#tabFooter').show();
         $('.badge').show();

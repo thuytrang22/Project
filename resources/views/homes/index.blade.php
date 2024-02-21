@@ -2,8 +2,8 @@
 @section('content')
 <div class="home-center">
     <form action="{{route('infor')}}" method="POST" enctype="multipart/form-data">
-        <div class="d-flex">
-            <img src="/images/logo.png" alt="">
+        <div class="d-flex" style="align-items: baseline; gap: 5px">
+            <h2 class="logo me-auto me-lg-0" style="font-style: italic;"><a href="{{route('pages')}}" style=" color: #cda45e">Hana Sushi  </a></h2>
             <h3 class="text-center">xin chào quý khách!</h3>
         </div>
         <label>Bạn vui lòng cho nhà hàng biết thông tin của bạn để phục vụ nhanh chóng và chính xác hơn nhé.</lable>

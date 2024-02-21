@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class Home extends Model
 {
     use HasFactory;
-
+    protected $table = "infor";
     public $timestamps = true;
 
     /**

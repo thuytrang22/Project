@@ -38,33 +38,29 @@ function addToCart(dishId, quantity, price) {
         };
     }
     arrPrice.push(cart[dishId]);
-    displayCart(price);
-}
-function removeFromCart(dishId, price) {
-    if (cart[dishId]) {
-        delete cart[dishId];
-    arrPrice.splice(cart[dishId],1);
-        displayCart(price);
-    }
-}
-let arrayPrice = []
-function displayCart(price) {
-    arrayPrice = [price]
-    let totalQuantity = Object.values(cart).reduce((total, item) => total + item.quantity, 0);
     for (let i = 0; i < arrPrice.length; i++) {
         let price = arrPrice[i].price
-        let quantity = arrPrice[i].quantity
         let j = i+1 ;
-            console.log(price* j);
-    }
-   
-    if (totalQuantity > 0) {
-        $('#tabFooter').show();
-        $('.badge').show();
-        $('#gia').val(arrayPrice);
-    } else {
-        $('#tabFooter').hide();
-        $('.badge').hide();
+        let priceShow = price * j        
+        $('#gia').val(priceShow);
+    }   
+    $('#tabFooter').show();
+    $('.badge').show();
+}
+function removeFromCart(dishId) {
+    if (cart[dishId]) {
+        delete cart[dishId];
+           
+        for (let i = 0; i < arrPrice.length; i++) {
+            let price = arrPrice[i].price;
+            let demo = $('#gia').val();
+            var totalPrice;
+            console.log(demo);
+                totalPrice = demo - price;       
+            $('#gia').val(totalPrice);
+            arrPrice.splice(i,1);
+        };
+        // $('#gia').val(totalPrice);
     }
 }
 function increaseQuantity(button) {
@@ -80,12 +76,16 @@ function increaseQuantity(button) {
 function decreaseQuantity(button) {
     let btnGroup = $(button).closest('.btn-group');
     let dishId = btnGroup.data('id');
-    let priceText = btnGroup.find('.price').text();
-    let priceValue = parseFloat(priceText.replace(/[^\d.]/g, ''));
     let quantityInput = button.parentNode.querySelector('.ip-number');
     let currentQuantity = parseInt(quantityInput.value);
     if (currentQuantity > 0) {
         quantityInput.value = currentQuantity - 1;
-        removeFromCart(dishId,  priceValue);
+        removeFromCart(dishId);
+        if(quantityInput.value == 0){
+            console.log(111);
+            arrPrice.splice(0,1);
+            // $('#tabFooter').hide();
+            // $('.badge').hide();
+        }
     }
 }

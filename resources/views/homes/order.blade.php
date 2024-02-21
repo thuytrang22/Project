@@ -1,141 +1,154 @@
-@extends('layouts.main')
+@extends('layouts.page')
 @section('content')
+  <!-- ======= Top Bar ======= -->
+  <div id="topbar" class="d-flex align-items-center fixed-top">
+    <div class="container d-flex justify-content-center justify-content-md-between">
 
-<div class="modal fade " id="modalMenuOder" data-backdrop="static" data-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered">
-        <div class="modal-content bg-modalmenu">
-            <div class="modal-header">
-                <h5 class="modal-title" id="staticBackdropLabel">Danh Mục Menu</h5>
-                <button type="button" class="close close-modal" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
-            <div class="modal-body justify-content-center">
-                <button type="button" class="btn btn-warning">
-                    <div class="btn-menuCategory"><img src="/images/pay.png" alt="">Gọi Thanh Toán</div>
-                </button>
-                <button type="button" class="btn btn-warning">
-                    <div class="btn-menuCategory"><img src="/images/pay-card.png" alt="">Thanh Toán Thẻ</div>
-                </button>
-                <button type="button" class="btn btn-warning">
-                    <div class="btn-menuCategory"><img src="/images/hotel-bell.png" alt="">Gọi Nhân Viên</div>
-                </button>
-                <button type="button" class="btn btn-warning">
-                    <div class="btn-menuCategory"><img src="/images/menu.png" alt="">Xem Menu</div>
-                </button>
-                <button type="button" class="btn btn-warning">
-                    <div class="btn-menuCategory"><img src="/images/check-list.png" alt="">Đánh Giá</div>
-                </button>
-            </div>
-            <div class="modal-footer">
-            </div>
-        </div>
+      <div class="contact-info d-flex align-items-center">
+        <i class="bi bi-phone d-flex align-items-center"><span>+84 332412298</span></i>
+        <i class="bi bi-clock d-flex align-items-center ms-4"><span> Mon-Sat: 11AM - 23PM</span></i>
+      </div>
     </div>
-</div>
-<nav class="navbar navbar-expand-lg navbar-light bg-header fixed-top">
-    <img src="/images/logo-home.png" alt="">
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-    </button>
+  </div>
 
-    <div class="collapse navbar-collapse justify-content-between px-4" id="navbarSupportedContent">
-        <ul class="navbar-nav mr-auto">
-            <li class="nav-item d-flex">
-                <a class="nav-link" href="#" id="scrollDish">Món Ăn</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="#" id="scrollDrink">Đồ Uống</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="#" id="scrollCallMore">Món Gọi Thêm</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="#">Gọi Thanh Toán</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="#">Gọi Nhân Viên</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="#">Đánh Giá</a>
-            </li>
-            <li class="nav-item row m-auto d-flex justify-content-center align-items-center">
-            <form class="d-flex justify-content-center align-items-center my-2 my-lg-0 search-header">
-                <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
-                <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
-            </form>
-                <a class="btn position-relative h-cart" href="{{ route('cart') }}">
-                    <img src="/images/shopping-cart.png" alt="">
-                    <span class="position-absolute top-0 start-100 badge border border-light rounded-circle bg-danger p-circle">
-                        <span class="visually-hidden"></span>
-                    </span>
-                </a>
-            </li>
+  <!-- ======= Header ======= -->
+  <header id="header" class="fixed-top d-flex align-items-cente">
+    <div class="container-fluid container-xl d-flex align-items-center justify-content-lg-between">
+
+      <h1 class="logo me-auto me-lg-0"><a href="{{route('pages')}}">Hana Sushi</a></h1>
+      <!-- Uncomment below if you prefer to use an image logo -->
+
+      <nav id="navbar" class="navbar order-last order-lg-0">
+        <ul>
+          <li><a class="nav-link scrollto" href="#contact">Extra Order</a></li>
+          <li><a class="nav-link scrollto" href="#gallery">Call Staff</a></li>
+          <li><a class="nav-link scrollto" href="#chefs">Call Payment</a></li>
         </ul>
-    </div>
-</nav>
+        <i class="bi bi-list mobile-nav-toggle"></i>
+      </nav><!-- .navbar -->
 
-<nav class="navbar navbar-expand-lg navbar-light bg-footer fixed-bottom" id="tabFooter">
-    <div class="collapse navbar-collapse justify-content-between px-4" id="footer">
-        <input id="gia" type="text" value="">
     </div>
-</nav>
-<h4 id="headerDish">Món ăn</h4>
-<div class="row">
-    @foreach ($dishs as $dish)
-        <div class="col-12 col-sm-6 col-md-4 col-lg-3 mb-3">
-            <div class="card">
-                <img src="{{ asset('storage/' .substr($dish->public, 7)) }}">
-                <div class="card-body">
-                    <h5 class="card-title">{{ $dish->name }}</h5>
-                    <div class="d-flex align-items-center mb-3 btn-group" data-id="{{ $dish->id }}">
-                        <button type="button" class="minus-button" onclick="decreaseQuantity(this)" data-id="{{ $dish->id }}"></button>
-                        <input class="text-icon form-control ip-number" type="text" value="0" readonly>
-                        <button type="button" class="plus-button" onclick="increaseQuantity(this)"></button>
-                        <div class="ml-3">Giá: <b class="price">{{ $dish->price }} <u>đ</u></b></div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    @endforeach
-</div>
+  </header><!-- End Header -->
 
-<h4 id="headerCallMore">Món Gọi Thêm</h4>
-<div class="row">
-    @foreach ($allMores as $more)
-        <div class="col-12 col-sm-6 col-md-4 col-lg-3 mb-3">
-            <div class="card">
-                <img src="{{ asset('storage/' .substr($more->public, 7)) }}">
-                <div class="card-body">
-                    <h5 class="card-title">{{ $more->name }}</h5>
-                    <div class="d-flex align-items-center mb-3 btn-group" data-id="{{ $more->id }}">
-                    <button type="button" class="minus-button" onclick="decreaseQuantity(this)" data-id="{{ $more->id }}"></button>
-                        <input class="text-icon form-control ip-number" type="text" value="0" readonly>
-                        <button type="button" class="plus-button" onclick="increaseQuantity(this)"></button>
-                        <div class="ml-3">Giá: <b class="price"> {{ $more->price }} <u>đ</u></b></div>
-                    </div>
-                </div>
-            </div>
+  <main id="main">
+
+    <!-- ======= Menu Section ======= -->
+    <section id="menu" class="menu section-bg" style="padding: 150px 0">
+      <div class="container" data-aos="fade-up">
+
+        <div class="section-title">
+          <h2>Menu</h2>
+          <p>Our Tasty Menu</p>
         </div>
-    @endforeach
-</div>
-<h4 id="headerDrink">Đồ Uống</h4>
-<div class="row">
-    @foreach ($drinks as $drink)
-        <div class="col-12 col-sm-6 col-md-4 col-lg-3 mb-3">
-            <div class="card">
-                <img src="{{ asset('storage/' .substr($drink->public, 7)) }}">
-                <div class="card-body">
-                    <h5 class="card-title">{{ $drink->name }}</h5>
-                    <div class="d-flex align-items-center mb-3 btn-group" data-id="{{ $drink->id }}">
-                        <button type="button" class="minus-button" onclick="decreaseQuantity(this)" data-id="{{ $drink->id }}"></button>
-                        <input class="text-icon form-control ip-number" type="text" value="0" readonly>
-                        <button type="button" class="plus-button" onclick="increaseQuantity(this)"></button>
-                        <div class="ml-3">Giá: <b class="price">{{ $drink->price }}<u>đ</u></b></div>
-                    </div>
-                </div>
-            </div>
+
+        <div class="row" data-aos="fade-up" data-aos-delay="100">
+          <div class="col-lg-12 d-flex justify-content-center">
+            <ul id="menu-flters">
+              <li data-filter="*" class="filter-active">All</li>
+              <li data-filter=".filter-starters">Starters</li>
+              <li data-filter=".filter-salads">Salads</li>
+              <li data-filter=".filter-specialty">Specialty</li>
+            </ul>
+          </div>
         </div>
-    @endforeach
-</div>
-<script src="/js/order.js"></script>
+
+        <div class="row menu-container" data-aos="fade-up" data-aos-delay="200">
+
+          <div class="col-lg-6 menu-item filter-starters">
+            <img src="/assets/img/menu/lobster-bisque.jpg" class="menu-img" alt="">
+            <div class="menu-content">
+              <a href="#">Lobster Bisque</a><span>$5.95</span>
+            </div>
+            <div class="menu-ingredients">
+              Lorem, deren, trataro, filede, nerada
+            </div>
+          </div>
+
+          <div class="col-lg-6 menu-item filter-specialty">
+            <img src="/assets/img/menu/bread-barrel.jpg" class="menu-img" alt="">
+            <div class="menu-content">
+              <a href="#">Bread Barrel</a><span>$6.95</span>
+            </div>
+            <div class="menu-ingredients">
+              Lorem, deren, trataro, filede, nerada
+            </div>
+          </div>
+
+          <div class="col-lg-6 menu-item filter-starters">
+            <img src="/assets/img/menu/cake.jpg" class="menu-img" alt="">
+            <div class="menu-content">
+              <a href="#">Crab Cake</a><span>$7.95</span>
+            </div>
+            <div class="menu-ingredients">
+              A delicate crab cake served on a toasted roll with lettuce and tartar sauce
+            </div>
+          </div>
+
+          <div class="col-lg-6 menu-item filter-salads">
+            <img src="/assets/img/menu/caesar.jpg" class="menu-img" alt="">
+            <div class="menu-content">
+              <a href="#">Caesar Selections</a><span>$8.95</span>
+            </div>
+            <div class="menu-ingredients">
+              Lorem, deren, trataro, filede, nerada
+            </div>
+          </div>
+
+          <div class="col-lg-6 menu-item filter-specialty">
+            <img src="/assets/img/menu/tuscan-grilled.jpg" class="menu-img" alt="">
+            <div class="menu-content">
+              <a href="#">Tuscan Grilled</a><span>$9.95</span>
+            </div>
+            <div class="menu-ingredients">
+              Grilled chicken with provolone, artichoke hearts, and roasted red pesto
+            </div>
+          </div>
+
+          <div class="col-lg-6 menu-item filter-starters">
+            <img src="/assets/img/menu/mozzarella.jpg" class="menu-img" alt="">
+            <div class="menu-content">
+              <a href="#">Mozzarella Stick</a><span>$4.95</span>
+            </div>
+            <div class="menu-ingredients">
+              Lorem, deren, trataro, filede, nerada
+            </div>
+          </div>
+
+          <div class="col-lg-6 menu-item filter-salads">
+            <img src="/assets/img/menu/greek-salad.jpg" class="menu-img" alt="">
+            <div class="menu-content">
+              <a href="#">Greek Salad</a><span>$9.95</span>
+            </div>
+            <div class="menu-ingredients">
+              Fresh spinach, crisp romaine, tomatoes, and Greek olives
+            </div>
+          </div>
+
+          <div class="col-lg-6 menu-item filter-salads">
+            <img src="/assets/img/menu/spinach-salad.jpg" class="menu-img" alt="">
+            <div class="menu-content">
+              <a href="#">Spinach Salad</a><span>$9.95</span>
+            </div>
+            <div class="menu-ingredients">
+              Fresh spinach with mushrooms, hard boiled egg, and warm bacon vinaigrette
+            </div>
+          </div>
+
+          <div class="col-lg-6 menu-item filter-specialty">
+            <img src="/assets/img/menu/lobster-roll.jpg" class="menu-img" alt="">
+            <div class="menu-content">
+              <a href="#">Lobster Roll</a><span>$12.95</span>
+            </div>
+            <div class="menu-ingredients">
+              Plump lobster meat, mayo and crisp lettuce on a toasted bulky roll
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+    </section><!-- End Menu Section -->
+
+  </div>
+  
 @endsection

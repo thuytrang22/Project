@@ -22,7 +22,12 @@ class Menu extends Model
         'name',
         'public',
         'detail',
-        'option',
+        'id_category',
         'price'
     ];
+
+    public function category()
+    {
+        return $this->belongsTo(Categories::class);
+    }
 }

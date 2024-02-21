@@ -1,9 +1,9 @@
 @extends('.layouts.master')
 @section('content')
-<form action="{{route('update')}}" method="POST" class="card mt-3" enctype="multipart/form-data">
+<form action="{{route('menus.update', ['category' => $category->id])}}" method="POST" class="card mt-3" enctype="multipart/form-data">
     <div class="modal-header">
-        <h4 class="modal-title">Sửa Thông Tin Món</h4>
-        <a class="btn btn-outline-warning"  href="{{ route('menu') }}">Quay lại</a>
+        <h4 class="modal-title">Edit Item Information</h4>
+        <a class="btn btn-outline-warning"  href="{{ route('category.menus', ['category' => $category->id]) }}">Back</a>
     </div>
     <div class="card-body">
         @method('PUT')
@@ -17,7 +17,7 @@
             @enderror
         </div>
         <div class="mb-3">
-            <label for="" class="form-label">Tên Món:</label>
+            <label for="" class="form-label">Food Name:</label>
             <input type="text" name="name" value="{{old('name', $menu->name)}}" class="form-control" @error('name') is-invalid @enderror>
             @error('name')
             <div class="invalid-feedback">
@@ -27,7 +27,7 @@
         </div>
 
         <div class="mb-3">
-            <label for="" class="form-label">Hình Ảnh:</label>
+            <label for="" class="form-label">Image:</label>
             <input type="file" id="updateImage" name="public" accept="image/*" class="form-control" @error('public') is-invalid @enderror>
             <input type="hidden" name="old_public" accept="image/*" value="{{old('public', $menu->public)}}" class="form-control" @error('public') is-invalid @enderror>
             @if ($menu->public)
@@ -41,7 +41,7 @@
         </div>
 
         <div class="mb-3">
-            <label for="" class="form-label">Chi Tiết:</label>
+            <label for="" class="form-label">Detail:</label>
             <input type="text" name="detail" value="{{old('detail', $menu->detail)}}" class="form-control" @error('detail') is-invalid @enderror>
             @error('detail')
             <div class="invalid-feedback">
@@ -51,13 +51,10 @@
         </div>
 
         <div class="mb-3">
-            <label for="option" class="form-label">Loại:</label>
-            <select name="option" id="option" class="form-control @error('option', $menu->option) is-invalid @enderror">
-                <option value="1" @if($menu->option == 1) selected @endif>Món ăn</option>
-                <option value="2" @if($menu->option == 2) selected @endif>Đồ uống</option>
-                <option value="3" @if($menu->option == 3) selected @endif>Món gọi thân</option>
-            </select>
-            @error('option')
+            <label for="id_category" class="form-label">Category:</label>
+            <input type="text" name="id_category" value="{{ $category->id }}" class="form-control" hidden @error('id_category') is-invalid @enderror>
+            <input type="text" name="name_category" value="{{ $category->name }}" class="form-control" readonly>
+            @error('id_category')
             <div class="invalid-feedback">
                 {{$message}}
             </div>
@@ -65,7 +62,7 @@
         </div>
 
         <div class="mb-3">
-            <label for="" class="form-label">Giá:</label>
+            <label for="" class="form-label">Price:</label>
             <input type="text" name="price" value="{{old('price', $menu->price)}}" class="form-control" @error('price') is-invalid @enderror>
             @error('price')
             <div class="invalid-feedback">
@@ -76,7 +73,7 @@
     </div>
     <div class="card-footer text-end d-flex">
         <button class="btn btn-primary mr-2" type="submit">
-            Lưu
+            Submit
         </button>
     </div>
 </form>

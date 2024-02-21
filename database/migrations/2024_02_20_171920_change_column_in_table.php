@@ -13,12 +13,8 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('homes', function (Blueprint $table) {
-            $table->id();
-            $table->string('name');
-            $table->string('phone');
-            $table->string('table_number');
-            $table->timestamps();
+        Schema::table('menus', function (Blueprint $table) {
+            $table->integer('id_category');
         });
     }
 
@@ -29,7 +25,8 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('homes');
+        Schema::table('menus', function (Blueprint $table) {
+            $table->integer('id_category');
+        });
     }
 };
-

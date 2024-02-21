@@ -7,6 +7,17 @@ use Illuminate\Support\Facades\DB;
 
 class AdminController extends Controller
 {
+
+    public function index() 
+    {
+        return view('admins.dashboards.index');
+    }
+
+    public function profile()
+    {
+        return view('admins.dashboards.profile');
+    }
+    
     public function dashboard(Request $request)
     {
         $optionDish = DB::table('menus')->where('option', '=', 1)->sum('option');

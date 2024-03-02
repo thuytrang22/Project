@@ -2,7 +2,7 @@
 @section('content')
 <form action="{{route('menus.update', ['category' => $category->id])}}" method="POST" class="card mt-3" enctype="multipart/form-data">
     <div class="modal-header">
-        <h4 class="modal-title">Edit Item Information</h4>
+        <h4 class="modal-title">Sửa Món Ăn</h4>
         <a class="btn btn-outline-warning"  href="{{ route('category.menus', ['category' => $category->id]) }}">Back</a>
     </div>
     <div class="card-body">
@@ -17,7 +17,7 @@
             @enderror
         </div>
         <div class="mb-3">
-            <label for="" class="form-label">Food Name:</label>
+            <label for="" class="form-label">Tên Món:</label>
             <input type="text" name="name" value="{{old('name', $menu->name)}}" class="form-control" @error('name') is-invalid @enderror>
             @error('name')
             <div class="invalid-feedback">
@@ -27,7 +27,7 @@
         </div>
 
         <div class="mb-3">
-            <label for="" class="form-label">Image:</label>
+            <label for="" class="form-label">Hình Ảnh:</label>
             <input type="file" id="updateImage" name="public" accept="image/*" class="form-control" @error('public') is-invalid @enderror>
             <input type="hidden" name="old_public" accept="image/*" value="{{old('public', $menu->public)}}" class="form-control" @error('public') is-invalid @enderror>
             @if ($menu->public)
@@ -41,7 +41,7 @@
         </div>
 
         <div class="mb-3">
-            <label for="" class="form-label">Detail:</label>
+            <label for="" class="form-label">Chi Tiết:</label>
             <input type="text" name="detail" value="{{old('detail', $menu->detail)}}" class="form-control" @error('detail') is-invalid @enderror>
             @error('detail')
             <div class="invalid-feedback">
@@ -51,7 +51,7 @@
         </div>
 
         <div class="mb-3">
-            <label for="id_category" class="form-label">Category:</label>
+            <label for="id_category" class="form-label">Danh Mục:</label>
             <input type="text" name="id_category" value="{{ $category->id }}" class="form-control" hidden @error('id_category') is-invalid @enderror>
             <input type="text" name="name_category" value="{{ $category->name }}" class="form-control" readonly>
             @error('id_category')
@@ -62,7 +62,7 @@
         </div>
 
         <div class="mb-3">
-            <label for="" class="form-label">Price:</label>
+            <label for="" class="form-label">Giá:</label>
             <input type="text" name="price" value="{{old('price', $menu->price)}}" class="form-control" @error('price') is-invalid @enderror>
             @error('price')
             <div class="invalid-feedback">
@@ -73,7 +73,7 @@
     </div>
     <div class="card-footer text-end d-flex">
         <button class="btn btn-primary mr-2" type="submit">
-            Submit
+            Lưu
         </button>
     </div>
 </form>
@@ -95,7 +95,6 @@
                 image.attr('src', '');
             }
         }
-       
     });
 </script>
 @endsection

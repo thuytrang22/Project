@@ -5,8 +5,8 @@
     <div class="container d-flex justify-content-center justify-content-md-between">
 
       <div class="contact-info d-flex align-items-center">
-        <i class="bi bi-phone d-flex align-items-center"><span>+84 332412298</span></i>
-        <i class="bi bi-clock d-flex align-items-center ms-4"><span> Mon-Sat: 11AM - 23PM</span></i>
+        <i class="bi bi-phone d-flex align-items-center"><span>+84 332 412 298</span></i>
+        <i class="bi bi-clock d-flex align-items-center ms-4"><span> Mở cửa: 11AM - 23PM</span></i>
       </div>
     </div>
   </div>
@@ -20,18 +20,18 @@
 
       <nav id="navbar" class="navbar order-last order-lg-0">
         <ul>
-          <li><a class="nav-link scrollto active" href="#hero">Home</a></li>
-          <li><a class="nav-link scrollto" href="#about">About</a></li>
-          <li><a class="nav-link scrollto" href="#menu">Menu</a></li>
-          <li><a class="nav-link scrollto" href="#specials">Specials</a></li>
-          <li><a class="nav-link scrollto" href="#events">Events</a></li>
-          <li><a class="nav-link scrollto" href="#chefs">Chefs</a></li>
-          <li><a class="nav-link scrollto" href="#gallery">Gallery</a></li>
-          <li><a class="nav-link scrollto" href="#contact">Contact</a></li>
+          <li><a class="nav-link scrollto active" href="#hero">Trang Chủ</a></li>
+          <li><a class="nav-link scrollto" href="#about">Về Chúng Tôi</a></li>
+          <li><a class="nav-link scrollto" href="#menu">Thực Đơn</a></li>
+          <li><a class="nav-link scrollto" href="#specials">Món Bán Chạy</a></li>
+          <li><a class="nav-link scrollto" href="#events">Sự Kiện</a></li>
+          <li><a class="nav-link scrollto" href="#chefs">Đầu Bếp</a></li>
+          <li><a class="nav-link scrollto" href="#gallery">Không Gian</a></li>
+          <li><a class="nav-link scrollto" href="#contact">Liên Hệ</a></li>
         </ul>
         <i class="bi bi-list mobile-nav-toggle"></i>
       </nav><!-- .navbar -->
-      <a href="#book-a-table" class="book-a-table-btn scrollto d-none d-lg-flex">Book a table</a>
+      <a href="#book-a-table" class="book-a-table-btn scrollto d-none d-lg-flex">Đặt Bàn</a>
 
     </div>
   </header><!-- End Header -->
@@ -41,12 +41,12 @@
     <div class="container position-relative text-center text-lg-start" data-aos="zoom-in" data-aos-delay="100">
       <div class="row">
         <div class="col-lg-8">
-          <h1>Welcome to <span>Hana Sushi</span></h1>
-          <h2>Delivering great food for more than 18 years!</h2>
+          <h1>Chào Mừng Bạn Đến Với <span>Hana Sushi</span></h1><br>
+          <h2>Cung cấp thực phẩm tuyệt vời trong hơn 18 năm!</h2>
 
           <div class="btns">
-            <a href="#menu" class="btn-menu animated fadeInUp scrollto">Our Menu</a>
-            <a href="#book-a-table" class="btn-book animated fadeInUp scrollto">Book a Table</a>
+            <a href="#menu" class="btn-menu animated fadeInUp scrollto">Thực Đơn</a>
+            <a href="#book-a-table" class="btn-book animated fadeInUp scrollto">Đặt Bàn</a>
           </div>
         </div>
       </div>
@@ -92,8 +92,8 @@
       <div class="container" data-aos="fade-up">
 
         <div class="section-title">
-          <h2>Why Us</h2>
-          <p>Why Choose Our Restaurant</p>
+          <h2>TẠI SAO LÀ CHÚNG TÔI</h2>
+          <p>Tại sao chọn nhà hàng của chúng tôi</p>
         </div>
 
         <div class="row">
@@ -132,125 +132,47 @@
       <div class="container" data-aos="fade-up">
 
         <div class="section-title">
-          <h2>Menu</h2>
-          <p>Check Our Tasty Menu</p>
+          <h2>Thực Đơn</h2>
+          <p>Kiểm tra thực đơn ngon của chúng tôi</p>
         </div>
 
         <div class="row" data-aos="fade-up" data-aos-delay="100">
           <div class="col-lg-12 d-flex justify-content-center">
             <ul id="menu-flters">
-              <li data-filter="*" class="filter-active">All</li>
-              <li data-filter=".filter-starters">Starters</li>
-              <li data-filter=".filter-salads">Salads</li>
-              <li data-filter=".filter-specialty">Specialty</li>
+              <li data-filter="*" class="filter-active">Tất cả</li>
+              <li data-filter=".filter-starters">Món Khai Vị</li>
+              <li data-filter=".filter-salads">Món Salads</li>
+              <li data-filter=".filter-specialty">Món chính</li>
             </ul>
           </div>
         </div>
 
         <div class="row menu-container" data-aos="fade-up" data-aos-delay="200">
-
-          <div class="col-lg-6 menu-item filter-starters">
-            <img src="assets/img/menu/lobster-bisque.jpg" class="menu-img" alt="">
-            <div class="menu-content">
-              <a href="#">Lobster Bisque</a><span>$5.95</span>
+        @foreach ($allMores as $dish)
+            <div class="col-lg-6 menu-item filter-starters">
+              <img src="{{ asset('storage/' .substr($dish->public, 7)) }}" class="menu-img" alt="">
+              <div class="flex-container">
+                <div class="menu-content">
+                  <a href="#">{{ $dish->name }}</a><span>{{ number_format($dish->price) }} <u>đ</u></span>
+                </div>
+                <div class="menu-ingredients">
+                  <span>Thành phần: {{ ($dish->detail) }}</span>
+                </div>
+              </div>
             </div>
-            <div class="menu-ingredients">
-              Lorem, deren, trataro, filede, nerada
-            </div>
-          </div>
-
-          <div class="col-lg-6 menu-item filter-specialty">
-            <img src="assets/img/menu/bread-barrel.jpg" class="menu-img" alt="">
-            <div class="menu-content">
-              <a href="#">Bread Barrel</a><span>$6.95</span>
-            </div>
-            <div class="menu-ingredients">
-              Lorem, deren, trataro, filede, nerada
-            </div>
-          </div>
-
-          <div class="col-lg-6 menu-item filter-starters">
-            <img src="assets/img/menu/cake.jpg" class="menu-img" alt="">
-            <div class="menu-content">
-              <a href="#">Crab Cake</a><span>$7.95</span>
-            </div>
-            <div class="menu-ingredients">
-              A delicate crab cake served on a toasted roll with lettuce and tartar sauce
-            </div>
-          </div>
-
-          <div class="col-lg-6 menu-item filter-salads">
-            <img src="assets/img/menu/caesar.jpg" class="menu-img" alt="">
-            <div class="menu-content">
-              <a href="#">Caesar Selections</a><span>$8.95</span>
-            </div>
-            <div class="menu-ingredients">
-              Lorem, deren, trataro, filede, nerada
-            </div>
-          </div>
-
-          <div class="col-lg-6 menu-item filter-specialty">
-            <img src="assets/img/menu/tuscan-grilled.jpg" class="menu-img" alt="">
-            <div class="menu-content">
-              <a href="#">Tuscan Grilled</a><span>$9.95</span>
-            </div>
-            <div class="menu-ingredients">
-              Grilled chicken with provolone, artichoke hearts, and roasted red pesto
-            </div>
-          </div>
-
-          <div class="col-lg-6 menu-item filter-starters">
-            <img src="assets/img/menu/mozzarella.jpg" class="menu-img" alt="">
-            <div class="menu-content">
-              <a href="#">Mozzarella Stick</a><span>$4.95</span>
-            </div>
-            <div class="menu-ingredients">
-              Lorem, deren, trataro, filede, nerada
-            </div>
-          </div>
-
-          <div class="col-lg-6 menu-item filter-salads">
-            <img src="assets/img/menu/greek-salad.jpg" class="menu-img" alt="">
-            <div class="menu-content">
-              <a href="#">Greek Salad</a><span>$9.95</span>
-            </div>
-            <div class="menu-ingredients">
-              Fresh spinach, crisp romaine, tomatoes, and Greek olives
-            </div>
-          </div>
-
-          <div class="col-lg-6 menu-item filter-salads">
-            <img src="assets/img/menu/spinach-salad.jpg" class="menu-img" alt="">
-            <div class="menu-content">
-              <a href="#">Spinach Salad</a><span>$9.95</span>
-            </div>
-            <div class="menu-ingredients">
-              Fresh spinach with mushrooms, hard boiled egg, and warm bacon vinaigrette
-            </div>
-          </div>
-
-          <div class="col-lg-6 menu-item filter-specialty">
-            <img src="assets/img/menu/lobster-roll.jpg" class="menu-img" alt="">
-            <div class="menu-content">
-              <a href="#">Lobster Roll</a><span>$12.95</span>
-            </div>
-            <div class="menu-ingredients">
-              Plump lobster meat, mayo and crisp lettuce on a toasted bulky roll
-            </div>
-          </div>
-
+          @endforeach
         </div>
 
       </div>
     </section><!-- End Menu Section -->
 
-    <!-- ======= Specials Section ======= -->
+    <!-- ======= Món Bán Chạy Section ======= -->
     <section id="specials" class="specials">
       <div class="container" data-aos="fade-up">
 
         <div class="section-title">
-          <h2>Specials</h2>
-          <p>Check Our Specials</p>
+          <h2>Món Bán Chạy</h2>
+          <p>Các Món Bán Chạy Của Chúng Tôi</p>
         </div>
 
         <div class="row" data-aos="fade-up" data-aos-delay="100">
@@ -340,15 +262,15 @@
         </div>
 
       </div>
-    </section><!-- End Specials Section -->
+    </section><!-- End Món Bán Chạy Section -->
 
     <!-- ======= Events Section ======= -->
     <section id="events" class="events">
       <div class="container" data-aos="fade-up">
 
         <div class="section-title">
-          <h2>Events</h2>
-          <p>Organize Your Events in our Restaurant</p>
+          <h2>Khự Kiện</h2>
+          <p>Tổ chức sự kiện của bạn tại nhà hàng của chúng tôi</p>
         </div>
 
         <div class="events-slider swiper" data-aos="fade-up" data-aos-delay="100">
@@ -442,65 +364,64 @@
       </div>
     </section><!-- End Events Section -->
 
-    <!-- ======= Book A Table Section ======= -->
+    <!-- ======= Đặt Bàn Section ======= -->
     <section id="book-a-table" class="book-a-table">
       <div class="container" data-aos="fade-up">
 
         <div class="section-title">
-          <h2>Reservation</h2>
-          <p>Book a Table</p>
+          <h2>Đặt Bàn</h2>
         </div>
 
         <form action="{{ route('book.table') }}" method="post" role="form" class="php-email-form" data-aos="fade-up" data-aos-delay="100">
           @csrf
           <div class="row">
             <div class="col-lg-4 col-md-6 form-group">
-              <input type="text" name="name" class="form-control" id="name" placeholder="Your Name" data-rule="minlen:4" data-msg="Please enter at least 4 chars">
+              <input type="text" name="name" class="form-control" id="name" placeholder="Nhập Tên" data-rule="minlen:4" data-msg="Please enter at least 4 chars">
               <div class="validate"></div>
             </div>
             <div class="col-lg-4 col-md-6 form-group mt-3 mt-md-0">
-              <input type="email" class="form-control" name="email" id="email" placeholder="Your Email" data-rule="email" data-msg="Please enter a valid email">
+              <input type="email" class="form-control" name="email" id="email" placeholder="Nhập Email" data-rule="email" data-msg="Please enter a valid email">
               <div class="validate"></div>
             </div>
             <div class="col-lg-4 col-md-6 form-group mt-3 mt-md-0">
-              <input type="text" class="form-control" name="phone" id="phone" placeholder="Your Phone" data-rule="minlen:4" data-msg="Please enter at least 4 chars">
+              <input type="text" class="form-control" name="phone" id="phone" placeholder="Nhập SĐT" data-rule="minlen:4" data-msg="Please enter at least 4 chars">
               <div class="validate"></div>
             </div>
             <div class="col-lg-4 col-md-6 form-group mt-3">
-              <input type="date" name="booking_date" class="form-control" id="date" placeholder="Date" data-rule="minlen:4" data-msg="Please enter at least 4 chars">
+              <input type="date" name="booking_date" class="form-control" id="date" placeholder="Ngày" data-rule="minlen:4" data-msg="Please enter at least 4 chars">
               <div class="validate"></div>
             </div>
             <div class="col-lg-4 col-md-6 form-group mt-3">
-              <input type="time" class="form-control" name="time" id="time" placeholder="Time" data-rule="minlen:4" data-msg="Please enter at least 4 chars">
+              <input type="time" class="form-control" name="time" id="time" placeholder="Giờ" data-rule="minlen:4" data-msg="Please enter at least 4 chars">
               <div class="validate"></div>
             </div>
             <div class="col-lg-4 col-md-6 form-group mt-3">
-              <input type="number" class="form-control" name="people" id="people" placeholder="# of people" data-rule="minlen:1" data-msg="Please enter at least 1 chars">
+              <input type="number" class="form-control" name="people" id="people" placeholder="Số Lượng Người" data-rule="minlen:1" data-msg="Please enter at least 1 chars">
               <div class="validate"></div>
             </div>
           </div>
           <div class="form-group mt-3">
-            <textarea class="form-control" name="message" rows="5" placeholder="Message"></textarea>
+            <textarea class="form-control" name="message" rows="5" placeholder="Ghi Chú"></textarea>
             <div class="validate"></div>
           </div>
           <div class="mb-3">
             <div class="loading">Loading</div>
             <div class="error-message"></div>
-            <div class="sent-message">Your booking table request was sent. We will call back or send an Email to confirm your reservation. Thank you!</div>
+            <div class="sent-message">Yêu cầu đặt bàn của bạn đã được gửi. Chúng tôi sẽ gọi lại hoặc gửi Email để xác nhận việc đặt chỗ của bạn. Cảm ơn!</div>
           </div>
-          <div class="text-center"><button type="submit">Book a Table</button></div>
+          <div class="text-center"><button type="submit">Đặt Bàn</button></div>
         </form>
 
       </div>
-    </section><!-- End Book A Table Section -->
+    </section><!-- End Đặt Bàn Section -->
 
-    <!-- ======= Testimonials Section ======= -->
+    <!-- ======= Đánh Giá Section ======= -->
     <section id="testimonials" class="testimonials section-bg">
       <div class="container" data-aos="fade-up">
 
         <div class="section-title">
-          <h2>Testimonials</h2>
-          <p>What they're saying about us</p>
+          <h2>Đánh Giá</h2>
+          <p>Họ đang nói gì về chúng tôi</p>
         </div>
 
         <div class="testimonials-slider swiper" data-aos="fade-up" data-aos-delay="100">
@@ -576,15 +497,15 @@
         </div>
 
       </div>
-    </section><!-- End Testimonials Section -->
+    </section><!-- End Đánh Giá Section -->
 
     <!-- ======= Gallery Section ======= -->
     <section id="gallery" class="gallery">
 
       <div class="container" data-aos="fade-up">
         <div class="section-title">
-          <h2>Gallery</h2>
-          <p>Some photos from Our Restaurant</p>
+          <h2>Không Gian</h2>
+          <p>Một Số Hình Ảnh Từ Nhà Hàng Chúng Tôi</p>
         </div>
       </div>
 
@@ -666,8 +587,8 @@
       <div class="container" data-aos="fade-up">
 
         <div class="section-title">
-          <h2>Chefs</h2>
-          <p>Our Proffesional Chefs</p>
+          <h2>Đầu Bếp</h2>
+          <p>Đầu Bếp Chuyên Nghiệp Của Chúng Tôi</p>
         </div>
 
         <div class="row">
@@ -736,8 +657,8 @@
       <div class="container" data-aos="fade-up">
 
         <div class="section-title">
-          <h2>Contact</h2>
-          <p>Contact Us</p>
+          <h2>Liên Hệ</h2>
+          <p>Liên Hệ Chúng Tôi</p>
         </div>
       </div>
 
@@ -753,15 +674,15 @@
             <div class="info">
               <div class="address">
                 <i class="bi bi-geo-alt"></i>
-                <h4>Location:</h4>
-                <p>A108 Adam Street, New York, NY 535022</p>
+                <h4>Địa chỉ:</h4>
+                <p>90 Nguyễn Trãi, Thanh Xuân, Hà Nội.</p>
               </div>
 
               <div class="open-hours">
                 <i class="bi bi-clock"></i>
-                <h4>Open Hours:</h4>
+                <h4>Giờ mở cửa:</h4>
                 <p>
-                  Monday-Saturday:<br>
+                  Từ Thứ 2 - Đến Thứ 7:<br>
                   11:00 AM - 2300 PM
                 </p>
               </div>
@@ -769,13 +690,13 @@
               <div class="email">
                 <i class="bi bi-envelope"></i>
                 <h4>Email:</h4>
-                <p>info@example.com</p>
+                <p>hanasushi@gmail.com</p>
               </div>
 
               <div class="phone">
                 <i class="bi bi-phone"></i>
-                <h4>Call:</h4>
-                <p>+1 5589 55488 55s</p>
+                <h4>Số điện thoại:</h4>
+                <p>+84 332 412 298</p>
               </div>
 
             </div>
@@ -785,19 +706,19 @@
           <div class="col-lg-8 mt-5 mt-lg-0">
 
             <form action="forms/contact.php" method="post" role="form" >
+              <div class="section-title">
+                <h2>Gửi Ý Kiến Góp Ý Của Bạn Cho Chúng Tôi</h2>
+              </div>
               <div class="row">
                 <div class="col-md-6 form-group">
-                  <input type="text" name="name" class="form-control" id="name" placeholder="Your Name" required>
+                  <input type="text" name="name" class="form-control" id="name" placeholder="Tên Của Bạn" required>
                 </div>
                 <div class="col-md-6 form-group mt-3 mt-md-0">
-                  <input type="email" class="form-control" name="email" id="email" placeholder="Your Email" required>
+                  <input type="email" class="form-control" name="email" id="email" placeholder="Email Của Bạn" required>
                 </div>
               </div>
               <div class="form-group mt-3">
-                <input type="text" class="form-control" name="subject" id="subject" placeholder="Subject" required>
-              </div>
-              <div class="form-group mt-3">
-                <textarea class="form-control" name="message" rows="8" placeholder="Message" required></textarea>
+                <textarea class="form-control" name="message" rows="8" placeholder="Nội Dung" required></textarea>
               </div>
               <div class="my-3">
                 <div class="loading">Loading</div>
@@ -824,12 +745,13 @@
 
           <div class="col-lg-3 col-md-6">
             <div class="footer-info">
-              <h3>Restaurantly</h3>
+              <h3>NHÀ HÀNG</h3>
               <p>
-                A108 Adam Street <br>
-                NY 535022, USA<br><br>
-                <strong>Phone:</strong> +1 5589 55488 55<br>
-                <strong>Email:</strong> info@example.com<br>
+              số 90 Nguyễn Trãi, <br>
+              Quận Thanh Xuân, Hà Nội.
+                <br><br>
+                <strong>Phone:</strong> +84 332 412 298<br>
+                <strong>Email:</strong> hanasushi@gmail.com<br>
               </p>
               <div class="social-links mt-3">
                 <a href="#" class="twitter"><i class="bx bxl-twitter"></i></a>
@@ -842,13 +764,13 @@
           </div>
 
           <div class="col-lg-2 col-md-6 footer-links">
-            <h4>Useful Links</h4>
+            <h4>Danh Mục</h4>
             <ul>
-              <li><i class="bx bx-chevron-right"></i> <a href="#">Home</a></li>
-              <li><i class="bx bx-chevron-right"></i> <a href="#">About us</a></li>
-              <li><i class="bx bx-chevron-right"></i> <a href="#">Services</a></li>
-              <li><i class="bx bx-chevron-right"></i> <a href="#">Terms of service</a></li>
-              <li><i class="bx bx-chevron-right"></i> <a href="#">Privacy policy</a></li>
+              <li><i class="bx bx-chevron-right"></i> <a href="#">Tràn Chủ</a></li>
+              <li><i class="bx bx-chevron-right"></i> <a href="#">Về Chúng Tôi</a></li>
+              <li><i class="bx bx-chevron-right"></i> <a href="#">Dịch Vụ</a></li>
+              <li><i class="bx bx-chevron-right"></i> <a href="#">Điều Khoản Dịch Vụ</a></li>
+              <li><i class="bx bx-chevron-right"></i> <a href="#">Chính Sách Bảo Mật</a></li>
             </ul>
           </div>
 

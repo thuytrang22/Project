@@ -19,6 +19,7 @@ body th td {
     border: none;
     text-align: center;
 	background-color: unset !important;;
+    color: white;
 }
 
 .plus-button {
@@ -146,6 +147,53 @@ body {
 }
 
 .bg-footer {
-	background-color: #FFDE59;
-    height: 50px;
+	background: rgba(0, 0, 0, 0.85);
+	border-block-start: 1px solid #37332a;
+    block-size: 50px;
+}
+
+.menu-item .menu-img {
+    inline-size: 80px;
+    block-size: 80px;
+	margin-inline-end: 20px;
+	margin-inline-start: 20px;
+    border-radius: 25%;
+    float: inline-start;
+    border: 5px solid rgba(255, 255, 255, 0.2);
+}
+
+.menu-item .menu-content {
+	margin: 0;
+    overflow: hidden;
+    display: flex;
+    justify-content: space-between;
+    position: relative;
+}
+
+.menu-item .menu-ingredients {
+    margin-inline-start: 0px;
+    font-style: italic;
+    font-size: 14px;
+    font-family: "Poppins", sans-serif;
+    color: rgba(255, 255, 255, 0.5);
+}
+
+.flex-container {
+	display: flex;
+	flex-direction: column;
+	margin: 4px 0;
+  }
+
+#gia {
+	background-color: black;
+    color: #fff;
+    border: unset;
+	padding-left: 10px;
+}
+
+.model-order {
+	display: flex;
+  	align-items: center;
+  	justify-content: center;
+  	height: 100vh;
 }

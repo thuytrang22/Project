@@ -3,19 +3,19 @@
 
 @if ( session('store'))
   <div id="store" class="alert alert-success alert-dismissible fade show mt-2" role="alert">
-    Added category successfully!!!
+    Thêm danh mục thành công!!!
   </div>
 @endif
 
 @if ( session('update'))
   <div id="update" class="alert alert-success alert-dismissible fade show mt-2" role="alert">
-    Edited list successfully!!!
+    Sửa danh mục thành công!!!
   </div>
 @endif
 
 @if ( session('destroy'))
   <div id="destroy" class="alert alert-success alert-dismissible fade show mt-2" role="alert">
-    Directory deletion successful!!!
+    Xóa danh mục thành công!!!
   </div>
 @endif
 
@@ -23,7 +23,7 @@
   <div class="flex flex-col md:flex-row items-center justify-between space-y-6 md:space-y-0">
     <ul>
       <li>Admin</li>
-      <li>Categories</li>
+      <li>Danh Mục</li>
     </ul>
   </div>
 </section>
@@ -33,7 +33,7 @@
       <header class="card-header">
         <p class="card-header-title">
           <span class="icon"><i class="mdi mdi-buffer"></i></span>
-          List Categories
+          Danh Sách Danh Mục
         </p>
         <a href="#" class="card-header-icon">
           <span class="icon"><i class="mdi mdi-reload"></i></span>
@@ -44,13 +44,13 @@
         <div class="flex" style="padding: 10px">
                 <!-- feature create -->
                 <a class="button blue" href="{{route('categories.create')}}">
-                Add Category
+                Thêm Danh Mục
                 </a>
             <!-- feature search -->
             <form action="?" class="col-auto ms-auto navbar-end">
                 <div class="input-group">
-                    <input type="text" name="keywords" class="form-control" placeholder="Search categories..." />
-                    <button type="submit" class="button green">Go!</button>
+                    <input type="text" name="keywords" class="form-control" placeholder="Tìm kiếm danh mục..." />
+                    <button type="submit" class="button green">Tìm Kiếm </button>
                 </div>
             </form>
     </div></div>
@@ -60,15 +60,15 @@
           <tr class="text-center table-active">
                 <th>
                     <a class="flex content-center items-center" href="{{ route('categories', ['sortBy' => 'id', 'sortDirection' => ($sortDirection == 'asc' && $sortBy == 'id') ? 'desc' : 'asc']) }}">
-                        No
+                        STT
                         <div class="sort">
                             <div class="arrow-up"></div>
                             <div class="arrow-down"></div>
                         </div>
                     </a>
                 </th>
-                <th>Category Name</th>
-                <th width="280px">Action</th>
+                <th>Tên Danh Mục</th>
+                <th width="280px">Hành Động</th>
             </tr>
           </thead>
           <tbody>
@@ -103,7 +103,7 @@
             @endforeach
             @else
             <tr>
-                <td colspan="7" class="text-center">There are no categories</td>
+                <td colspan="7" class="text-center">Không có danh mục nào.</td>
             </tr>
             @endif
         </tbody>

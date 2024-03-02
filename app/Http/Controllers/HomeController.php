@@ -23,9 +23,9 @@ class HomeController extends Controller
             'phone' => $request->input('phone'),
             'table_number' => $request->input('table_number'),
         ];
-        Home::create($data);
+        $record = Home::create($data);
         $table = $data["table_number"];
-        return redirect()->route('order', ['table' => $table])->with('infor', 'success');
+        return redirect()->route('order', ['table' => $table])->with('infor_id', $record->id);
     }
 
     public function order()
@@ -40,9 +40,9 @@ class HomeController extends Controller
         //     // var_dump( "Máy tính");die;
         //     echo "Máy tính";
         // }
-        $dishs = DB::table('menus')->where('option', '=', 1)->get();
-        $drinks = DB::table('menus')->where('option', '=', 2)->get();
-        $allMores = DB::table('menus')->where('option', '=', 3)->get();
+        $dishs = DB::table('menus')->where('id_category', '=', 1)->get();
+        $drinks = DB::table('menus')->where('id_category', '=', 2)->get();
+        $allMores = DB::table('menus')->get();
         return view('homes.order', compact('dishs', 'drinks', 'allMores'));
     }
 

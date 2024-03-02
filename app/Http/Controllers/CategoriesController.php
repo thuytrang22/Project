@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Categories;
 use App\Http\Requests\CreateCategoriesRequest;
-use App\Http\Requests\UpdateCategoriesRquest;
+use App\Http\Requests\UpdateCategoriesRequest;
 
 class CategoriesController extends Controller
 {
@@ -48,7 +48,7 @@ class CategoriesController extends Controller
         ]);
     }
 
-    public function update(UpdateCategoriesRquest $request)
+    public function update(UpdateCategoriesRequest $request)
     {
         $category = Categories::find($request->id);
         $category->name = $request->name;

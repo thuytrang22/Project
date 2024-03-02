@@ -64,7 +64,7 @@
       <li class="active">
         <a href="{{route('admins')}}">
           <span class="icon"><i class="mdi mdi-desktop-mac"></i></span>
-          <span class="menu-item-label">Dashboard</span>
+          <span class="menu-item-label">Tổng Quan</span>
         </a>
       </li>
     </ul>
@@ -98,20 +98,6 @@
 
 @yield('content')
 
-
-<footer class="footer">
-  <div class="flex flex-col md:flex-row items-center justify-between space-y-3 md:space-y-0">
-    <div class="flex justify-start space-x-3">
-      <div>
-        © 2024
-      </div>
-
-      <div>
-        <p>Distributed By: <a href="https://www.facebook.com/trang.nhim.58173" target="_blank">Thùy Trang</a></p>
-      </div>
-    </div>
-  </div>
-</footer>
 </div>
 <!-- Scripts below are for demo only -->
 <script type="text/javascript" src="/js/main.min.js?v=1628755089081"></script>

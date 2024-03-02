@@ -12,21 +12,21 @@ use App\Http\Requests\UpdateMenuRequsest;
 class MenuController extends Controller
 {
     public function index(Request $request, Categories $category)
-{
-    $keywords = $request->input('keywords');
-    $sortBy = $request->input('sortBy', 'id');
-    $sortDirection = $request->input('sortDirection', 'desc');
+    {
+        $keywords = $request->input('keywords');
+        $sortBy = $request->input('sortBy', 'id');
+        $sortDirection = $request->input('sortDirection', 'desc');
 
-    $query = Menu::orderBy($sortBy, $sortDirection);
+        $query = Menu::orderBy($sortBy, $sortDirection);
 
-    if (!empty($keywords)) {
-        $query->where(function ($query) use ($keywords) {
-            $query->where('name', 'like', '%' . $keywords . '%');
-        });
+        if (!empty($keywords)) {
+            $query->where(function ($query) use ($keywords) {
+                $query->where('name', 'like', '%' . $keywords . '%');
+            });
+        }
+        $menus = $query->paginate(5);
+        return view('admins.menus.index', compact('menus', 'keywords', 'sortBy', 'sortDirection', 'category'));
     }
-    $menus = $query->paginate(5);
-    return view('admins.menus.index', compact('menus', 'keywords', 'sortBy', 'sortDirection', 'category'));
-}
     
     public function create( Categories $category)
     {

@@ -64,7 +64,7 @@
           <div class="user-avatar">
             <img src="https://avatars.dicebear.com/v2/initials/john-doe.svg" alt="John Doe" class="rounded-full">
           </div>
-          <div class="is-user-name"><span>John Doe</span></div>
+          <div class="is-user-name"><span>Admin</span></div>
           <span class="icon"><i class="mdi mdi-chevron-down"></i></span>
         </a>
         <div class="navbar-dropdown">
@@ -83,7 +83,12 @@
           <hr class="navbar-divider">
           <a class="navbar-item">
             <span class="icon"><i class="mdi mdi-logout"></i></span>
-            <span>Log Out</span>
+            <form method="POST" action="{{ route('logout') }}">
+              @csrf
+              <button type="submit" class="btn btn-outline-warning btn-icon">
+                <span>Đăng xuất</span>
+              </button>
+            </form>
           </a>
         </div>
       </div>
@@ -98,36 +103,42 @@
     </div>
   </div>
   <div class="menu is-menu-main">
-    <p class="menu-label">General</p>
+    <p class="menu-label">Chung</p>
     <ul class="menu-list">
         <li class="{{ request()->routeIs('admins') ? 'active' : '' }}">
             <a href="{{route('admins')}}">
                 <span class="icon"><i class="mdi mdi-desktop-mac"></i></span>
-                <span class="menu-item-label">Dashboard</span>
+                <span class="menu-item-label">Tổng quan</span>
             </a>
         </li>
         <li class="{{ request()->routeIs('categories') ? 'active' : '' }}">
             <a href="{{route('categories')}}">
                 <span class="icon"><i class="mdi mdi-table"></i></span>
-                <span class="menu-item-label">Categories</span>
+                <span class="menu-item-label">Danh mục</span>
             </a>
         </li>
-        <li class="{{ request()->routeIs('categories') ? 'active' : '' }}">
-            <a href="{{route('categories')}}">
+        <li class="{{ request()->routeIs('warehouses') ? 'active' : '' }}">
+            <a href="{{route('warehouses')}}">
                 <span class="icon"><i class="mdi mdi-table"></i></span>
-                <span class="menu-item-label">Warehouse</span>
+                <span class="menu-item-label">Kho</span>
+            </a>
+        </li>
+        <li class="{{ request()->routeIs('order.list') ? 'active' : '' }}">
+            <a href="{{route('order.list')}}">
+                <span class="icon"><i class="mdi mdi-table"></i></span>
+                <span class="menu-item-label">Đơn hàng</span>
             </a>
         </li>
       <li class="{{ request()->routeIs('profile') ? 'active' : '' }}">
         <a href="{{route('profile')}}">
           <span class="icon"><i class="mdi mdi-account-circle"></i></span>
-          <span class="menu-item-label">Profile</span>
+          <span class="menu-item-label">Hồ sơ</span>
         </a>
       </li>
       <li class="{{ request()->routeIs('pages') ? 'active' : '' }}">
         <a href="{{route('pages')}}">
           <span class="icon"><i class="mdi mdi-lock"></i></span>
-          <span class="menu-item-label">Home Page</span>
+          <span class="menu-item-label">Trang chủ</span>
         </a>
       </li>
     </ul>
@@ -135,21 +146,6 @@
 </aside>
 
 @yield('content')
-
-
-<footer class="footer">
-  <div class="flex flex-col md:flex-row items-center justify-between space-y-3 md:space-y-0">
-    <div class="flex items-center justify-start space-x-3">
-      <div>
-        © 2024
-      </div>
-
-      <div>
-        <p>Distributed By: <a href="https://www.facebook.com/trang.nhim.58173" target="_blank">Thùy Trang</a></p>
-      </div>
-    </div>
-  </div>
-</footer>
 </div>
 <!-- Scripts below are for demo only -->
 <script type="text/javascript" src="/js/main.min.js?v=1628755089081"></script>

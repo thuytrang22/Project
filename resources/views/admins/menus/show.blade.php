@@ -7,14 +7,14 @@
 </div>
 <div class="card-body">
     <p><b>ID :</b>{{ $menu->id }}</p>
-    <p><b>Food Name :</b> {{$menu->name}}</p>
-    <p><b>Image :</b>
+    <p><b>Tên Món Ăn :</b> {{$menu->name}}</p>
+    <p><b>Hình Ảnh :</b>
         @if ($menu->public)
         <img class="img-show" src="{{ asset('storage/' .substr($menu->public, 7)) }}" alt="Hình ảnh">
         @endif
     </p>
-    <p><b>Detail :</b> <br /> {{$menu->detail}}</p>
-    <p><b>Category :</b> {{$menu->option}}</p>
-    <p><b>Price :</b> {{$menu->price}}</p>
+    <p><b>Chi Tiết :</b> <br /> {{$menu->detail}}</p>
+    <p><b>Danh Mục :</b> {{$menu->option}}</p>
+    <p><b>Giá :</b> {{$menu->price}}</p>
 </div>
 @endsection

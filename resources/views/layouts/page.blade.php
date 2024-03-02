@@ -24,10 +24,12 @@
   <link href="/assets/vendor/boxicons/css/boxicons.min.css" rel="stylesheet">
   <link href="/assets/vendor/glightbox/css/glightbox.min.css" rel="stylesheet">
   <link href="/assets/vendor/swiper/swiper-bundle.min.css" rel="stylesheet">
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
   <!-- Template Main CSS File -->
   <link href="/assets/css/style.css" rel="stylesheet">
 
+  <link rel="stylesheet" href="/css/order.css">
   <!-- =======================================================
   * Template Name: Restaurantly
   * Updated: Jan 29 2024 with Bootstrap v5.3.2

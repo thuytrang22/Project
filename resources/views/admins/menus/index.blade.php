@@ -3,19 +3,19 @@
 
 @if ( session('store'))
   <div id="store" class="alert alert-success alert-dismissible fade show mt-2" role="alert">
-    Another successful dish!!!
+    Thêm món ăn thành công!!!
   </div>
 @endif
 
 @if ( session('update'))
   <div id="update" class="alert alert-success alert-dismissible fade show mt-2" role="alert">
-    Editing dish information successfully!!!
+    Sửa món ăn thành công!!!
   </div>
 @endif
 
 @if ( session('destroy'))
   <div id="destroy" class="alert alert-success alert-dismissible fade show mt-2" role="alert">
-    Delete item successfully!!!
+    Xóa món ăn thành công!!!
   </div>
 @endif
 
@@ -23,17 +23,9 @@
   <div class="flex flex-col md:flex-row items-center justify-between space-y-6 md:space-y-0">
     <ul>
       <li>Admin</li>
-      <li>Categories</li>
+      <li>Danh Mục</li>
       <li>{{ $category->name }}</li>
     </ul>
-  </div>
-</section>
-
-<section class="is-hero-bar">
-  <div class="flex flex-col md:flex-row items-center justify-between space-y-6 md:space-y-0">
-    <h1 class="title">
-      List <a href="">{{ $category->name }}</a>
-    </h1>
   </div>
 </section>
 
@@ -42,7 +34,7 @@
       <header class="card-header">
         <p class="card-header-title">
           <span class="icon"><i class="mdi mdi-buffer"></i></span>
-          Menu
+          Danh Sách {{ $category->name }}
         </p>
         <a href="#" class="card-header-icon">
           <span class="icon"><i class="mdi mdi-reload"></i></span>
@@ -53,16 +45,16 @@
         <div class="flex gap-10" style="padding: 10px">
                 <!-- feature create -->
                 <a class="button blue" href="{{ route('categories') }}">
-                  Back
+                  Quay lại
                 </a>
                 <a class="button blue" href="{{ route('menus.create', ['category' => $category->id]) }}">
-                  Add Dishes
+                  Thêm Món
                 </a>
             <!-- feature search -->
             <form action="?" class="col-auto ms-auto navbar-end">
                 <div class="input-group">
-                    <input type="text" name="keywords" class="form-control" placeholder="Search for dish name..." />
-                    <button type="submit" class="button green">Go!</button>
+                    <input type="text" name="keywords" class="form-control" placeholder="Tìm kiếm món ăn..." />
+                    <button type="submit" class="button green">Tìm kiếm</button>
                 </div>
             </form>
     </div></div>
@@ -75,19 +67,19 @@
                     <a class="flex content-center items-center" href="{{ route('category.menus',
                     ['category' => $category->id, 'sortBy' => 'id',
                     'sortDirection' => ($sortDirection == 'asc' && $sortBy == 'id') ? 'desc' : 'asc']) }}">
-                      No
+                      STT
                         <div class="sort">
                             <div class="arrow-up"></div>
                             <div class="arrow-down"></div>
                         </div>
                     </a>
                 </th>
-                <th>Food Name</th>
-                <th>Image</th>
-                <th>Detail</th>
-                <th>Category</th>
-                <th>Price</th>
-                <th width="280px">Action</th>
+                <th>Tên Món Ăn</th>
+                <th>Hình Ảnh</th>
+                <th>Chi Tiết</th>
+                <th>Danh Mục</th>
+                <th>Giá</th>
+                <th width="280px">Hành Động</th>
             </tr>
           </thead>
           <tbody>
@@ -134,7 +126,7 @@
               @endforeach
             @else
               <tr>
-                  <td colspan="7" class="text-center">There are no dishes</td>
+                  <td colspan="7" class="text-center">Không có món ăn nào.</td>
               </tr>
             @endif
         </tbody>

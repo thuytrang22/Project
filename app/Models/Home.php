@@ -21,4 +21,9 @@ class Home extends Model
         'phone',
         'table_number'
     ];
+
+    public function orders()
+    {
+        return $this->belongsTo(Order::class);
+    }
 }

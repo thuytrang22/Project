@@ -9,6 +9,12 @@ use App\Http\Controllers\ExcelController;
 use App\Http\Controllers\PageController;
 use App\Http\Controllers\BookingController;
 use App\Http\Controllers\CategoriesController;
+use App\Http\Controllers\WarehousesController;
+use App\Http\Controllers\OrderController;
+use App\Http\Controllers\NightShiftController;
+use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\UserController;
+use Illuminate\Support\Facades\Auth;
 
 /*
 |--------------------------------------------------------------------------
@@ -24,6 +30,8 @@ use App\Http\Controllers\CategoriesController;
 // controller of page
 Route::get('/', [PageController::class, 'index'])->name('pages');
 Route::post('/booktable', [BookingController::class, 'bookTable'])->name('book.table');
+Route::get('/users/export', [UserController::class, 'export']);
+Route::get('/users/import', [UserController::class, 'import']);
 
 // controller of home
 Route::prefix('qr')->group(function () {
@@ -38,7 +46,11 @@ Route::prefix('/admin')->group(function () {
     Route::get('/', [AdminController::class, 'index'])->name('admins');
     Route::get('/profile', [AdminController::class, 'profile'])->name('profile');
 
- // controller of categories
+    Route::get('/orders', [OrderController::class, 'index'])->name('order.list');
+    Route::get('/orders/{id}', [OrderController::class, 'show'])->name('order.show');
+    Route::delete('/orders/{id}', [OrderController::class, 'destroy'])->name('order.destroy');
+
+    // controller of categories
     Route::prefix('/category')->group(function () {
         Route::get('/', [CategoriesController::class, 'index'])->name('categories');
         Route::get('/create', [CategoriesController::class, 'create'])->name('categories.create');
@@ -58,7 +70,19 @@ Route::prefix('/admin')->group(function () {
             Route::delete('/{menu}', [MenuController::class, 'destroy'])->name('menus.destroy');
         });
     });
+
+    Route::prefix('/warehouse')->group(function () {
+        Route::get('/', [WarehousesController::class, 'warehouses'])->name('warehouses');
+        Route::get('/export', [WarehousesController::class, 'export'])->name('warehouses.export');
+        Route::post('/import', [WarehousesController::class, 'import'])->name('warehouses.import');
+        Route::get('/create', [WarehousesController::class, 'create'])->name('morning.create');
+        Route::post('/store', [WarehousesController::class, 'store'])->name('morning.store');
+        Route::get('{id}/edit', [WarehousesController::class, 'edit'])->name('morning.edit');
+        Route::put('/update', [WarehousesController::class, 'update'])->name('morning.update');
+        Route::delete('/{id}', [WarehousesController::class, 'destroy'])->name('morning.destroy');
+    });
 });
+    
 
 // controller of cart
 Route::prefix('cart')->group(function () {
@@ -68,7 +92,27 @@ Route::prefix('cart')->group(function () {
     Route::delete('/clear', [CartController::class, 'clear'])->name('clear');
 });
 
+Route::prefix('order')->group(function () {
+    Route::post('/', [OrderController::class, 'store'])->name('order.store');
+    Route::delete('/', [OrderController::class, 'remove'])->name('order.remove');
+});
+
 Route::get('/export-view', [ExcelController::class, 'showExportView'])->name('export');
 Route::get('/import-view', [ExcelController::class, 'showImportView']);
 Route::get('/export', [ExcelController::class, 'export']);
 Route::post('/import', [ExcelController::class, 'import']);
+// Auth::routes();
+
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+
+Route::get('/dashboard', function () {
+    return view('dashboard');
+})->middleware(['auth', 'verified'])->name('dashboard');
+
+Route::middleware('auth')->group(function () {
+    Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
+    Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
+    Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
+});
+
+require __DIR__.'/auth.php';

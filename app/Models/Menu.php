@@ -30,4 +30,9 @@ class Menu extends Model
     {
         return $this->belongsTo(Categories::class);
     }
+
+    public function orderMenu()
+    {
+        return $this->belongsTo(OrderMenu::class);
+    }
 }

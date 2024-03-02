@@ -1,12 +1,13 @@
 @extends('layouts.page')
 @section('content')
+<!-- @if (session('infor_id')) -->
   <!-- ======= Top Bar ======= -->
   <div id="topbar" class="d-flex align-items-center fixed-top">
     <div class="container d-flex justify-content-center justify-content-md-between">
 
       <div class="contact-info d-flex align-items-center">
         <i class="bi bi-phone d-flex align-items-center"><span>+84 332412298</span></i>
-        <i class="bi bi-clock d-flex align-items-center ms-4"><span> Mon-Sat: 11AM - 23PM</span></i>
+        <i class="bi bi-clock d-flex align-items-center ms-4"><span> Mở cửa: 11AM - 23PM</span></i>
       </div>
     </div>
   </div>
@@ -20,9 +21,9 @@
 
       <nav id="navbar" class="navbar order-last order-lg-0">
         <ul>
-          <li><a class="nav-link scrollto" href="#contact">Extra Order</a></li>
-          <li><a class="nav-link scrollto" href="#gallery">Call Staff</a></li>
-          <li><a class="nav-link scrollto" href="#chefs">Call Payment</a></li>
+          <li><a class="nav-link scrollto" href="#contact">Order Thêm</a></li>
+          <li><a class="nav-link scrollto" href="#gallery">Gọi Nhân Viên</a></li>
+          <li><a class="nav-link scrollto" href="#chefs">Gọi Thanh Toán</a></li>
         </ul>
         <i class="bi bi-list mobile-nav-toggle"></i>
       </nav><!-- .navbar -->
@@ -37,118 +38,74 @@
       <div class="container" data-aos="fade-up">
 
         <div class="section-title">
-          <h2>Menu</h2>
-          <p>Our Tasty Menu</p>
+          <h2>Thực Đơn</h2>
+          <p>Thực Đơn Của Chúng Tôi</p>
         </div>
 
         <div class="row" data-aos="fade-up" data-aos-delay="100">
           <div class="col-lg-12 d-flex justify-content-center">
             <ul id="menu-flters">
-              <li data-filter="*" class="filter-active">All</li>
-              <li data-filter=".filter-starters">Starters</li>
-              <li data-filter=".filter-salads">Salads</li>
-              <li data-filter=".filter-specialty">Specialty</li>
+              <li data-filter="*" class="filter-active">Tất cả</li>
+              <li data-filter=".filter-starters">Món Khai Vị</li>
+              <li data-filter=".filter-salads">Món Salads</li>
+              <li data-filter=".filter-specialty">Món chính</li>
             </ul>
           </div>
         </div>
 
         <div class="row menu-container" data-aos="fade-up" data-aos-delay="200">
-
-          <div class="col-lg-6 menu-item filter-starters">
-            <img src="/assets/img/menu/lobster-bisque.jpg" class="menu-img" alt="">
-            <div class="menu-content">
-              <a href="#">Lobster Bisque</a><span>$5.95</span>
+          @foreach ($allMores as $dish)
+            <div class="col-lg-6 menu-item filter-starters">
+              <img src="{{ asset('storage/' .substr($dish->public, 7)) }}" class="menu-img" alt="">
+              <div class="flex-container">
+                <div class="menu-content">
+                  <a href="#">{{ $dish->name }}</a><span>{{ number_format($dish->price) }} <u>đ</u></span>
+                </div>
+                <div class="menu-ingredients">
+                  <span>Thành phần: {{ ($dish->detail) }}</span>
+                </div>
+                <div class="d-flex align-items-center btn-group" data-id="{{ $dish->id }}">
+                  <button type="button" class="minus-button" onclick="decreaseQuantity(this)" data-id="{{ $dish->id }}" data-price="{{ $dish->price }}"></button>
+                  <input class="ip-price text-icon form-control ip-number" type="text" value="0" readonly>
+                  <button type="button" class="plus-button" onclick="increaseQuantity(this)" data-id="{{ $dish->id }}" data-price="{{ $dish->price }}"></button>
+                </div>
+              </div>
             </div>
-            <div class="menu-ingredients">
-              Lorem, deren, trataro, filede, nerada
-            </div>
-          </div>
-
-          <div class="col-lg-6 menu-item filter-specialty">
-            <img src="/assets/img/menu/bread-barrel.jpg" class="menu-img" alt="">
-            <div class="menu-content">
-              <a href="#">Bread Barrel</a><span>$6.95</span>
-            </div>
-            <div class="menu-ingredients">
-              Lorem, deren, trataro, filede, nerada
-            </div>
-          </div>
-
-          <div class="col-lg-6 menu-item filter-starters">
-            <img src="/assets/img/menu/cake.jpg" class="menu-img" alt="">
-            <div class="menu-content">
-              <a href="#">Crab Cake</a><span>$7.95</span>
-            </div>
-            <div class="menu-ingredients">
-              A delicate crab cake served on a toasted roll with lettuce and tartar sauce
-            </div>
-          </div>
-
-          <div class="col-lg-6 menu-item filter-salads">
-            <img src="/assets/img/menu/caesar.jpg" class="menu-img" alt="">
-            <div class="menu-content">
-              <a href="#">Caesar Selections</a><span>$8.95</span>
-            </div>
-            <div class="menu-ingredients">
-              Lorem, deren, trataro, filede, nerada
-            </div>
-          </div>
-
-          <div class="col-lg-6 menu-item filter-specialty">
-            <img src="/assets/img/menu/tuscan-grilled.jpg" class="menu-img" alt="">
-            <div class="menu-content">
-              <a href="#">Tuscan Grilled</a><span>$9.95</span>
-            </div>
-            <div class="menu-ingredients">
-              Grilled chicken with provolone, artichoke hearts, and roasted red pesto
-            </div>
-          </div>
-
-          <div class="col-lg-6 menu-item filter-starters">
-            <img src="/assets/img/menu/mozzarella.jpg" class="menu-img" alt="">
-            <div class="menu-content">
-              <a href="#">Mozzarella Stick</a><span>$4.95</span>
-            </div>
-            <div class="menu-ingredients">
-              Lorem, deren, trataro, filede, nerada
-            </div>
-          </div>
-
-          <div class="col-lg-6 menu-item filter-salads">
-            <img src="/assets/img/menu/greek-salad.jpg" class="menu-img" alt="">
-            <div class="menu-content">
-              <a href="#">Greek Salad</a><span>$9.95</span>
-            </div>
-            <div class="menu-ingredients">
-              Fresh spinach, crisp romaine, tomatoes, and Greek olives
-            </div>
-          </div>
-
-          <div class="col-lg-6 menu-item filter-salads">
-            <img src="/assets/img/menu/spinach-salad.jpg" class="menu-img" alt="">
-            <div class="menu-content">
-              <a href="#">Spinach Salad</a><span>$9.95</span>
-            </div>
-            <div class="menu-ingredients">
-              Fresh spinach with mushrooms, hard boiled egg, and warm bacon vinaigrette
-            </div>
-          </div>
-
-          <div class="col-lg-6 menu-item filter-specialty">
-            <img src="/assets/img/menu/lobster-roll.jpg" class="menu-img" alt="">
-            <div class="menu-content">
-              <a href="#">Lobster Roll</a><span>$12.95</span>
-            </div>
-            <div class="menu-ingredients">
-              Plump lobster meat, mayo and crisp lettuce on a toasted bulky roll
-            </div>
-          </div>
-
+          @endforeach
         </div>
-
       </div>
     </section><!-- End Menu Section -->
-
   </div>
   
+  <nav class="navbar navbar-expand-lg navbar-light bg-footer fixed-bottom " id="tabFooter">
+    <div class="d-flex justify-content-between px-4" style= "width: 100%;">
+      <div class="d-flex align-items-center justify-content-between">
+      Tổng:
+      <input id="gia" type="text"></div>
+      <form id="formOrder" action="{{route('order.store')}}" method="POST" enctype="multipart/form-data">
+      @csrf
+        <input type="hidden" name="infor_id" value="{{ session('infor_id') }}">
+        <button type="submit" class="btn btn-primary" id="btnOrder">Đặt món</button>
+      </form>
+    </div>
+  </nav>
+<script src="/js/order.js"></script>
+<!-- @else
+<div class="container model-order">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Thông báo</h5>
+      </div>
+      <div class="modal-body">
+        <p>Rất tiếc!! <br>
+          Qúy khách cần quét mã QR tại bàn, nhập thông tin để thực hiện gọi món. <br>
+          Hoặc gọi nhân viên hỗ trợ.
+        </p>
+      </div>
+        <button type="button" class="btn btn-primary">Gọi Nhân Viên</button>
+    </div>
+  </div>
+</div>
+@endif -->
 @endsection

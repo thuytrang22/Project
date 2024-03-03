@@ -78,14 +78,14 @@
                 <td>{{$category->id}}</td>
                 <td>{{$category->name}}</td>
                 <td>
-                    <div class="flex gap-10">
+                    <div class="flex gap-10 justify-center">
                         <!-- feature show -->
-                        <a class="btn btn-icon btn-outline-warning" href="{{ route('category.menus', ['category' => $category->id]) }}">
+                        <a class="flex justify-center btn btn-icon btn-outline-warning" href="{{ route('category.menus', ['category' => $category->id]) }}">
                           <img src="/images/menu.png" alt="">
                         </a>
 
                         <!-- feature update -->
-                        <a class="btn btn-icon btn-outline-warning btnEdit" href="{{route('categories.edit',$category->id)}}">
+                        <a class="flex justify-center btn btn-icon btn-outline-warning btnEdit" href="{{route('categories.edit',$category->id)}}">
                             <img src="/images/editing.png" alt="">
                         </a>
 
@@ -93,7 +93,7 @@
                         <form method="POST" action="{{ route('categories.destroy', ['id' => $category->id]) }}">
                             @csrf
                             @method('DELETE')
-                            <button type="submit" class="btn btn-outline-warning btn-icon">
+                            <button type="submit" class="flex justify-center btn btn-outline-warning btn-icon">
                                 <img src="/images/delete.png" alt="">
                             </button>
                         </form>

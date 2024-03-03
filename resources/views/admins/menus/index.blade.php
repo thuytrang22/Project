@@ -78,8 +78,8 @@
                 <th>Hình Ảnh</th>
                 <th>Chi Tiết</th>
                 <th>Danh Mục</th>
-                <th>Giá</th>
-                <th width="280px">Hành Động</th>
+                <th width="100px">Giá</th>
+                <th width="250px">Hành Động</th>
             </tr>
           </thead>
           <tbody>
@@ -98,16 +98,16 @@
                       </td>
                       <td>{{$menu->detail}}</td>
                       <td>{{$category->name}}</td>
-                      <td>{{$menu->price}}</td>
+                      <td>{{number_format($menu->price)}}đ</td>
                       <td>
-                          <div class="flex gap-10">
+                          <div class="flex gap-10 justify-center">
                               <!-- feature update -->
-                              <a class="btn btn-icon btn-outline-warning btnEdit" href="{{ route('menus.edit', ['category' => $category->id, 'id' => $menu->id]) }}">
+                              <a class="flex justify-center btn btn-icon btn-outline-warning btnEdit" href="{{ route('menus.edit', ['category' => $category->id, 'id' => $menu->id]) }}">
                                   <img src="/images/editing.png" alt="">
                               </a>
 
                               <!-- feature show -->
-                              <a class="btn btn-icon btn-outline-warning" href="{{route('menus.show',['category' => $category->id, 'id' => $menu->id])}}">
+                              <a class="flex justify-center btn btn-icon btn-outline-warning" href="{{route('menus.show',['category' => $category->id, 'id' => $menu->id])}}">
                                   <img src="/images/eye.png" alt="">
                               </a>
 
@@ -115,7 +115,7 @@
                               <form method="POST" action="{{ route('menus.destroy', ['category' => $category->id, 'menu' => $menu->id]) }}">
                                   @csrf
                                   @method('DELETE')
-                                  <button type="submit" class="btn btn-outline-warning btn-icon">
+                                  <button type="submit" class="flex justify-center btn btn-outline-warning btn-icon">
                                       <img src="/images/delete.png" alt="">
                                   </button>
                               </form>

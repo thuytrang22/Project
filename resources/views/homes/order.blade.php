@@ -1,6 +1,6 @@
 @extends('layouts.page')
 @section('content')
-<!-- @if (session('infor_id')) -->
+@if (session('infor_id'))
   <!-- ======= Top Bar ======= -->
   <div id="topbar" class="d-flex align-items-center fixed-top">
     <div class="container d-flex justify-content-center justify-content-md-between">
@@ -90,7 +90,7 @@
     </div>
   </nav>
 <script src="/js/order.js"></script>
-<!-- @else
+@else
 <div class="container model-order">
   <div class="modal-dialog">
     <div class="modal-content">
@@ -107,5 +107,5 @@
     </div>
   </div>
 </div>
-@endif -->
+@endif
 @endsection

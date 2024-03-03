@@ -3,7 +3,7 @@
 <form action="{{route('morning.update')}}" method="POST" class="card mt-3" enctype="multipart/form-data">
     <div class="modal-header">
         <h4 class="modal-title">Sửa Thông Tin Thực Phẩm</h4>
-        <a class="btn btn-outline-warning"  href="{{ route('warehouses') }}">Back</a>
+        <a class="btn btn-outline-warning"  href="{{ route('warehouses') }}">Quay lại</a>
     </div>
     <div class="card-body">
         @method('PUT')

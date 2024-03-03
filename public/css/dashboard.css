@@ -66,8 +66,8 @@ hr {
 }
 
 .btn-icon img {
-    width: 55%;
-    height: 80%;
+    width: 50%;
+    height: 100%;
 }
 
 .image {
@@ -104,6 +104,7 @@ hr {
 th a {
     text-decoration: none;
     color: #000;
+    justify-content: center;
 }
 
 th a:hover {
@@ -185,3 +186,12 @@ th a:hover {
     background-color: #fff;
     border-color: #dee2e6;
 }
+
+th, td {
+    text-align: center;
+}
+
+.justify-center {
+    justify-content: center;
+}
+

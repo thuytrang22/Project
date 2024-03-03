@@ -82,17 +82,17 @@
                 <td>{{date('d/m/Y', strtotime($order->created_at))}}</td>
                 <td>{{$order->status}}</td>
                 <td>
-                    <div class="flex gap-10">
+                    <div class="flex justify-center gap-10">
                         <!-- feature update -->
-                        <a class="btn btn-icon btn-outline-warning btnEdit" href="{{ route('order.show', ['id' => $order->id]) }}">
-                            <img src="/images/editing.png" alt="Chỉnh sửa">
+                        <a class="flex justify-center btn btn-icon btn-outline-warning btnEdit" href="{{ route('order.show', ['id' => $order->id]) }}">
+                            <img src="/images/eye.png" alt="Chỉnh sửa">
                         </a>
 
                         <!-- feature delete -->
                         <form method="POST" action="{{ route('order.destroy', ['id' => $order->id])}}">
                             @csrf
                             @method('DELETE')
-                            <button type="submit" class="btn btn-outline-warning btn-icon">
+                            <button type="submit" class="flex justify-center btn btn-outline-warning btn-icon">
                                 <img src="/images/delete.png" alt="Xóa">
                             </button>
                         </form>

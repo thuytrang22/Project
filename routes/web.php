@@ -74,12 +74,17 @@ Route::prefix('/admin')->group(function () {
     Route::prefix('/warehouse')->group(function () {
         Route::get('/', [WarehousesController::class, 'warehouses'])->name('warehouses');
         Route::get('/export', [WarehousesController::class, 'export'])->name('warehouses.export');
-        Route::post('/import', [WarehousesController::class, 'import'])->name('warehouses.import');
+        Route::get('/export-input', [WarehousesController::class, 'exportInput'])->name('warehouses.export.input');
+        Route::get('/export-output', [WarehousesController::class, 'exportOutput'])->name('warehouses.export.output');
+        Route::post('/import-input', [WarehousesController::class, 'importInput'])->name('warehouses.import.input');
+        Route::post('/import-output', [WarehousesController::class, 'importOutput'])->name('warehouses.import.output');
         Route::get('/create', [WarehousesController::class, 'create'])->name('morning.create');
         Route::post('/store', [WarehousesController::class, 'store'])->name('morning.store');
         Route::get('{id}/edit', [WarehousesController::class, 'edit'])->name('morning.edit');
         Route::put('/update', [WarehousesController::class, 'update'])->name('morning.update');
         Route::delete('/{id}', [WarehousesController::class, 'destroy'])->name('morning.destroy');
+        Route::get('/export-list', [WarehousesController::class, 'exportList'])->name('warehouses.export.list');
+        Route::get('/import-list', [WarehousesController::class, 'importlist'])->name('warehouses.import.list');
     });
 });
     

@@ -1,10 +1,7 @@
-@php
-    $total = 0;
-@endphp
 <table>
     <thead>
         <tr>
-            <td colspan="5"><strong>Phiếu nhập kho</strong></td>
+            <td colspan="5" style="text-align: center; font-size: 20px;"><strong>Phiếu nhập kho</strong></td>
         </tr>
         <tr>     
             <th>STT</th>
@@ -15,21 +12,42 @@
         </tr>
     </thead>
     <tbody>
-        @foreach($warehouses as $warehouse)
+        @foreach($warehouses as $key => $warehouse)
         <tr class="text-center">
-            <td>{{$warehouse->id}}</td>
+            <td>{{$key + 1}}</td>
             <td>{{$warehouse->name}}</td>
-            <td>{{$warehouse->quantity}}</td>
+            <td>{{$warehouse->total}}</td>
             <td>{{$warehouse->measure}}</td>
-            <td>{{$warehouse->created_at}}</td>
+            <td>{{date('d/m/Y', strtotime($warehouse->created_at))}}</td>
         </tr>
-        {{$total += $warehouse->quantity}}
         @endforeach
     </tbody>
     <tfoot>
         <tr></tr>
+        <tr></tr>
         <tr>
-            
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td>....., ngày .... tháng .... năm ....</td>
+        </tr>
+        <tr>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td colspan="3" style="text-align: center;"><strong>Nhân viên</strong></td>
+        </tr>
+        <tr>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td colspan="3" style="text-align: center; font-size: 10px;"><i>(Ký và ghi rõ họ tên)</i></td>
         </tr>
     </tfoot>
 </table>

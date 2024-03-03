@@ -45,12 +45,6 @@
                 <a class="button blue" href="{{route('warehouses')}}">
                   Quay lại
                 </a>
-                <a class="button blue" href="{{route('warehouses.import.list')}}">
-                  Quản lý nhập kho
-                </a>
-                <a class="button blue" href="{{route('warehouses.export.list')}}">
-                  Quản lý xuất kho
-                </a>
                 
             <!-- feature search -->
             <form action="?" class="col-auto ms-auto navbar-end">
@@ -61,11 +55,18 @@
             </form>
       </div>
                 <a class="button blue" href="{{route('morning.create')}}">
-                  Thêm Thực Phẩm
+                  Thêm mới
                 </a>
-                <a href="{{ route('warehouses.export') }}" class="button blue">
+                <a href="{{ route('warehouses.export.output') }}" class="button blue">
                   Xuất Excel
                 </a>
+                <div style="float: right;">
+                  <form action="{{ route('warehouses.import.output') }}" method="POST" enctype="multipart/form-data">
+                    @csrf
+                    <input type="file" name="importWarehouse">
+                    <button type="submit" class="button blue">Nhập Excel</button>
+                  </form>
+                </div>
               </div>
       <div class="card-content">
         <table>
@@ -84,18 +85,35 @@
                 <th>Số Lượng</th>
                 <th>Đơn Vị</th>
                 <th>Ngày</th>
-                <!-- <th width="280px">Hành Động</th> -->
+                <th width="280px">Hành Động</th>
             </tr>
           </thead>
           <tbody>
             @if(count($warehouses) > 0)
-            @foreach($warehouses as $key => $warehouse)
+            @foreach($warehouses as $mwarehouse)
             <tr class="text-center">
-                <td>{{$key + 1}}</td>
-                <td>{{$warehouse->name}}</td>
-                <td>{{$warehouse->total}}</td>
-                <td>{{$warehouse->measure}}</td>
-                <td>{{date('d/m/Y', strtotime($warehouse->created_at))}}</td>
+                <td>{{$mwarehouse->id}}</td>
+                <td>{{$mwarehouse->name}}</td>
+                <td>{{$mwarehouse->quantity}}</td>
+                <td>{{$mwarehouse->measure}}</td>
+                <td>{{date('d/m/Y', strtotime($mwarehouse->created_at))}}</td>
+                <td>
+                    <div class="flex gap-10">
+                        <!-- feature update -->
+                        <a class="btn btn-icon btn-outline-warning btnEdit" href="{{route('morning.edit', ['id' => $mwarehouse->id])}}">
+                            <img src="/images/editing.png" alt="">
+                        </a>
+
+                        <!-- feature delete -->
+                        <form method="POST" action="{{ route('morning.destroy', ['id' => $mwarehouse->id])}}">
+                            @csrf
+                            @method('DELETE')
+                            <button type="submit" class="btn btn-outline-warning btn-icon">
+                                <img src="/images/delete.png" alt="">
+                            </button>
+                        </form>
+                    </div>
+                </td>
             </tr>
             @endforeach
             @else

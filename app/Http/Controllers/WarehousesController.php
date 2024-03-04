@@ -4,7 +4,9 @@ namespace App\Http\Controllers;
 
 use App\Exports\WarehouseExport;
 use App\Exports\WarehouseExportInput;
+use App\Exports\WarehouseExportOutput;
 use App\Imports\WarehousesImport;
+use App\Imports\WarehousesImportOutput;
 use Illuminate\Http\Request;
 use Maatwebsite\Excel\Facades\Excel;
 use App\Models\Warehouse;
@@ -19,7 +21,7 @@ class WarehousesController extends Controller
     public function warehouses(Request $request)
     {
         $keywords = $request->input('keywords');
-        $sortBy = $request->input('sortBy', 'id');
+        $sortBy = $request->input('sortBy', 'name');
         $sortDirection = $request->input('sortDirection', 'desc');
     
         $query = DB::table('warehouses')
@@ -61,9 +63,10 @@ class WarehousesController extends Controller
         return view('admins.warehuoses.index', compact('warehouses', 'keywords', 'sortBy', 'sortDirection'));
     }
 
-    public function create()
+    public function create(Request $request)
     {
-        return view('admins.warehuoses.create');
+        $type = $request->query('type');
+        return view('admins.warehuoses.create', compact('type'));
     }
  
     public function store(Request $request)
@@ -72,16 +75,25 @@ class WarehousesController extends Controller
             'name' => $request->input('name'),
             'quantity' => $request->input('quantity'),
             'measure' => $request->input('measure'),
-            'type' => self::IMPORT_TYPE
+            'price' => $request->input('price'),
+            'type' => $request->input('type'),
         ];
         Warehouse::create($data);
-        return redirect()->route('warehouses')->with('store', 'success');
+
+        if ($request->input('type') == self::IMPORT_TYPE) {
+            $route = 'warehouses.import.list';
+        } else {
+            $route = 'warehouses.export.list';
+        }
+        return redirect()->route($route)->with('store', 'success');
     }
 
-    public function edit(Warehouse $id)
+    public function edit($id, $type)
     {
+        $warehouse = Warehouse::find($id);
         return view('admins.warehuoses.edit', [
-            'mwarehouse' => $id
+            'warehouse' => $warehouse,
+            'type' => $type
         ]);
     }
 
@@ -91,10 +103,14 @@ class WarehousesController extends Controller
         $mwarehouse->name = $request->name;
         $mwarehouse->quantity = $request->quantity;
         $mwarehouse->measure = $request->measure;
-        $mwarehouse->type = self::EXPORT_TYPE;
         $mwarehouse->save();
 
-        return redirect()->route('warehouses')->with('update', 'success');
+        if ($request->type == self::IMPORT_TYPE) {
+            $route = 'warehouses.import.list';
+        } else {
+            $route = 'warehouses.export.list';
+        }
+        return redirect()->route($route)->with('update', 'success');
     }
 
     public function destroy($id)
@@ -103,25 +119,51 @@ class WarehousesController extends Controller
         return redirect()->route('warehouses')->with('destroy', 'success');
     }
     
-    public function export()
+    public function export(Request $request)
     {
-        return Excel::download(new WarehouseExport, 'Kho.xlsx');
+        $keywords = $request->query('keywords');
+        $sortBy = $request->input('sortBy', 'name');
+        $sortDirection = $request->input('sortDirection', 'desc');
+
+        return Excel::download(new WarehouseExport($keywords, $sortBy, $sortDirection), 'Tồn kho.xlsx');
     }
     
     public function exportInput(Request $request)
     {
-        $keywords = $request->input('keywords');
-        $sortBy = $request->input('sortBy', 'id');
+        $keywords = $request->query('keywords');
+        $sortBy = $request->input('sortBy', 'name');
         $sortDirection = $request->input('sortDirection', 'desc');
 
-        return Excel::download(new WarehouseExportInput($keywords, $sortBy, $sortDirection), 'Xuất kho.xlsx');
+        return Excel::download(new WarehouseExportInput($keywords, $sortBy, $sortDirection), 'Phiếu nhập kho.xlsx');
+    }
+    
+    public function exportOutput(Request $request)
+    {
+        $keywords = $request->query('keywords');
+        $sortBy = $request->input('sortBy', 'name');
+        $sortDirection = $request->input('sortDirection', 'desc');
+
+        return Excel::download(new WarehouseExportOutput($keywords, $sortBy, $sortDirection), 'Phiếu xuất kho.xlsx');
     }
     
     public function import(Request $request)
     {
-        Excel::import(new WarehousesImport, request()->file('importWarehouse'));
+        $file = $request->file('importWarehouse');
+        if ($file) {
+            Excel::import(new WarehousesImport, $file);
+        }
         
-        return redirect()->route('warehouses')->with('success', 'All good!');
+        return redirect()->route('warehouses.import.list')->with('success', 'All good!');
+    }
+    
+    public function importOutput(Request $request)
+    {
+        $file = $request->file('importOutputWarehouse');
+        if ($file) {
+            Excel::import(new WarehousesImportOutput, $file);
+        }
+        
+        return redirect()->route('warehouses.export.list')->with('success', 'All good!');
     }
     
     public function exportList(Request $request)

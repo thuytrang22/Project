@@ -6,9 +6,9 @@ use Illuminate\Contracts\View\View;
 use App\Models\Warehouse;
 use Maatwebsite\Excel\Concerns\FromView;
 
-class WarehouseExportInput implements FromView
+class WarehouseExportOutput implements FromView
 {
-    const IMPORT_TYPE = 1;
+    const EXPORT_TYPE = 2;
 
     protected $keywords;
     protected $sortBy;
@@ -24,14 +24,14 @@ class WarehouseExportInput implements FromView
     public function view(): View
     {
         $query = Warehouse::orderBy($this->sortBy, $this->sortDirection);
-        $query->where('type', self::IMPORT_TYPE);
+        $query->where('type', self::EXPORT_TYPE);
     
         if (!empty($this->keywords)) {
             $query->where('name', 'like', '%' . $this->keywords . '%');
         }
     
         $warehouses = $query->get();
-        return view('exports.warehouses-import', [
+        return view('exports.warehouses-export', [
             'warehouses' => $warehouses
         ]);
     }

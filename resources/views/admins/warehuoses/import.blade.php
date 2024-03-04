@@ -19,6 +19,10 @@
   </div>
 @endif
 
+@if (!isset($keywords))
+  {{$keywords = ''}}
+@endif
+
 <section class="is-title-bar">
   <div class="flex flex-col md:flex-row items-center justify-between space-y-6 md:space-y-0">
     <ul>
@@ -33,7 +37,7 @@
       <header class="card-header">
         <p class="card-header-title">
           <span class="icon"><i class="mdi mdi-buffer"></i></span>
-          Tổng Danh Sách Kho Hàng
+          Tổng Danh Sách Nhập Kho
         </p>
         <a href="#" class="card-header-icon">
           <span class="icon"><i class="mdi mdi-reload"></i></span>
@@ -49,15 +53,15 @@
             <!-- feature search -->
             <form action="?" class="col-auto ms-auto navbar-end">
                 <div class="input-group">
-                    <input type="text" name="keywords" class="form-control" placeholder="Tìm kiếm ..." />
+                    <input type="text" name="keywords" class="form-control" placeholder="Tìm kiếm ..." value="{{$keywords}}"/>
                     <button type="submit" class="button green">Tìm Kiếm</button>
                 </div>
             </form>
       </div>
-                <a class="button blue" href="{{route('morning.create')}}">
+                <a class="button blue" href="{{route('warehouses.create', ['type' => 1])}}">
                   Thêm mới
                 </a>
-                <a href="{{ route('warehouses.export.input') }}" class="button blue">
+                <a href="{{ route('warehouses.export.input', ['keywords' => $keywords]) }}" class="button blue">
                   Xuất Excel
                 </a>
                 <div style="float: right;">
@@ -73,7 +77,7 @@
           <thead>
           <tr class="text-center table-active">
                 <th>
-                    <a class="flex content-center items-center" href="{{ route('warehouses', ['sortBy' => 'id', 'sortDirection' => ($sortDirection == 'asc' && $sortBy == 'id') ? 'desc' : 'asc']) }}">
+                    <a class="flex content-center items-center" href="{{ route('warehouses.import.list', ['sortBy' => 'id', 'sortDirection' => ($sortDirection == 'asc' && $sortBy == 'id') ? 'desc' : 'asc']) }}">
                       STT
                         <div class="sort">
                             <div class="arrow-up"></div>
@@ -84,6 +88,7 @@
                 <th>Tên Thực Phẩm</th>
                 <th>Số Lượng</th>
                 <th>Đơn Vị</th>
+                <th>Đơn Giá</th>
                 <th>Ngày</th>
                 <th width="280px">Hành Động</th>
             </tr>
@@ -96,11 +101,12 @@
                 <td>{{$mwarehouse->name}}</td>
                 <td>{{$mwarehouse->quantity}}</td>
                 <td>{{$mwarehouse->measure}}</td>
+                <td>{{number_format($mwarehouse->price)}}</td>
                 <td>{{date('d/m/Y', strtotime($mwarehouse->created_at))}}</td>
                 <td>
                     <div class="flex gap-10">
                         <!-- feature update -->
-                        <a class="btn btn-icon btn-outline-warning btnEdit" href="{{route('morning.edit', ['id' => $mwarehouse->id])}}">
+                        <a class="btn btn-icon btn-outline-warning btnEdit" href="{{route('warehouses.edit', ['id' => $mwarehouse->id, 'type' => 1])}}">
                             <img src="/images/editing.png" alt="">
                         </a>
 

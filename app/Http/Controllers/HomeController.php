@@ -9,7 +9,12 @@ use Illuminate\Support\Facades\DB;
 
 class HomeController extends Controller
 {
-    public function index($table)
+    public function index () {
+        $allMores = DB::table('menus')->get();
+        return view ('pages.index', compact('allMores'));
+    }
+
+    public function home ($table)
     {
         return view('homes.index',  [
             'table' => $table

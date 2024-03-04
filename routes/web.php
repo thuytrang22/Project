@@ -4,9 +4,6 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\MenuController;
-use App\Http\Controllers\CartController;
-use App\Http\Controllers\ExcelController;
-use App\Http\Controllers\PageController;
 use App\Http\Controllers\BookingController;
 use App\Http\Controllers\CategoriesController;
 use App\Http\Controllers\WarehousesController;
@@ -26,21 +23,22 @@ use App\Http\Controllers\UserController;
 */
 
 // controller of page
-Route::get('/', [PageController::class, 'index'])->name('pages');
+Route::get('/home', [HomeController::class, 'index'])->name('home');
+Route::get('/', [HomeController::class, 'index'])->name('pages');
 Route::post('/booktable', [BookingController::class, 'bookTable'])->name('book.table');
 Route::get('/users/export', [UserController::class, 'export']);
 Route::get('/users/import', [UserController::class, 'import']);
 
 // controller of home
 Route::prefix('qr')->group(function () {
-    Route::get('/{table}', [HomeController::class, 'index']);
+    Route::get('/{table}', [HomeController::class, 'home']);
     Route::post('/infor', [HomeController::class, 'infor'])->name('infor');
     Route::get('/{table}/order', [HomeController::class, 'order'])->name('order');
     Route::get('/{table}/get-menu/{option}', [HomeController::class, 'getMenu'])->name('getmenu');
 });
 
 // controller of admin
-Route::prefix('/admin')->group(function () {
+Route::prefix('/admin')->middleware('role:1')->group(function () {
     Route::get('/', [AdminController::class, 'index'])->name('admins');
     Route::get('/profile', [AdminController::class, 'profile'])->name('profile');
 
@@ -86,32 +84,11 @@ Route::prefix('/admin')->group(function () {
         Route::get('/import-list', [WarehousesController::class, 'importlist'])->name('warehouses.import.list');
     });
 });
-    
-
-// controller of cart
-Route::prefix('cart')->group(function () {
-    Route::get('/', [CartController::class, 'index'])->name('cart');
-    Route::post('/add/{dish}', [CartController::class, 'add'])->name('add');
-    Route::delete('/remove/{id}', [CartController::class, 'remove'])->name('remove');
-    Route::delete('/clear', [CartController::class, 'clear'])->name('clear');
-});
 
 Route::prefix('order')->group(function () {
     Route::post('/', [OrderController::class, 'store'])->name('order.store');
     Route::delete('/', [OrderController::class, 'remove'])->name('order.remove');
 });
-
-Route::get('/export-view', [ExcelController::class, 'showExportView'])->name('export');
-Route::get('/import-view', [ExcelController::class, 'showImportView']);
-Route::get('/export', [ExcelController::class, 'export']);
-Route::post('/import', [ExcelController::class, 'import']);
-// Auth::routes();
-
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
-
-Route::get('/dashboard', function () {
-    return view('dashboard');
-})->middleware(['auth', 'verified'])->name('dashboard');
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');

@@ -55,15 +55,12 @@
             <!-- feature search -->
             <form action="?" class="col-auto ms-auto navbar-end">
                 <div class="input-group">
-                    <input type="text" name="keywords" class="form-control" placeholder="Tìm kiếm ..." />
+                    <input type="text" name="keywords" class="form-control" placeholder="Tìm kiếm ..." value="{{$keywords}}"/>
                     <button type="submit" class="button green">Tìm Kiếm</button>
                 </div>
             </form>
       </div>
-                <a class="button blue" href="{{route('morning.create')}}">
-                  Thêm Thực Phẩm
-                </a>
-                <a href="{{ route('warehouses.export') }}" class="button blue">
+                <a href="{{ route('warehouses.export', ['keywords' => $keywords]) }}" class="button blue">
                   Xuất Excel
                 </a>
               </div>
@@ -72,7 +69,7 @@
           <thead>
           <tr class="text-center table-active">
                 <th>
-                    <a class="flex content-center items-center" href="{{ route('warehouses', ['sortBy' => 'id', 'sortDirection' => ($sortDirection == 'asc' && $sortBy == 'id') ? 'desc' : 'asc']) }}">
+                    <a class="flex content-center items-center" href="{{ route('warehouses', ['sortBy' => 'name', 'sortDirection' => ($sortDirection == 'asc' && $sortBy == 'name') ? 'desc' : 'asc']) }}">
                       STT
                         <div class="sort">
                             <div class="arrow-up"></div>

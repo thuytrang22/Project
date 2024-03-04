@@ -6,7 +6,7 @@ use App\Models\Warehouse;
 use Maatwebsite\Excel\Concerns\ToModel;
 use Maatwebsite\Excel\Concerns\WithHeadingRow;
 
-class WarehousesImport implements ToModel, WithHeadingRow
+class WarehousesImportOutput implements ToModel, WithHeadingRow
 {
     /**
     * @param array $row
@@ -21,7 +21,7 @@ class WarehousesImport implements ToModel, WithHeadingRow
                 'quantity' => $row['so_luong'],
                 'measure' => $row['don_vi'],
                 'price' => $row['don_gia'],
-                'type' => 1,
+                'type' => 2,
             ]);
         }
     }

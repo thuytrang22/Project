@@ -20,6 +20,7 @@ class Warehouse extends Model
         'name',
         'quantity',
         'measure',
+        'price',
         'type'
     ];
 }

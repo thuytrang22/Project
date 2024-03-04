@@ -13,8 +13,11 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::table('warehouses', function (Blueprint $table) {
-            $table->timestamp('deleted_at')->nullable();
+        Schema::create('seatings', function (Blueprint $table) {
+            $table->id();
+            $table->string('table number');
+            $table->integer('status');
+            $table->timestamps();
         });
     }
 
@@ -25,8 +28,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::table('warehouses', function (Blueprint $table) {
-            //
-        });
+        Schema::dropIfExists('seatings');
     }
 };

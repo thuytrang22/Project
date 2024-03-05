@@ -59,41 +59,46 @@
     </div>
   </div>
   <div class="menu is-menu-main">
-    <p class="menu-label">General</p>
+    <p class="menu-label">Chung</p>
     <ul class="menu-list">
-      <li class="active">
-        <a href="{{route('admins')}}">
-          <span class="icon"><i class="mdi mdi-desktop-mac"></i></span>
-          <span class="menu-item-label">Tổng Quan</span>
+        <li class="{{ request()->routeIs('admins') ? 'active' : '' }}">
+            <a href="{{route('admins')}}">
+                <span class="icon"><i class="mdi mdi-desktop-mac"></i></span>
+                <span class="menu-item-label">Tổng quan</span>
+            </a>
+        </li>
+        <li class="{{ request()->routeIs('categories') ? 'active' : '' }}">
+            <a href="{{route('categories')}}">
+                <span class="icon"><i class="mdi mdi-table"></i></span>
+                <span class="menu-item-label">Danh mục</span>
+            </a>
+        </li>
+        <li class="{{ request()->routeIs('warehouses') ? 'active' : '' }}">
+            <a href="{{route('warehouses')}}">
+                <span class="icon"><i class="mdi mdi-table"></i></span>
+                <span class="menu-item-label">Kho</span>
+            </a>
+        </li>
+        <li class="{{ request()->routeIs('order.list') ? 'active' : '' }}">
+            <a href="{{route('order.list')}}">
+                <span class="icon"><i class="mdi mdi-table"></i></span>
+                <span class="menu-item-label">Đơn hàng</span>
+            </a>
+        </li>
+      <li class="{{ request()->routeIs('profile') ? 'active' : '' }}">
+        <a href="{{route('profile')}}">
+          <span class="icon"><i class="mdi mdi-account-circle"></i></span>
+          <span class="menu-item-label">Hồ sơ</span>
+        </a>
+      </li>
+      <li class="{{ request()->routeIs('pages') ? 'active' : '' }}">
+        <a href="{{route('pages')}}">
+          <span class="icon"><i class="mdi mdi-lock"></i></span>
+          <span class="menu-item-label">Trang chủ</span>
         </a>
       </li>
     </ul>
-    <ul class="menu-list">
-      <li class="--set-active-tables-html">
-        <a href="{{route('categories')}}">
-          <span class="icon"><i class="mdi mdi-table"></i></span>
-          <span class="menu-item-label">Categories</span>
-        </a>
-      </li>
-      <li class="--set-active-forms-html">
-        <a href="forms.html">
-          <span class="icon"><i class="mdi mdi-square-edit-outline"></i></span>
-          <span class="menu-item-label">Forms</span>
-        </a>
-      </li>
-      <li class="--set-active-profile-html">
-        <a href="{{route('profile')}}">
-          <span class="icon"><i class="mdi mdi-account-circle"></i></span>
-          <span class="menu-item-label">Profile</span>
-        </a>
-      </li>
-      <li>
-        <a href="{{route('pages')}}">
-          <span class="icon"><i class="mdi mdi-lock"></i></span>
-          <span class="menu-item-label">Home Page</span>
-        </a>
-      </li>
-  </div>
+</div>
 </aside>
 
 @yield('content')

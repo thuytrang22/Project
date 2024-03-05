@@ -1,4 +1,3 @@
-
 @extends('.layouts.admin')
 @section('content')
 
@@ -6,52 +5,90 @@
   <div class="flex flex-col md:flex-row items-center justify-between space-y-6 md:space-y-0">
     <ul>
       <li>Admin</li>
-      <li>Profile</li>
+      <li>Hồ Sơ</li>
     </ul>
   </div>
 </section>
-
-<section class="is-hero-bar">
-  <div class="flex flex-col md:flex-row items-center justify-between space-y-6 md:space-y-0">
-    <h1 class="title">
-      Profile
-    </h1>
-  </div>
-</section>
+@if(auth()->user()->role_id == "1")
+  <section class="is-hero-bar">
+    <div class="flex flex-col md:flex-row items-center justify-between space-y-6 md:space-y-0">
+      <a href="{{route ('list.users') }}" class="button green"> Danh sách tài khoản</a>
+    </div>
+  </section>
+@endif
 
   <section class="section main-section">
+      <div class="card grid grid-cols-1 gap-6 mb-6">
+        <header class="card-header">
+          <p class="card-header-title">
+            <span class="icon"><i class="mdi mdi-account"></i></span>
+            Hồ Sơ
+          </p>
+        </header>
+        <div class="card-content">
+          <div class="image w-48 h-48 mx-auto">
+          @if ($currentUser->image)
+            <img src="{{ asset('storage/' .substr($currentUser->image, 6)) }}" alt="Hình ảnh" class="rounded-full">
+          @else
+            <img src="https://avatars.dicebear.com/v2/initials/john-doe.svg" alt="John Doe" class="rounded-full">
+          @endif
+          </div>
+          <hr>
+          <div class="field">
+            <label class="label">Họ & Tên</label>
+            <div class="control">
+              <input type="text" readonly value="{{ $currentUser->name }}" class="input is-static">
+            </div>
+          </div>
+          <hr>
+          <div class="field">
+            <label class="label">E-mail</label>
+            <div class="control">
+              <input type="text" readonly value="{{ $currentUser->email }}" class="input is-static">
+            </div>
+          </div>
+        </div>
+      </div>
     <div class="grid grid-cols-1 gap-6 lg:grid-cols-2 mb-6">
+    @if(auth()->user()->role_id == "1")
       <div class="card">
         <header class="card-header">
           <p class="card-header-title">
             <span class="icon"><i class="mdi mdi-account-circle"></i></span>
-            Edit Profile
+            Sửa Hồ Sơ
           </p>
         </header>
         <div class="card-content">
-          <form>
-            <div class="field">
-              <label class="label">Avatar</label>
+          <form action="{{ route('edit.profile')}}" method="POST" enctype="multipart/form-data">
+          @csrf
+          <div class="field">
+              <label class="label">Ảnh đại diện</label>
               <div class="field-body">
-                <div class="field file">
-                  <label class="upload control">
-                    <a class="button blue">
-                      Upload
-                    </a>
-                    <input type="file">
-                  </label>
-                </div>
+              <div class="mb-3">
+                <label for="" class="form-label">Hình Ảnh:</label>
+                <img id="preview" class="image mt-2">
+                <input type="file" id="uploadImage" onchange="previewImage()" name="image" accept="image/*" value="{{old('image')}}" class="form-control" @error('image') is-invalid @enderror>
+                @error('image')
+                  <div class="invalid-feedback">
+                      {{$message}}
+                  </div>
+                @enderror
+              </div>
               </div>
             </div>
             <hr>
             <div class="field">
-              <label class="label">Name</label>
+              <label class="label">Họ & Tên</label>
               <div class="field-body">
                 <div class="field">
                   <div class="control">
-                    <input type="text" autocomplete="on" name="name" value="John Doe" class="input" required>
+                    <input type="text" autocomplete="on" name="name" value="{{ old('name') }}" class="input" required @error('name') is-invalid @enderror>
+                      @error('name')
+                      <div class="invalid-feedback">
+                          {{$message}}
+                      </div>
+                      @enderror
                   </div>
-                  <p class="help">Required. Your name</p>
                 </div>
               </div>
             </div>
@@ -60,9 +97,13 @@
               <div class="field-body">
                 <div class="field">
                   <div class="control">
-                    <input type="email" autocomplete="on" name="email" value="user@example.com" class="input" required>
+                    <input type="email" autocomplete="on" name="email" value="{{old('email') }}" class="input" required @error('name') is-invalid @enderror>
+                      @error('email')
+                      <div class="invalid-feedback">
+                          {{$message}}
+                      </div>
+                      @enderror
                   </div>
-                  <p class="help">Required. Your e-mail</p>
                 </div>
               </div>
             </div>
@@ -70,7 +111,7 @@
             <div class="field">
               <div class="control">
                 <button type="submit" class="button green">
-                  Submit
+                  Lưu
                 </button>
               </div>
             </div>
@@ -80,73 +121,51 @@
       <div class="card">
         <header class="card-header">
           <p class="card-header-title">
-            <span class="icon"><i class="mdi mdi-account"></i></span>
-            Profile
+            <span class="icon"><i class="mdi mdi-lock"></i></span>
+            Thay đổi mật khẩu
           </p>
         </header>
         <div class="card-content">
-          <div class="image w-48 h-48 mx-auto">
-            <img src="https://avatars.dicebear.com/v2/initials/john-doe.svg" alt="John Doe" class="rounded-full">
-          </div>
-          <hr>
-          <div class="field">
-            <label class="label">Name</label>
-            <div class="control">
-              <input type="text" readonly value="John Doe" class="input is-static">
+          <form action="{{ route('change.password')}}" method="POST">
+            @csrf
+            <div class="field">
+                <label class="label">Mật khẩu hiện tại</label>
+                <div class="control">
+                    <input type="password" name="current_password" autocomplete="current-password" class="input" required>
+                    @error('current_password')
+                        <p class="help is-danger">{{ $message }}</p>
+                    @enderror
+                </div>
             </div>
-          </div>
-          <hr>
-          <div class="field">
-            <label class="label">E-mail</label>
-            <div class="control">
-              <input type="text" readonly value="user@example.com" class="input is-static">
+            <hr>
+            <div class="field">
+                <label class="label">Mật khẩu mới</label>
+                <div class="control">
+                    <input type="password" name="password" autocomplete="new-password" value="{{ old('password') }}" class="input" required @error('password') is-invalid @enderror>
+                    @error('password')
+                        <p class="help is-danger">{{ $message }}</p>
+                    @enderror
+                </div>
             </div>
-          </div>
+            <div class="field">
+                <label class="label">Xác nhận mật khẩu mới</label>
+                <div class="control">
+                    <input type="password" name="password_confirmation" autocomplete="new-password" class="input" required>
+                </div>
+            </div>
+            <hr>
+            <div class="field">
+                <div class="control">
+                    <button type="submit" class="button green">
+                        Lưu
+                    </button>
+                </div>
+            </div>
+          </form>
         </div>
       </div>
-    </div>
-    <div class="card">
-      <header class="card-header">
-        <p class="card-header-title">
-          <span class="icon"><i class="mdi mdi-lock"></i></span>
-          Change Password
-        </p>
-      </header>
-      <div class="card-content">
-        <form>
-          <div class="field">
-            <label class="label">Current password</label>
-            <div class="control">
-              <input type="password" name="password_current" autocomplete="current-password" class="input" required>
-            </div>
-            <p class="help">Required. Your current password</p>
-          </div>
-          <hr>
-          <div class="field">
-            <label class="label">New password</label>
-            <div class="control">
-              <input type="password" autocomplete="new-password" name="password" class="input" required>
-            </div>
-            <p class="help">Required. New password</p>
-          </div>
-          <div class="field">
-            <label class="label">Confirm password</label>
-            <div class="control">
-              <input type="password" autocomplete="new-password" name="password_confirmation" class="input" required>
-            </div>
-            <p class="help">Required. New password one more time</p>
-          </div>
-          <hr>
-          <div class="field">
-            <div class="control">
-              <button type="submit" class="button green">
-                Submit
-              </button>
-            </div>
-          </div>
-        </form>
-      </div>
-    </div>
+    @endif
+  </div>
   </section>
 
 <div id="sample-modal" class="modal">
@@ -183,4 +202,20 @@
   </div>
 </div>
 
+<script>
+    function previewImage() {
+        let fileInput = document.getElementById('uploadImage');
+        let preview = document.getElementById('preview');
+        if (fileInput.files && fileInput.files[0]) {
+            let reader = new FileReader();
+
+            reader.onload = function(e) {
+                preview.src = e.target.result;
+            };
+            reader.readAsDataURL(fileInput.files[0]);
+        } else {
+            preview.src = "";
+        }
+    }
+</script>
 @endsection

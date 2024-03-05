@@ -62,23 +62,19 @@
       <div class="navbar-item dropdown has-divider has-user-avatar">
         <a class="navbar-link">
           <div class="user-avatar">
+          @if ($currentUser->image)
+            <img src="{{ asset('storage/' .substr($currentUser->image, 6)) }}" alt="Hình ảnh" class="rounded-full">
+          @else
             <img src="https://avatars.dicebear.com/v2/initials/john-doe.svg" alt="John Doe" class="rounded-full">
+          @endif
           </div>
-          <div class="is-user-name"><span>Admin</span></div>
+          <div class="is-user-name"><span>{{ $currentUser->name }}</span></div>
           <span class="icon"><i class="mdi mdi-chevron-down"></i></span>
         </a>
         <div class="navbar-dropdown">
           <a href="{{route('profile')}}" class="navbar-item">
             <span class="icon"><i class="mdi mdi-account"></i></span>
-            <span>My Profile</span>
-          </a>
-          <a class="navbar-item">
-            <span class="icon"><i class="mdi mdi-settings"></i></span>
-            <span>Settings</span>
-          </a>
-          <a class="navbar-item">
-            <span class="icon"><i class="mdi mdi-email"></i></span>
-            <span>Messages</span>
+            <span>Hồ sơ</span>
           </a>
           <hr class="navbar-divider">
           <a class="navbar-item">

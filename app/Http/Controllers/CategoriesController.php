@@ -23,7 +23,7 @@ class CategoriesController extends Controller
             });
         }
     
-        $categories = $query->paginate(6);
+        $categories = $query->paginate(5);
         return view ('admins.categories.index', compact('categories', 'keywords', 'sortBy', 'sortDirection'));
     }
 

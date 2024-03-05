@@ -4,7 +4,7 @@
 
         <!-- Name -->
         <div>
-            <x-input-label for="name" :value="__('Tên')" />
+            <x-input-label for="name" :value="__('Họ & Tên')" />
             <x-text-input id="name" class="block mt-1 w-full" type="text" name="name" :value="old('name')" required autofocus autocomplete="name" />
             <x-input-error :messages="$errors->get('name')" class="mt-2" />
         </div>
@@ -16,6 +16,21 @@
             <x-input-error :messages="$errors->get('email')" class="mt-2" />
         </div>
 
+        <!-- Role User -->
+        <div class="mt-4">
+            <x-input-label for="role_id" :value="__('Quyền người dùng')" />
+            <select id="role_id" name="role_id" class="block mt-1 w-full form-select rounded-md shadow-sm">
+            @foreach($roles as $role)
+                <option value="{{$role->key}}">{{$role->name}}</option>
+                @endforeach
+            </select>
+            <x-input-error :messages="$errors->get('role_id')" class="mt-2" />
+        </div>
+        <div class="mt-4">
+            <x-input-label for="image" :value="__('Ảnh đại diện')" />
+            <input id="image" type="file" name="image" accept="image/*">
+            <x-input-error :messages="$errors->get('image')" class="mt-2" />
+        </div>
         <!-- Password -->
         <div class="mt-4">
             <x-input-label for="password" :value="__('Mật khẩu')" />

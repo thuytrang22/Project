@@ -17,11 +17,11 @@ class CheckRole
         $user = Auth::user();
 
         foreach ($roles as $role) {
-            if ($user->role == $role) {
+            if ($user->role_id == $role) {
                 return $next($request);
             }
         }
 
-        return redirect('/home')->with('error', 'Bạn không có quyền truy cập vào trang này.');
+        return redirect('/')->with('error', 'Bạn không có quyền truy cập vào trang này.');
     }
 }

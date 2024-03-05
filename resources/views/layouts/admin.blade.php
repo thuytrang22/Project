@@ -129,6 +129,12 @@
                 <span class="menu-item-label">Đơn hàng</span>
             </a>
         </li>
+        <li class="{{ request()->routeIs('bills.list') ? 'active' : '' }}">
+            <a href="{{route('bills.list')}}">
+                <span class="icon"><i class="mdi mdi-table"></i></span>
+                <span class="menu-item-label">Hóa đơn</span>
+            </a>
+        </li>
       <li class="{{ request()->routeIs('profile') ? 'active' : '' }}">
         <a href="{{route('profile')}}">
           <span class="icon"><i class="mdi mdi-account-circle"></i></span>

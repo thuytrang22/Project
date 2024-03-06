@@ -21,7 +21,7 @@
           <span class="icon"><i class="mdi mdi-buffer"></i></span>
           Danh sách đơn hàng
         </p>
-        <a href="#" class="card-header-icon">
+        <a href="{{ url()->full() }}" class="card-header-icon">
           <span class="icon"><i class="mdi mdi-reload"></i></span>
         </a>
       </header>
@@ -66,7 +66,7 @@
                 <td>
                     <div class="flex justify-center gap-10">
                         <!-- feature delete -->
-                        <form method="POST" action="{{ route('order.destroy', ['id' => $order->id])}}" class="flex justify-center">
+                        <form method="POST" action="{{ route('orderMenus.destroy', ['id' => $orderMenu->id, 'orderId' => $orderMenu->order_id])}}" class="flex justify-center">
                             @csrf
                             @method('DELETE')
                             <button type="submit" class="btn btn-outline-warning btn-icon">

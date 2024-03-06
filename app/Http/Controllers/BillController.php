@@ -7,6 +7,7 @@ use App\Http\Requests\StoreBillRequest;
 use App\Http\Requests\UpdateBillRequest;
 use App\Models\Order;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class BillController extends Controller
 {
@@ -23,15 +24,18 @@ class BillController extends Controller
         $sortBy = $request->input('sortBy', 'id');
         $sortDirection = $request->input('sortDirection', 'desc');
     
-        $query = Bill::with(['order', 'order.infor'])->orderBy($sortBy, $sortDirection);
-    
+        $query = DB::table('bills')
+            ->join('orders', 'orders.id', '=', 'bills.order_id')
+            ->join('infor', 'infor.id', '=', 'orders.infor_id')
+            ->select('bills.*', 'infor.name', 'infor.table_number')
+            ->whereNull('bills.deleted_at')
+            ->orderBy($sortBy, $sortDirection);
+
         if (!empty($keywords)) {
-            $query->where(function ($query) use ($keywords) {
-                $query->where('name', 'like', '%' . $keywords . '%');
-            });
+            $query->where('infor.name', 'like', '%' . $keywords . '%');
         }
     
-        $bills = $query->paginate(6);
+        $bills = $query->paginate(5);
         return view ('admins.bills.index', compact('bills', 'keywords', 'sortBy', 'sortDirection'));
     }
 
@@ -55,10 +59,11 @@ class BillController extends Controller
     {
         $orderId = $request->input('order_id');
         $order = Order::with(['orderMenus', 'orderMenus.menu', 'infor'])->findOrFail($orderId);
-        $bills = Bill::where('order_id',$orderId )->get();
+        $bills = Bill::where('order_id', $orderId )->first();
         if (!empty($bills)) {
             return redirect()->route('order.list')->with('error', 'Đơn hàng đã được tạo hóa đơn!');
         }
+        
         $total = 0;
         foreach ($order->orderMenus as $orderMenu) {
             $total += ($orderMenu->amount * $orderMenu->menu->price);

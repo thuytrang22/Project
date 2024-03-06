@@ -153,7 +153,7 @@
               <img src="{{ asset('storage/' .substr($dish->public, 7)) }}" class="menu-img" alt="">
               <div class="flex-container">
                 <div class="menu-content">
-                  <a href="#">{{ $dish->name }}</a><span>{{ number_format($dish->price) }} <u>đ</u></span>
+                  <a href="{{ url()->full() }}">{{ $dish->name }}</a><span>{{ number_format($dish->price) }} <u>đ</u></span>
                 </div>
                 <div class="menu-ingredients">
                   <span>Thành phần: {{ ($dish->detail) }}</span>
@@ -754,11 +754,11 @@
                 <strong>Email:</strong> hanasushi@gmail.com<br>
               </p>
               <div class="social-links mt-3">
-                <a href="#" class="twitter"><i class="bx bxl-twitter"></i></a>
-                <a href="#" class="facebook"><i class="bx bxl-facebook"></i></a>
-                <a href="#" class="instagram"><i class="bx bxl-instagram"></i></a>
-                <a href="#" class="google-plus"><i class="bx bxl-skype"></i></a>
-                <a href="#" class="linkedin"><i class="bx bxl-linkedin"></i></a>
+                <a href="{{ url()->full() }}" class="twitter"><i class="bx bxl-twitter"></i></a>
+                <a href="{{ url()->full() }}" class="facebook"><i class="bx bxl-facebook"></i></a>
+                <a href="{{ url()->full() }}" class="instagram"><i class="bx bxl-instagram"></i></a>
+                <a href="{{ url()->full() }}" class="google-plus"><i class="bx bxl-skype"></i></a>
+                <a href="{{ url()->full() }}" class="linkedin"><i class="bx bxl-linkedin"></i></a>
               </div>
             </div>
           </div>
@@ -766,22 +766,22 @@
           <div class="col-lg-2 col-md-6 footer-links">
             <h4>Danh Mục</h4>
             <ul>
-              <li><i class="bx bx-chevron-right"></i> <a href="#">Tràn Chủ</a></li>
-              <li><i class="bx bx-chevron-right"></i> <a href="#">Về Chúng Tôi</a></li>
-              <li><i class="bx bx-chevron-right"></i> <a href="#">Dịch Vụ</a></li>
-              <li><i class="bx bx-chevron-right"></i> <a href="#">Điều Khoản Dịch Vụ</a></li>
-              <li><i class="bx bx-chevron-right"></i> <a href="#">Chính Sách Bảo Mật</a></li>
+              <li><i class="bx bx-chevron-right"></i> <a href="{{ url()->full() }}">Tràn Chủ</a></li>
+              <li><i class="bx bx-chevron-right"></i> <a href="{{ url()->full() }}">Về Chúng Tôi</a></li>
+              <li><i class="bx bx-chevron-right"></i> <a href="{{ url()->full() }}">Dịch Vụ</a></li>
+              <li><i class="bx bx-chevron-right"></i> <a href="{{ url()->full() }}">Điều Khoản Dịch Vụ</a></li>
+              <li><i class="bx bx-chevron-right"></i> <a href="{{ url()->full() }}">Chính Sách Bảo Mật</a></li>
             </ul>
           </div>
 
           <div class="col-lg-3 col-md-6 footer-links">
             <h4>Our Services</h4>
             <ul>
-              <li><i class="bx bx-chevron-right"></i> <a href="#">Web Design</a></li>
-              <li><i class="bx bx-chevron-right"></i> <a href="#">Web Development</a></li>
-              <li><i class="bx bx-chevron-right"></i> <a href="#">Product Management</a></li>
-              <li><i class="bx bx-chevron-right"></i> <a href="#">Marketing</a></li>
-              <li><i class="bx bx-chevron-right"></i> <a href="#">Graphic Design</a></li>
+              <li><i class="bx bx-chevron-right"></i> <a href="{{ url()->full() }}">Web Design</a></li>
+              <li><i class="bx bx-chevron-right"></i> <a href="{{ url()->full() }}">Web Development</a></li>
+              <li><i class="bx bx-chevron-right"></i> <a href="{{ url()->full() }}">Product Management</a></li>
+              <li><i class="bx bx-chevron-right"></i> <a href="{{ url()->full() }}">Marketing</a></li>
+              <li><i class="bx bx-chevron-right"></i> <a href="{{ url()->full() }}">Graphic Design</a></li>
             </ul>
           </div>
 
@@ -802,6 +802,6 @@
   </footer><!-- End Footer -->
 
   <div id="preloader"></div>
-  <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
+  <a href="{{ url()->full() }}" class="back-to-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
 
 @endsection

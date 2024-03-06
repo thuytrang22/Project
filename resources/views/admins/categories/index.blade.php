@@ -35,7 +35,7 @@
           <span class="icon"><i class="mdi mdi-buffer"></i></span>
           Danh Sách Danh Mục
         </p>
-        <a href="#" class="card-header-icon">
+        <a href="{{ url()->full() }}" class="card-header-icon">
           <span class="icon"><i class="mdi mdi-reload"></i></span>
         </a>
       </header>

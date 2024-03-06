@@ -19,6 +19,12 @@
   </div>
 @endif
 
+@if (session('error'))
+  <div id="error" class="alert alert-warning alert-dismissible fade show mt-2" role="alert">
+  {{session('error')}}
+  </div>
+@endif
+
 <section class="is-title-bar">
   <div class="flex flex-col md:flex-row items-center justify-between space-y-6 md:space-y-0">
     <ul>
@@ -83,10 +89,18 @@
                 <td>{{$order->status}}</td>
                 <td>
                     <div class="flex justify-center gap-10">
-                        <!-- feature update -->
+                        <!-- feature detail -->
                         <a class="flex justify-center btn btn-icon btn-outline-warning btnEdit" href="{{ route('order.show', ['id' => $order->id]) }}">
-                            <img src="/images/eye.png" alt="Chỉnh sửa">
+                            <img src="/images/eye.png" alt="Chi tiết">
                         </a>
+
+                        <form action="{{ route('bills.store') }}" method="POST" class="card mt-3" enctype="multipart/form-data">
+                          @csrf
+                          <input type="hidden" name="order_id" value="{{ $order->id }}">
+                          <button type="submit" class="flex justify-center btn btn-icon btn-outline-warning btnEdit">
+                            <img src="/images/pay-card.png" alt="Thanh toán">
+                          </button>
+                        </form>
 
                         <!-- feature delete -->
                         <form method="POST" action="{{ route('order.destroy', ['id' => $order->id])}}">
@@ -102,7 +116,7 @@
             @endforeach
             @else
             <tr>
-                <td colspan="7" class="text-center">There are no order</td>
+                <td colspan="7" class="text-center">Không có dữ liệu.</td>
             </tr>
             @endif
           </tbody>

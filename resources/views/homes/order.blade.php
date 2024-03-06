@@ -59,7 +59,7 @@
               <img src="{{ asset('storage/' .substr($dish->public, 7)) }}" class="menu-img" alt="">
               <div class="flex-container">
                 <div class="menu-content">
-                  <a href="#">{{ $dish->name }}</a><span>{{ number_format($dish->price) }} <u>đ</u></span>
+                  <a href="{{ url()->full() }}">{{ $dish->name }}</a><span>{{ number_format($dish->price) }} <u>đ</u></span>
                 </div>
                 <div class="menu-ingredients">
                   <span>Thành phần: {{ ($dish->detail) }}</span>

@@ -23,31 +23,27 @@ class WarehousesController extends Controller
         $keywords = $request->input('keywords');
         $sortBy = $request->input('sortBy', 'name');
         $sortDirection = $request->input('sortDirection', 'desc');
-    
+
         $query = DB::table('warehouses')
             ->select(DB::raw('name, sum(quantity) as total, max(measure) as measure, max(created_at) as created_at'))
             ->where('type', self::IMPORT_TYPE)
             ->groupBy('name')
             ->orderBy($sortBy, $sortDirection);
-    
+
         if (!empty($keywords)) {
-            $query->where(function ($query) use ($keywords) {
-                $query->where('name', 'like', '%' . $keywords . '%');
-            });
+            $query->where('name', 'like', '%' . $keywords . '%');
         }
 
         $warehouses = $query->paginate(5);
-    
+
         $query = DB::table('warehouses')
             ->select(DB::raw('name, sum(quantity) as total'))
             ->where('type', self::EXPORT_TYPE)
             ->groupBy('name')
             ->orderBy($sortBy, $sortDirection);
-    
+
         if (!empty($keywords)) {
-            $query->where(function ($query) use ($keywords) {
-                $query->where('name', 'like', '%' . $keywords . '%');
-            });
+            $query->where('name', 'like', '%' . $keywords . '%');
         }
         $exportWarehouses = $query->paginate(5);
         $exportNameWarehouses =  $exportWarehouses->pluck('name')->toArray();
@@ -68,7 +64,7 @@ class WarehousesController extends Controller
         $type = $request->query('type');
         return view('admins.warehuoses.create', compact('type'));
     }
- 
+
     public function store(Request $request)
     {
         $data = [
@@ -113,12 +109,18 @@ class WarehousesController extends Controller
         return redirect()->route($route)->with('update', 'success');
     }
 
-    public function destroy($id)
+    public function destroy($id, $type)
     {
         Warehouse::destroy($id);
-        return redirect()->route('warehouses')->with('destroy', 'success');
+
+        if ($type == self::IMPORT_TYPE) {
+            $route = 'warehouses.import.list';
+        } else {
+            $route = 'warehouses.export.list';
+        }
+        return redirect()->route($route)->with('destroy', 'success');
     }
-    
+
     public function export(Request $request)
     {
         $keywords = $request->query('keywords');
@@ -127,7 +129,7 @@ class WarehousesController extends Controller
 
         return Excel::download(new WarehouseExport($keywords, $sortBy, $sortDirection), 'Tồn kho.xlsx');
     }
-    
+
     public function exportInput(Request $request)
     {
         $keywords = $request->query('keywords');
@@ -136,7 +138,7 @@ class WarehousesController extends Controller
 
         return Excel::download(new WarehouseExportInput($keywords, $sortBy, $sortDirection), 'Phiếu nhập kho.xlsx');
     }
-    
+
     public function exportOutput(Request $request)
     {
         $keywords = $request->query('keywords');
@@ -145,61 +147,61 @@ class WarehousesController extends Controller
 
         return Excel::download(new WarehouseExportOutput($keywords, $sortBy, $sortDirection), 'Phiếu xuất kho.xlsx');
     }
-    
+
     public function import(Request $request)
     {
         $file = $request->file('importWarehouse');
         if ($file) {
             Excel::import(new WarehousesImport, $file);
         }
-        
+
         return redirect()->route('warehouses.import.list')->with('success', 'All good!');
     }
-    
+
     public function importOutput(Request $request)
     {
         $file = $request->file('importOutputWarehouse');
         if ($file) {
             Excel::import(new WarehousesImportOutput, $file);
         }
-        
+
         return redirect()->route('warehouses.export.list')->with('success', 'All good!');
     }
-    
+
     public function exportList(Request $request)
     {
         $keywords = $request->input('keywords');
         $sortBy = $request->input('sortBy', 'id');
         $sortDirection = $request->input('sortDirection', 'desc');
-    
+
         $query = Warehouse::orderBy($sortBy, $sortDirection);
         $query->where('type', self::EXPORT_TYPE);
-    
+
         if (!empty($keywords)) {
             $query->where(function ($query) use ($keywords) {
                 $query->where('name', 'like', '%' . $keywords . '%');
             });
         }
-    
+
         $warehouses = $query->paginate(5);
         return view('admins.warehuoses.export', compact('warehouses', 'keywords', 'sortBy', 'sortDirection'));
     }
-    
+
     public function importList(Request $request)
     {
         $keywords = $request->input('keywords');
         $sortBy = $request->input('sortBy', 'id');
         $sortDirection = $request->input('sortDirection', 'desc');
-    
+
         $query = Warehouse::orderBy($sortBy, $sortDirection);
         $query->where('type', self::IMPORT_TYPE);
-    
+
         if (!empty($keywords)) {
             $query->where(function ($query) use ($keywords) {
                 $query->where('name', 'like', '%' . $keywords . '%');
             });
         }
-    
+
         $warehouses = $query->paginate(5);
         return view('admins.warehuoses.import', compact('warehouses', 'keywords', 'sortBy', 'sortDirection'));
     }

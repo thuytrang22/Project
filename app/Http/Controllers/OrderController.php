@@ -6,7 +6,7 @@ use App\Models\Order;
 use App\Models\Home;
 use App\Http\Requests\StoreOrderRequest;
 use App\Http\Requests\UpdateOrderRequest;
-use App\Models\Menu;
+use App\Models\Bill;
 use App\Models\OrderMenu;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -23,15 +23,17 @@ class OrderController extends Controller
         $keywords = $request->input('keywords');
         $sortBy = $request->input('sortBy', 'id');
         $sortDirection = $request->input('sortDirection', 'desc');
-    
-        $query = Order::with('infor')->orderBy($sortBy, $sortDirection);
-    
+
+        $query = DB::table('orders')
+            ->join('infor', 'infor.id', '=', 'orders.infor_id')
+            ->select('orders.*', 'infor.name', 'infor.phone', 'infor.table_number')
+            ->whereNull('orders.deleted_at')
+            ->orderBy($sortBy, $sortDirection);
+
         if (!empty($keywords)) {
-            $query->where(function ($query) use ($keywords) {
-                $query->where('name', 'like', '%' . $keywords . '%');
-            });
+            $query->where('infor.name', 'like', '%' . $keywords . '%');
         }
-    
+
         $orders = $query->paginate(5);
         return view('admins.orders.index', compact('orders', 'keywords', 'sortBy', 'sortDirection', 'infor'));
     }
@@ -55,9 +57,10 @@ class OrderController extends Controller
     public function store(StoreOrderRequest $request)
     {
         $menusData = $request->input('menus');
+        $inforId = $request->input('infor_id');
 
         $orderData = [
-            'infor_id' => 1,
+            'infor_id' => $inforId,
             'payment_type_id' => 0,
         ];
 
@@ -119,11 +122,34 @@ class OrderController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\Order  $order
+     * @param int $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Order $order)
+    public function destroy($id)
     {
-        //
+        DB::beginTransaction();
+        $order = Order::find($id);
+        if ($order) {
+            $result = $order->delete();
+            if ($result) {
+                $bill = Bill::where('order_id', $id)->first();
+                if ($bill) {
+                    $result = $bill->delete();
+                    if ($result) {
+                        $message = 'Xóa thành công';
+                    } else {
+                        $message = 'Xóa không thành công';
+                        DB::rollBack();
+                    }
+                }
+            } else {
+                $message = 'Xóa không thành công';
+            }
+        } else {
+            $message = 'Không tìm thấy đơn hàng!';
+        }
+        DB::commit();
+
+        return redirect()->route('order.list')->with('destroy', $message);
     }
 }

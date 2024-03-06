@@ -20,7 +20,7 @@ class WarehousesImport implements ToModel, WithHeadingRow
                 'name' => $row['ten'],
                 'quantity' => $row['so_luong'],
                 'measure' => $row['don_vi'],
-                'price' => $row['don_gia'],
+                'price' => (int) str_replace(',', '', $row['don_gia']),
                 'type' => 1,
             ]);
         }

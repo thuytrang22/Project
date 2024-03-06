@@ -41,22 +41,22 @@
     <div class="collapse navbar-collapse justify-content-between px-4" id="navbarSupportedContent">
         <ul class="navbar-nav mr-auto">
             <li class="nav-item d-flex">
-                <a class="nav-link" href="#" id="scrollDish">Món Ăn</a>
+                <a class="nav-link" href="{{ url()->full() }}" id="scrollDish">Món Ăn</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="#" id="scrollDrink">Đồ Uống</a>
+                <a class="nav-link" href="{{ url()->full() }}" id="scrollDrink">Đồ Uống</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="#" id="scrollCallMore">Món Gọi Thêm</a>
+                <a class="nav-link" href="{{ url()->full() }}" id="scrollCallMore">Món Gọi Thêm</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="#">Gọi Thanh Toán</a>
+                <a class="nav-link" href="{{ url()->full() }}">Gọi Thanh Toán</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="#">Gọi Nhân Viên</a>
+                <a class="nav-link" href="{{ url()->full() }}">Gọi Nhân Viên</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="#">Đánh Giá</a>
+                <a class="nav-link" href="{{ url()->full() }}">Đánh Giá</a>
             </li>
             <li class="nav-item row m-auto d-flex justify-content-center align-items-center">
             <form class="d-flex justify-content-center align-items-center my-2 my-lg-0 search-header">

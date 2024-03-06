@@ -22,7 +22,7 @@ class Home extends Model
         'table_number'
     ];
 
-    public function orders()
+    public function order()
     {
         return $this->belongsTo(Order::class);
     }

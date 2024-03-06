@@ -3,19 +3,19 @@
 
 @if ( session('store'))
   <div id="store" class="alert alert-success alert-dismissible fade show mt-2" role="alert">
-    Added category successfully!!!
+    Thêm thành công!!!
   </div>
 @endif
 
 @if ( session('update'))
   <div id="update" class="alert alert-success alert-dismissible fade show mt-2" role="alert">
-    Edited list successfully!!!
+    Sửa thành công!!!
   </div>
 @endif
 
 @if ( session('destroy'))
   <div id="destroy" class="alert alert-success alert-dismissible fade show mt-2" role="alert">
-    Directory deletion successful!!!
+    Xóa thành công
   </div>
 @endif
 
@@ -39,7 +39,7 @@
           <span class="icon"><i class="mdi mdi-buffer"></i></span>
           Tổng Danh Sách Xuất Kho
         </p>
-        <a href="#" class="card-header-icon">
+        <a href="{{ url()->full() }}" class="card-header-icon">
           <span class="icon"><i class="mdi mdi-reload"></i></span>
         </a>
       </header>
@@ -111,7 +111,7 @@
                         </a>
 
                         <!-- feature delete -->
-                        <form method="POST" action="{{ route('morning.destroy', ['id' => $mwarehouse->id])}}">
+                        <form method="POST" action="{{ route('warehouses.destroy', ['id' => $mwarehouse->id, 'type' => 2])}}">
                             @csrf
                             @method('DELETE')
                             <button type="submit" class="btn btn-outline-warning btn-icon">
@@ -132,15 +132,15 @@
       <!-- pagination -->
       <ul class="pagination flex float-right">
         <li class="page-item {{ ($warehouses->currentPage() == 1) ? 'disabled' : '' }}">
-          <a class="page-link" href="{{ $warehouses->url(1) }}"><span aria-hidden="true">&laquo;</span></a>
+          <a class="page-link" href="{{ $warehouses->appends(['keywords' => $keywords])->url(1) }}"><span aria-hidden="true">&laquo;</span></a>
         </li>
         @for ($i = 1; $i <= $warehouses->lastPage(); $i++)
           <li class="page-item {{ ($warehouses->currentPage() == $i) ? 'active' : '' }}">
-            <a class="page-link" href="{{ $warehouses->url($i) }}">{{ $i }}</a>
+            <a class="page-link" href="{{ $warehouses->appends(['keywords' => $keywords])->url($i) }}">{{ $i }}</a>
           </li>
         @endfor
         <li class="page-item {{ ($warehouses->currentPage() == $warehouses->lastPage()) ? 'disabled' : '' }}">
-          <a class="page-link" href="{{ $warehouses->url($warehouses->lastPage()) }}"><span aria-hidden="true">&raquo;</span></a>
+          <a class="page-link" href="{{ $warehouses->appends(['keywords' => $keywords])->url($warehouses->lastPage()) }}"><span aria-hidden="true">&raquo;</span></a>
         </li>
       </ul>
     </div>

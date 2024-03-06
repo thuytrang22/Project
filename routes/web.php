@@ -12,6 +12,7 @@ use App\Http\Controllers\BookingController;
 use App\Http\Controllers\CategoriesController;
 use App\Http\Controllers\WarehousesController;
 use App\Http\Controllers\OrderController;
+use App\Http\Controllers\OrderMenuController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\UserController;
 
@@ -96,9 +97,13 @@ Route::prefix('/admin')->group(function () {
         Route::post('/store', [WarehousesController::class, 'store'])->name('warehouses.store');
         Route::get('{id}/edit/{type}', [WarehousesController::class, 'edit'])->name('warehouses.edit');
         Route::put('/update', [WarehousesController::class, 'update'])->name('warehouses.update');
-        Route::delete('/{id}', [WarehousesController::class, 'destroy'])->name('morning.destroy');
+        Route::delete('/{id}/{type}', [WarehousesController::class, 'destroy'])->name('warehouses.destroy');
         Route::get('/export-list', [WarehousesController::class, 'exportList'])->name('warehouses.export.list');
         Route::get('/import-list', [WarehousesController::class, 'importlist'])->name('warehouses.import.list');
+    });
+    
+    Route::prefix('orderMenus')->group(function () {
+        Route::delete('/{id}/{orderId}', [OrderMenuController::class, 'destroy'])->name('orderMenus.destroy');
     });
 });
     

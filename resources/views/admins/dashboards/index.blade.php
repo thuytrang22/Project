@@ -75,7 +75,7 @@
           <span class="icon"><i class="mdi mdi-finance"></i></span>
           Performance
         </p>
-        <a href="#" class="card-header-icon">
+        <a href="{{ url()->full() }}" class="card-header-icon">
           <span class="icon"><i class="mdi mdi-reload"></i></span>
         </a>
       </header>
@@ -112,7 +112,7 @@
           <span class="icon"><i class="mdi mdi-account-multiple"></i></span>
           Clients
         </p>
-        <a href="#" class="card-header-icon">
+        <a href="{{ url()->full() }}" class="card-header-icon">
           <span class="icon"><i class="mdi mdi-reload"></i></span>
         </a>
       </header>

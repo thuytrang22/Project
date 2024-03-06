@@ -19,6 +19,10 @@
   </div>
 @endif
 
+@if (!isset($keywords))
+  {{$keywords = ''}}
+@endif
+
 <section class="is-title-bar">
   <div class="flex flex-col md:flex-row items-center justify-between space-y-6 md:space-y-0">
     <ul>
@@ -35,16 +39,13 @@
           <span class="icon"><i class="mdi mdi-buffer"></i></span>
           Tổng Danh Sách Kho Hàng
         </p>
-        <a href="#" class="card-header-icon">
+        <a href="{{ url()->full() }}" class="card-header-icon">
           <span class="icon"><i class="mdi mdi-reload"></i></span>
         </a>
       </header>
     <div class="card-body">
     <div class="row justify-content-between" style="padding: 10px">
         <div class="flex gap-10" style="padding-bottom: 10px">
-                <a class="button blue" href="{{route('warehouses')}}">
-                  Quay lại
-                </a>
                 <a class="button blue" href="{{route('warehouses.import.list')}}">
                   Quản lý nhập kho
                 </a>
@@ -105,15 +106,15 @@
       <!-- pagination -->
       <ul class="pagination flex float-right">
         <li class="page-item {{ ($warehouses->currentPage() == 1) ? 'disabled' : '' }}">
-          <a class="page-link" href="{{ $warehouses->url(1) }}"><span aria-hidden="true">&laquo;</span></a>
+          <a class="page-link" href="{{ $warehouses->appends(['keywords' => $keywords])->url(1) }}"><span aria-hidden="true">&laquo;</span></a>
         </li>
         @for ($i = 1; $i <= $warehouses->lastPage(); $i++)
           <li class="page-item {{ ($warehouses->currentPage() == $i) ? 'active' : '' }}">
-            <a class="page-link" href="{{ $warehouses->url($i) }}">{{ $i }}</a>
+            <a class="page-link" href="{{ $warehouses->appends(['keywords' => $keywords])->url($i) }}">{{ $i }}</a>
           </li>
         @endfor
         <li class="page-item {{ ($warehouses->currentPage() == $warehouses->lastPage()) ? 'disabled' : '' }}">
-          <a class="page-link" href="{{ $warehouses->url($warehouses->lastPage()) }}"><span aria-hidden="true">&raquo;</span></a>
+          <a class="page-link" href="{{ $warehouses->appends(['keywords' => $keywords])->url($warehouses->lastPage()) }}"><span aria-hidden="true">&raquo;</span></a>
         </li>
       </ul>
     </div>

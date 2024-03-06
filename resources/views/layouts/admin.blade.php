@@ -107,30 +107,54 @@
                 <span class="menu-item-label">Tổng quan</span>
             </a>
         </li>
+        @if(auth()->user()->role_id == "1" || auth()->user()->role_id == "5")
         <li class="{{ request()->routeIs('categories') ? 'active' : '' }}">
             <a href="{{route('categories')}}">
                 <span class="icon"><i class="mdi mdi-table"></i></span>
                 <span class="menu-item-label">Danh mục</span>
             </a>
         </li>
+        @endif
+        @if(auth()->user()->role_id == "1" || auth()->user()->role_id == "4")
         <li class="{{ request()->routeIs('warehouses') ? 'active' : '' }}">
             <a href="{{route('warehouses')}}">
                 <span class="icon"><i class="mdi mdi-table"></i></span>
                 <span class="menu-item-label">Kho</span>
             </a>
         </li>
+        @endif
+        @if(auth()->user()->role_id == "1" || auth()->user()->role_id == "5" || auth()->user()->role_id == "3")
         <li class="{{ request()->routeIs('order.list') ? 'active' : '' }}">
             <a href="{{route('order.list')}}">
                 <span class="icon"><i class="mdi mdi-table"></i></span>
                 <span class="menu-item-label">Đơn hàng</span>
             </a>
-        </li>
+        </li> 
+        @endif
+        @if(auth()->user()->role_id == "1" ||  auth()->user()->role_id == "3")
+        <li class="{{ request()->routeIs('seatings') ? 'active' : '' }}">
+            <a href="{{route('seatings')}}">
+                <span class="icon"><i class="mdi mdi-table"></i></span>
+                <span class="menu-item-label">Đặt Bàn</span>
+            </a>
+        </li> 
+        @endif
+        @if(auth()->user()->role_id == "1" || auth()->user()->role_id == "3")
         <li class="{{ request()->routeIs('bills.list') ? 'active' : '' }}">
             <a href="{{route('bills.list')}}">
                 <span class="icon"><i class="mdi mdi-table"></i></span>
                 <span class="menu-item-label">Hóa đơn</span>
             </a>
-        </li>
+        </li> 
+        @endif
+        @if(auth()->user()->role_id == "1" || auth()->user()->role_id == "2")
+        <li class="{{ request()->routeIs('revenues') ? 'active' : '' }}">
+            <a href="{{route('revenues')}}">
+                <span class="icon"><i class="mdi mdi-table"></i></span>
+                <span class="menu-item-label">Doanh Thu</span>
+            </a>
+        </li> 
+        @endif
       <li class="{{ request()->routeIs('profile') ? 'active' : '' }}">
         <a href="{{route('profile')}}">
           <span class="icon"><i class="mdi mdi-account-circle"></i></span>
@@ -153,7 +177,7 @@
 <script type="text/javascript" src="/js/main.min.js?v=1628755089081"></script>
 
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.min.js"></script>
-<script type="text/javascript" src="/js/chart.sample.min.js"></script>
+<script type="text/javascript" src="/js/dashboard-chart.js"></script>
 
 
 <script>

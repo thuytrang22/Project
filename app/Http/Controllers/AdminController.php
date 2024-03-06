@@ -1,24 +1,42 @@
 <?php
 
 namespace App\Http\Controllers;
+
+use App\Models\Infor;
+use App\Models\Seating;
 use App\Models\User;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class AdminController extends Controller
 {
 
     public function index()
     {
-        return view('admins.dashboards.index');
+        $numberOfUser = Infor::select('phone')->groupBy('phone')->get();
+        $totalTable = Seating::count();
+        $numberOfSeating = Seating::where('status', '<>', '0')->count();
+        $performance = $totalTable ? $numberOfSeating / $totalTable * 100 . '%' : '0%';
+        $users = DB::table('infor')
+            ->select(DB::raw('max(name) as name, phone, count(id) as number_of_booking'))
+            ->groupBy('phone')
+            ->paginate(5);
+
+        $data = [
+            'numberOfUser' => count($numberOfUser),
+            'numberOfSeating' => $numberOfSeating,
+            'performance' => $performance,
+            'users' => $users,
+        ];
+        return view('admins.dashboards.index', ['data' => $data]);
     }
 
     public function profile()
     {
         if (Auth::check()) {
-            // $user = Auth::user();
             return view('admins.dashboards.profile');
         }
     }

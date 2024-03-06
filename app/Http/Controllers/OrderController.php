@@ -7,6 +7,7 @@ use App\Models\Home;
 use App\Http\Requests\StoreOrderRequest;
 use App\Http\Requests\UpdateOrderRequest;
 use App\Models\Bill;
+use App\Models\Infor;
 use App\Models\OrderMenu;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -39,16 +40,6 @@ class OrderController extends Controller
     }
 
     /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
-    }
-
-    /**
      * Store a newly created resource in storage.
      *
      * @param  \App\Http\Requests\StoreOrderRequest  $request
@@ -63,8 +54,8 @@ class OrderController extends Controller
             'infor_id' => $inforId,
             'payment_type_id' => 0,
         ];
-
-        $order = Order::create($orderData);
+        if($inforId) {
+            $order = Order::create($orderData);
 
         foreach ($menusData as $menuId => $amount) {
             $orderMenuData = [
@@ -76,11 +67,14 @@ class OrderController extends Controller
             ];
             OrderMenu::create($orderMenuData);
         }
-
+    }
+        $seating = Infor::find(24);
+        $seating->table_number;
+        
         $dishs = DB::table('menus')->where('id_category', '=', 1)->get();
         $drinks = DB::table('menus')->where('id_category', '=', 2)->get();
         $allMores = DB::table('menus')->get();
-        return view('homes.order', compact('dishs', 'drinks', 'allMores'));
+        return redirect()->route('order', ['table' => $seating->table_number])->with('store', $allMores, $drinks, $dishs);
     }
 
     /**
@@ -94,29 +88,6 @@ class OrderController extends Controller
         $order = Order::with(['orderMenus', 'orderMenus.menu', 'infor'])->findOrFail($id);
 
         return view('admins.orders.detail', ['order' => $order]);
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Models\Order  $order
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(Order $order)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \App\Http\Requests\UpdateOrderRequest  $request
-     * @param  \App\Models\Order  $order
-     * @return \Illuminate\Http\Response
-     */
-    public function update(UpdateOrderRequest $request, Order $order)
-    {
-        //
     }
 
     /**

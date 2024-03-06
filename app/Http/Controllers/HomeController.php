@@ -4,7 +4,9 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Http\Requests\HomeRequest;
+use App\Models\Bill;
 use App\Models\Home;
+use DateTime;
 use Illuminate\Support\Facades\DB;
 
 class HomeController extends Controller
@@ -34,17 +36,7 @@ class HomeController extends Controller
     }
 
     public function order()
-    {        
-        // $userAgent = $_SERVER['HTTP_USER_AGENT'];
-
-        // if (strpos($userAgent, 'Mobile') !== false || strpos($userAgent, 'Android') !== false) {
-        //     // Thiết bị di động
-        //     echo "Điện thoại di động";
-        // } else {
-        //     // Máy tính
-        //     // var_dump( "Máy tính");die;
-        //     echo "Máy tính";
-        // }
+    {
         $dishs = DB::table('menus')->where('id_category', '=', 1)->get();
         $drinks = DB::table('menus')->where('id_category', '=', 2)->get();
         $allMores = DB::table('menus')->get();
@@ -56,5 +48,75 @@ class HomeController extends Controller
         $menus = DB::table('menus')->where('option', '=', $option)->get();
 
         return response()->json($menus);
+    }
+
+    public function dashboards(Request $request)
+    {
+        $startDate = $request->query('startDate');
+        $endDate = $request->query('endDate');
+        $revenues = []; //Doanh thu
+        $expenses = []; //Chi phí
+        $interest = []; //Tiền lãi
+
+        $bills = DB::table('bills')
+            ->select(DB::raw('DATE(created_at) AS created_at, sum(total_order) as total'))
+            ->groupBy(DB::raw('DATE(created_at)'))
+            ->where('created_at', '>', $startDate)
+            ->where('created_at', '<=', $endDate)
+            ->whereNull('deleted_at')
+            ->get();
+
+        foreach ($bills as $bill) {
+            $revenues[$bill->created_at] = $bill->total;
+        }
+
+        $maintenanceCosts = DB::table('maintenance_costs')
+            ->select(DB::raw('DATE(created_at) AS created_at, sum(expense) as total'))
+            ->groupBy(DB::raw('DATE(created_at)'))
+            ->where('created_at', '>', $startDate)
+            ->where('created_at', '<=', $endDate)
+            ->whereNull('deleted_at')
+            ->get();
+
+        $ingredientCosts = DB::table('warehouses')
+            ->select(DB::raw('DATE(created_at) AS created_at, sum(quantity * price) as total'))
+            ->groupBy(DB::raw('DATE(created_at)'))
+            ->where('created_at', '>', $startDate)
+            ->where('created_at', '<=', $endDate)
+            ->whereNull('deleted_at')
+            ->get();
+
+        foreach ($maintenanceCosts as $maintenanceCost) {
+            $expenses[$maintenanceCost->created_at] = $maintenanceCost->total;
+        }
+
+        foreach ($ingredientCosts as $ingredientCost) {
+            if (isset($expenses[$ingredientCost->created_at])) {
+                $expenses[$ingredientCost->created_at] += $ingredientCost->total;
+            } else {
+                $expenses[$ingredientCost->created_at] = $ingredientCost->total;
+            }
+        }
+        $startDate = new DateTime($startDate);
+        $endDate = new DateTime($endDate);
+        $rangeDate = $startDate->diff($endDate)->days;
+        for ($i = 0; $i <= $rangeDate; $i++) {
+            $date = $startDate->format('Y-m-d');
+            $revenues[$date] = $revenues[$date] ?? 0;
+            $expenses[$date] = $expenses[$date] ?? 0;
+            $interest[$date] = $revenues[$date] - $expenses[$date];
+            $startDate->modify('+1 day');
+        }
+
+        ksort($revenues);
+        ksort($expenses);
+        ksort($interest);
+
+        $data = [
+            'revenues' => $revenues,
+            'expenses' => $expenses,
+            'interest' => $interest,
+        ];
+        return response()->json(['message' => 'Success', 'data' => $data]);
     }
 }

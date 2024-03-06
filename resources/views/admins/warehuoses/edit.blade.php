@@ -56,6 +56,15 @@
             </div>
             @enderror
         </div>
+        <div class="mb-3" hidden>
+            <label for="" class="form-label">Đơn Giá:</label>
+            <input type="text" name="type" value="{{old('type', $warehouse->type)}}" class="form-control" @error('type') is-invalid @enderror>
+            @error('type')
+            <div class="invalid-feedback">
+                {{$message}}
+            </div>
+            @enderror
+        </div>
     </div>
     <div class="card-footer text-end d-flex">
         <button class="btn btn-primary mr-2" type="submit">

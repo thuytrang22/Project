@@ -1,6 +1,5 @@
 @extends('layouts.page')
 @section('content')
-@if (session('infor_id'))
   <!-- ======= Top Bar ======= -->
   <div id="topbar" class="d-flex align-items-center fixed-top">
     <div class="container d-flex justify-content-center justify-content-md-between">
@@ -84,28 +83,18 @@
       <input id="gia" type="text"></div>
       <form id="formOrder" action="{{route('order.store')}}" method="POST" enctype="multipart/form-data">
       @csrf
+      @if(session('infor_id'))
         <input type="hidden" name="infor_id" value="{{ session('infor_id') }}">
         <button type="submit" class="btn btn-primary" id="btnOrder">Đặt món</button>
+      @else
+      <div class="d-flex justify-content-end">
+        <button type="submit" class="btn btn-primary" id="btnOrder" disabled>Đặt món</button>
+      </div>
+        
+        <p style="color: red;">Bạn phải quét Qr lại để đặt món</p>
+      @endif
       </form>
     </div>
   </nav>
 <script src="/js/order.js"></script>
-@else
-<div class="container model-order">
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title">Thông báo</h5>
-      </div>
-      <div class="modal-body">
-        <p>Rất tiếc!! <br>
-          Qúy khách cần quét mã QR tại bàn, nhập thông tin để thực hiện gọi món. <br>
-          Hoặc gọi nhân viên hỗ trợ.
-        </p>
-      </div>
-        <button type="button" class="btn btn-primary">Gọi Nhân Viên</button>
-    </div>
-  </div>
-</div>
-@endif
 @endsection

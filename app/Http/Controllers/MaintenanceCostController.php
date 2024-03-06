@@ -3,8 +3,6 @@
 namespace App\Http\Controllers;
 
 use App\Models\MaintennanceCost;
-use App\Http\Requests\StoreMaintennanceCostRequest;
-use App\Http\Requests\UpdateMaintennanceCostRequest;
 
 class MaintenanceCostController extends Controller
 {
@@ -15,7 +13,7 @@ class MaintenanceCostController extends Controller
      */
     public function index()
     {
-        //
+        return view('admins.maintenance-costs.index');
     }
 
     /**
@@ -31,10 +29,10 @@ class MaintenanceCostController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \App\Http\Requests\StoreMaintennanceCostRequest  $request
+     * @param  \App\Http\Requests\  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(StoreMaintennanceCostRequest $request)
+    public function store()
     {
         //
     }
@@ -45,7 +43,7 @@ class MaintenanceCostController extends Controller
      * @param  \App\Models\MaintennanceCost  $maintennanceCost
      * @return \Illuminate\Http\Response
      */
-    public function show(MaintennanceCost $maintennanceCost)
+    public function show()
     {
         //
     }
@@ -56,7 +54,7 @@ class MaintenanceCostController extends Controller
      * @param  \App\Models\MaintennanceCost  $maintennanceCost
      * @return \Illuminate\Http\Response
      */
-    public function edit(MaintennanceCost $maintennanceCost)
+    public function edit()
     {
         //
     }
@@ -68,7 +66,7 @@ class MaintenanceCostController extends Controller
      * @param  \App\Models\MaintennanceCost  $maintennanceCost
      * @return \Illuminate\Http\Response
      */
-    public function update(UpdateMaintennanceCostRequest $request, MaintennanceCost $maintennanceCost)
+    public function update()
     {
         //
     }
@@ -79,7 +77,7 @@ class MaintenanceCostController extends Controller
      * @param  \App\Models\MaintennanceCost  $maintennanceCost
      * @return \Illuminate\Http\Response
      */
-    public function destroy(MaintennanceCost $maintennanceCost)
+    public function destroy()
     {
         //
     }

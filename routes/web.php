@@ -10,8 +10,10 @@ use App\Http\Controllers\CategoriesController;
 use App\Http\Controllers\WarehousesController;
 use App\Http\Controllers\OrderController;
 use App\Http\Controllers\OrderMenuController;
-use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\RevenueController;
+use App\Http\Controllers\SeatingController;
 use App\Http\Controllers\UserController;
+use Illuminate\Foundation\MaintenanceModeManager;
 
 /*
 |--------------------------------------------------------------------------
@@ -33,18 +35,16 @@ Route::prefix('qr')->group(function () {
     Route::get('/{table}', [HomeController::class, 'home']);
     Route::post('/infor', [HomeController::class, 'infor'])->name('infor');
     Route::get('/{table}/order', [HomeController::class, 'order'])->name('order');
+    Route::post('/order', [OrderController::class, 'store'])->name('order.store');
     Route::get('/{table}/get-menu/{option}', [HomeController::class, 'getMenu'])->name('getmenu');
-});
-// controller of order
-Route::prefix('order')->group(function () {
-    Route::post('/', [OrderController::class, 'store'])->name('order.store');
-    Route::delete('/', [OrderController::class, 'remove'])->name('order.remove');
 });
 
 Route::middleware(['auth'])->group(function () {
     // controller of role admin
     Route::prefix('/admin')->group(function () {
         Route::get('/', [AdminController::class, 'index'])->name('admins');
+
+        Route::get('/dashboards', [HomeController::class, 'dashboards'])->name('dashboards');
 
         Route::prefix('/order')->group(function () {
             Route::get('/', [OrderController::class, 'index'])->name('order.list');
@@ -61,6 +61,10 @@ Route::middleware(['auth'])->group(function () {
             Route::post('/change_password', [AdminController::class, 'changePassword'])->name('change.password');
         });
         
+        Route::prefix('/seating')->group(function () {
+            Route::get('/', [SeatingController::class, 'index'])->name('seatings');
+        });
+
         Route::prefix('/bills')->group(function () {
             Route::get('/', [BillController::class, 'index'])->name('bills.list');
             Route::post('/store', [BillController::class, 'store'])->name('bills.store');
@@ -112,6 +116,14 @@ Route::middleware(['auth'])->group(function () {
     
     Route::prefix('orderMenus')->group(function () {
         Route::delete('/{id}/{orderId}', [OrderMenuController::class, 'destroy'])->name('orderMenus.destroy');
+    });
+
+    Route::prefix('/revenue')->group(function () {
+        Route::get('/', [RevenueController::class, 'index'])->name('revenues');
+
+        Route::prefix('/revenue')->group(function () {
+            Route::get('/maintenance-cost', [MaintenanceModeManager::class, 'index'])->name('maintenance.cost');
+        });
     });
 });
 

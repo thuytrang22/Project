@@ -27,6 +27,7 @@ class WarehousesController extends Controller
         $query = DB::table('warehouses')
             ->select(DB::raw('name, sum(quantity) as total, max(measure) as measure, max(created_at) as created_at'))
             ->where('type', self::IMPORT_TYPE)
+            ->whereNull('deleted_at')
             ->groupBy('name')
             ->orderBy($sortBy, $sortDirection);
 
@@ -39,6 +40,7 @@ class WarehousesController extends Controller
         $query = DB::table('warehouses')
             ->select(DB::raw('name, sum(quantity) as total'))
             ->where('type', self::EXPORT_TYPE)
+            ->whereNull('deleted_at')
             ->groupBy('name')
             ->orderBy($sortBy, $sortDirection);
 
@@ -99,6 +101,8 @@ class WarehousesController extends Controller
         $mwarehouse->name = $request->name;
         $mwarehouse->quantity = $request->quantity;
         $mwarehouse->measure = $request->measure;
+        $mwarehouse->price = $request->price;
+        $mwarehouse->type = $request->type;
         $mwarehouse->save();
 
         if ($request->type == self::IMPORT_TYPE) {

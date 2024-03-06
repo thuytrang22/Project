@@ -1,5 +1,11 @@
 @extends('.layouts.admin')
 @section('content')
+@php
+    $canServe = [
+        1 => 'Có',
+        2 => 'Không'
+    ];
+@endphp
 <section class="is-title-bar">
   <div class="flex flex-col md:flex-row items-center justify-between space-y-6 md:space-y-0">
     <ul>
@@ -20,7 +26,7 @@
         </a>
       </header>
 <div class="card-header d-flex justify-content-between">
-    <h4 class="modal-title">Chi tiết thực đơn</h4> 
+    <h4 class="modal-title">Chi tiết đơn hàng</h4> 
     <a class="btn btn-outline-warning" href="{{ route('order.list') }}">Trở về</a>
 </div>
 <div class="card-body">
@@ -36,7 +42,7 @@
             <th>Tên Món Ăn</th>
             <th>Hình Ảnh</th>
             <th>Số lượng</th>
-            <th>Số Bàn</th>
+            <th>Có thể phục vụ</th>
             <th>Ngày</th>
             <th width="280px">Hành Động</th>
         </tr>
@@ -55,15 +61,10 @@
                     </div>
                 </td>
                 <td>{{$orderMenu->amount}}</td>
-                <td>{{$orderMenu->status}}</td>
+                <td>{{$canServe[$orderMenu->can_serve]}}</td>
                 <td>{{date('d/m/Y', strtotime($orderMenu->created_at))}}</td>
                 <td>
                     <div class="flex justify-center gap-10">
-                        <!-- feature update -->
-                        <a class="btn btn-icon btn-outline-warning btnEdit" href="{{ route('order.show', ['id' => $order->id]) }}" class="flex justify-center">
-                            <img src="/images/editing.png" alt="Chỉnh sửa">
-                        </a>
-
                         <!-- feature delete -->
                         <form method="POST" action="{{ route('order.destroy', ['id' => $order->id])}}" class="flex justify-center">
                             @csrf
@@ -78,13 +79,11 @@
             @endforeach
             @else
             <tr>
-                <td colspan="7" class="text-center">There are no order</td>
+                <td colspan="7" class="text-center">Không có dữ liệu</td>
             </tr>
             @endif
         </tbody>
     </table>
-    @foreach($order->orderMenus as $menu)
-    @endforeach
 </div>
 </section>
 @endsection

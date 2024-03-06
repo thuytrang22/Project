@@ -36,4 +36,9 @@ class Order extends Model
     {
         return $this->hasMany(OrderMenu::class);
     }
+
+    public function bill()
+    {
+        return $this->hasOne(Bill::class);
+    }
 }

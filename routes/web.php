@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\AdminController;
+use App\Http\Controllers\BillController;
 use App\Http\Controllers\MenuController;
 use App\Http\Controllers\CartController;
 use App\Http\Controllers\ExcelController;
@@ -44,9 +45,23 @@ Route::prefix('/admin')->group(function () {
     Route::get('/', [AdminController::class, 'index'])->name('admins');
     Route::get('/profile', [AdminController::class, 'profile'])->name('profile');
 
-    Route::get('/orders', [OrderController::class, 'index'])->name('order.list');
-    Route::get('/orders/{id}', [OrderController::class, 'show'])->name('order.show');
-    Route::delete('/orders/{id}', [OrderController::class, 'destroy'])->name('order.destroy');
+    Route::prefix('orders')->group(function () {
+        Route::get('/', [OrderController::class, 'index'])->name('order.list');
+        Route::get('/{id}', [OrderController::class, 'show'])->name('order.show');
+        Route::delete('/{id}', [OrderController::class, 'destroy'])->name('order.destroy');
+        Route::post('/store', [OrderController::class, 'store'])->name('order.store');
+        Route::delete('/', [OrderController::class, 'remove'])->name('order.remove');
+    });
+
+    Route::prefix('/bills')->group(function () {
+        Route::get('/', [BillController::class, 'index'])->name('bills.list');
+        Route::post('/store', [BillController::class, 'store'])->name('bills.store');
+        Route::get('/{id}', [BillController::class, 'show'])->name('bills.show');
+        Route::get('/{id}/print', [BillController::class, 'print'])->name('bills.print');
+        Route::get('{id}/payment', [BillController::class, 'payment'])->name('bills.payment');
+        Route::put('/update', [BillController::class, 'update'])->name('bills.update');
+        Route::delete('/{id}', [BillController::class, 'destroy'])->name('bills.destroy');
+    });
 
     // controller of categories
     Route::prefix('/category')->group(function () {
@@ -94,11 +109,6 @@ Route::prefix('cart')->group(function () {
     Route::post('/add/{dish}', [CartController::class, 'add'])->name('add');
     Route::delete('/remove/{id}', [CartController::class, 'remove'])->name('remove');
     Route::delete('/clear', [CartController::class, 'clear'])->name('clear');
-});
-
-Route::prefix('order')->group(function () {
-    Route::post('/', [OrderController::class, 'store'])->name('order.store');
-    Route::delete('/', [OrderController::class, 'remove'])->name('order.remove');
 });
 
 Route::get('/export-view', [ExcelController::class, 'showExportView'])->name('export');

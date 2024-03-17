@@ -13,10 +13,10 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('seatings', function (Blueprint $table) {
+        Schema::create('cost_types', function (Blueprint $table) {
             $table->id();
-            $table->string('table number');
-            $table->integer('status');
+            $table->integer('code');
+            $table->string('name');
             $table->timestamps();
         });
     }
@@ -28,6 +28,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('seatings');
+        Schema::dropIfExists('cost_types');
     }
 };

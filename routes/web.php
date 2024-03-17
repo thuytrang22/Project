@@ -12,8 +12,8 @@ use App\Http\Controllers\OrderController;
 use App\Http\Controllers\OrderMenuController;
 use App\Http\Controllers\RevenueController;
 use App\Http\Controllers\SeatingController;
-use App\Http\Controllers\UserController;
-use Illuminate\Foundation\MaintenanceModeManager;
+use App\Http\Controllers\FeedbackController;
+use App\Http\Controllers\MaintenanceCostController;
 
 /*
 |--------------------------------------------------------------------------
@@ -29,6 +29,8 @@ use Illuminate\Foundation\MaintenanceModeManager;
 // controller of page
 Route::get('/', [HomeController::class, 'index'])->name('pages');
 Route::post('/booktable', [BookingController::class, 'bookTable'])->name('book.table');
+
+Route::post('/send-feedback', [FeedbackController::class, 'sendFeedback'])->name('send.feedback');
 
 // controller of home
 Route::prefix('qr')->group(function () {
@@ -63,6 +65,12 @@ Route::middleware(['auth'])->group(function () {
         
         Route::prefix('/seating')->group(function () {
             Route::get('/', [SeatingController::class, 'index'])->name('seatings');
+            Route::get('/seating-manager', [SeatingController::class, 'seatingManager'])->name('seating.manager');
+            Route::get('/create', [SeatingController::class, 'create'])->name('seating.create');
+            Route::post('/store', [SeatingController::class, 'store'])->name('seating.store');
+            Route::get('{id}/edit', [SeatingController::class, 'edit'])->name('seating.edit');
+            Route::put('/update', [SeatingController::class, 'update'])->name('seating.update');
+            Route::delete('/{id}', [SeatingController::class, 'destroy'])->name('seating.destroy');
         });
 
         Route::prefix('/bills')->group(function () {
@@ -120,10 +128,14 @@ Route::middleware(['auth'])->group(function () {
 
     Route::prefix('/revenue')->group(function () {
         Route::get('/', [RevenueController::class, 'index'])->name('revenues');
-
-        Route::prefix('/revenue')->group(function () {
-            Route::get('/maintenance-cost', [MaintenanceModeManager::class, 'index'])->name('maintenance.cost');
-        });
+        Route::get('/maintenance-cost', [MaintenanceCostController::class, 'index'])->name('maintenance.cost');
+        Route::get('/maintenance-cost/create', [MaintenanceCostController::class, 'create'])
+            ->name('maintenance.cost.create');
+        Route::post('/maintenance-cost', [MaintenanceCostController::class, 'store'])->name('maintenance.cost.store');
+        Route::get('/maintenance-cost/export', [MaintenanceCostController::class, 'export'])
+            ->name('maintenance.cost.export');
+        Route::post('/maintenance-cost/import', [MaintenanceCostController::class, 'import'])
+            ->name('maintenance.cost.import');
     });
 });
 

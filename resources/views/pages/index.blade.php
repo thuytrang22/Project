@@ -25,7 +25,6 @@
           <li><a class="nav-link scrollto" href="#menu">Thực Đơn</a></li>
           <li><a class="nav-link scrollto" href="#specials">Món Bán Chạy</a></li>
           <li><a class="nav-link scrollto" href="#events">Sự Kiện</a></li>
-          <li><a class="nav-link scrollto" href="#chefs">Đầu Bếp</a></li>
           <li><a class="nav-link scrollto" href="#gallery">Không Gian</a></li>
           <li><a class="nav-link scrollto" href="#contact">Liên Hệ</a></li>
         </ul>
@@ -66,21 +65,20 @@
             </div>
           </div>
           <div class="col-lg-6 pt-4 pt-lg-0 order-2 order-lg-1 content">
-            <h3>Voluptatem dignissimos provident quasi corporis voluptates sit assumenda.</h3>
+            <h3>NHÀ HÀNG ẨM THỰC NHẬT BẢN.</h3>
             <p class="fst-italic">
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore
-              magna aliqua.
+              Hana Sushi - Hana nghĩa tiếng việt là bông hoa.
+              Ý nghĩa nhà hàng mang đến cho khách hàng những miếng sushi tinh tế đẹp đẽ như bông hoa.
+              Mong muốn tạo sự hài lòng cao nhất cho thực khách khi được thưởng thức các món ăn Nhật Bản tươi ngon, chọn lọc tại nhà hàng.
             </p>
-            <ul>
-              <li><i class="bi bi-check-circle"></i> Ullamco laboris nisi ut aliquip ex ea commodo consequat.</li>
-              <li><i class="bi bi-check-circle"></i> Duis aute irure dolor in reprehenderit in voluptate velit.</li>
-              <li><i class="bi bi-check-circle"></i> Ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate trideta storacalaperda mastiro dolore eu fugiat nulla pariatur.</li>
-            </ul>
             <p>
-              Ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate
-              velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in
-              culpa qui officia deserunt mollit anim id est laborum
+              Những lát cắt tinh tế luôn giữ được nguyên hương vị đại dương mộc mạc, 
+              sử dụng từ những phần cá tươi ngon nhất, từng lát cá căng bóng mềm mọng, 
+              ngọt đậm đà, vị mát lạnh và béo ngậy đặc trưng.
             </p>
+            <p>Sushi lại được cân đối giữa vị chua của giấm, 
+              vị ngọt đặc trưng của thịt cá tươi và vị cay nồng của nước chấm mù tạt, 
+              đủ mỹ vị tươi ngon để mang lại cho thực khách trải nghiệm hạnh phúc nhất!</p>
           </div>
         </div>
 
@@ -101,24 +99,42 @@
           <div class="col-lg-4">
             <div class="box" data-aos="zoom-in" data-aos-delay="100">
               <span>01</span>
-              <h4>Lorem Ipsum</h4>
-              <p>Ulamco laboris nisi ut aliquip ex ea commodo consequat. Et consectetur ducimus vero placeat</p>
+              <h4>Người đầu bếp tài hoa với hơn 30 năm kinh nghiệm</h4>
+              <p>Chuyên gia Chiba Kazuhiko luôn tâm niệm rằng: “Ăn ngon vì sức khỏe”. 
+                Chính vì thế tại Sushi Kei, cách chế biến món ăn luôn hạn chế sử dụng 
+                đường và không sử dụng các gia vị hóa học, chỉ chú trọng vào việc làm 
+                nổi bật sự tươi ngon, thuần khiết tự nhiên của thực phẩm.</p>
+              <p>Các món ăn của bếp trưởng Chiba chinh phục mọi giác quan bởi hương vị đậm
+                 chất Nhật Bản cùng cách bài trí tỉ mỉ, tinh tế và gói trọn cả tình yêu với nghề của người đầu bếp.</p>
             </div>
           </div>
 
           <div class="col-lg-4 mt-4 mt-lg-0">
             <div class="box" data-aos="zoom-in" data-aos-delay="200">
               <span>02</span>
-              <h4>Repellat Nihil</h4>
-              <p>Dolorem est fugiat occaecati voluptate velit esse. Dicta veritatis dolor quod et vel dire leno para dest</p>
+              <h4>Nhà hàng trầm ấm, đậm chất Nhật Bản</h4>
+              <p>Không gian Hana Sushi kết hợp giữa truyền thống và hiện đại nhưng 
+                vẫn mang tới cho thực khách cảm giác đậm chất Nhật Bản. 
+                Từ những trang trí hoa văn tinh tế trên tường, trần nhà hàng đến thiết kế quầy bar, 
+                bếp lịch sự, Hana Sushi thực sự là một Nhật Bản thu nhỏ giữa đất Việt. Trang trí gần 
+                gũi với thiên nhiên như trong văn hóa Nhật.</p>
+              <p>
+                Nhà hàng Hana Sushi hứa hẹn là một trong những điểm đến lý 
+                tưởng cho thực khách muốn trải nghiệm.</p>
             </div>
           </div>
 
           <div class="col-lg-4 mt-4 mt-lg-0">
             <div class="box" data-aos="zoom-in" data-aos-delay="300">
               <span>03</span>
-              <h4> Ad ad velit qui</h4>
-              <p>Molestiae officiis omnis illo asperiores. Aut doloribus vitae sunt debitis quo vel nam quis</p>
+              <h4>18 năm 1 chặng đường phát triển</h4>
+              <p>18 năm là hành trình tuyệt vời của Nhà hàng Nhật Bản Hana Sushi,
+                 là nỗ lực cho ước mơ về một thế giới ẩm thực Nhật độc đáo giữa lòng Hà Nội.
+                  Nhà hàng Nhật Bản Hana Sushi tọa lạc con phố: 
+                   Hana Sushi số 90 Nguyễn Trãi, Quận Thanh Xuân, Hà Nội. </p> 
+              <p>Với phương châm “Luôn nỗ lực phát triển vì niềm tin và sự hài lòng của khách hàng”,
+                 Nhà hàng Hana Sushi luôn giữ gìn phong cách phục vụ chu đáo cùng những món ăn thượng
+                  hạng mang.</p>
             </div>
           </div>
 
@@ -148,7 +164,7 @@
         </div>
 
         <div class="row menu-container" data-aos="fade-up" data-aos-delay="200">
-        @foreach ($allMores as $dish)
+          @foreach ($allMores as $dish)
             <div class="col-lg-6 menu-item filter-starters">
               <img src="{{ asset('storage/' .substr($dish->public, 7)) }}" class="menu-img" alt="">
               <div class="flex-container">
@@ -162,7 +178,36 @@
             </div>
           @endforeach
         </div>
-
+        <div class="row menu-container" data-aos="fade-up" data-aos-delay="200">
+          @foreach ($allMores as $dish)
+            <div class="col-lg-6 menu-item filter-salads">
+              <img src="{{ asset('storage/' .substr($dish->public, 7)) }}" class="menu-img" alt="">
+              <div class="flex-container">
+                <div class="menu-content">
+                  <a href="{{ url()->full() }}">{{ $dish->name }}</a><span>{{ number_format($dish->price) }} <u>đ</u></span>
+                </div>
+                <div class="menu-ingredients">
+                  <span>Thành phần: {{ ($dish->detail) }}</span>
+                </div>
+              </div>
+            </div>
+          @endforeach
+        </div>
+        <div class="row menu-container" data-aos="fade-up" data-aos-delay="200">
+          @foreach ($allMores as $dish)
+            <div class="col-lg-6 menu-item filter-specialty">
+              <img src="{{ asset('storage/' .substr($dish->public, 7)) }}" class="menu-img" alt="">
+              <div class="flex-container">
+                <div class="menu-content">
+                  <a href="{{ url()->full() }}">{{ $dish->name }}</a><span>{{ number_format($dish->price) }} <u>đ</u></span>
+                </div>
+                <div class="menu-ingredients">
+                  <span>Thành phần: {{ ($dish->detail) }}</span>
+                </div>
+              </div>
+            </div>
+          @endforeach
+        </div>
       </div>
     </section><!-- End Menu Section -->
 
@@ -179,19 +224,19 @@
           <div class="col-lg-3">
             <ul class="nav nav-tabs flex-column">
               <li class="nav-item">
-                <a class="nav-link active show" data-bs-toggle="tab" href="#tab-1">Modi sit est</a>
+                <a class="nav-link active show" data-bs-toggle="tab" href="#tab-1">Sushi</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" data-bs-toggle="tab" href="#tab-2">Unde praesentium sed</a>
+                <a class="nav-link" data-bs-toggle="tab" href="#tab-2">Tempura </a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" data-bs-toggle="tab" href="#tab-3">Pariatur explicabo vel</a>
+                <a class="nav-link" data-bs-toggle="tab" href="#tab-3">Sashimi </a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" data-bs-toggle="tab" href="#tab-4">Nostrum qui quasi</a>
+                <a class="nav-link" data-bs-toggle="tab" href="#tab-4"> Mì Udon</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" data-bs-toggle="tab" href="#tab-5">Iusto ut expedita aut</a>
+                <a class="nav-link" data-bs-toggle="tab" href="#tab-5"> Bánh mochi</a>
               </li>
             </ul>
           </div>
@@ -200,60 +245,83 @@
               <div class="tab-pane active show" id="tab-1">
                 <div class="row">
                   <div class="col-lg-8 details order-2 order-lg-1">
-                    <h3>Architecto ut aperiam autem id</h3>
-                    <p class="fst-italic">Qui laudantium consequatur laborum sit qui ad sapiente dila parde sonata raqer a videna mareta paulona marka</p>
-                    <p>Et nobis maiores eius. Voluptatibus ut enim blanditiis atque harum sint. Laborum eos ipsum ipsa odit magni. Incidunt hic ut molestiae aut qui. Est repellat minima eveniet eius et quis magni nihil. Consequatur dolorem quaerat quos qui similique accusamus nostrum rem vero</p>
+                    <h3>Sushi cá hồi</h3>
+                    <p class="fst-italic">
+                      Sushi cá hồi là một món ăn Nhật Bản phổ biến và được yêu thích trên toàn thế giới.
+                       Nó được làm từ các lát cá hồi tươi hoặc đông lạnh, được cắt thành từng miếng nhỏ 
+                       và đặt lên trên cơ sở cơm trắng được phủ một lớp gia vị gạo dầu mỡ (sushi rice) có 
+                       hỗn hợp giấm, đường, và muối.</p>
+                    <p>Cá hồi thường được chọn làm nguyên liệu cho sushi vì vị ngọt tự nhiên và
+                       đặc trưng của nó, cùng với kết cấu mềm mịn.</p>
                   </div>
                   <div class="col-lg-4 text-center order-1 order-lg-2">
-                    <img src="assets/img/specials-1.png" alt="" class="img-fluid">
+                    <img src="assets/img/sushi-ca-hoi-song.jpg" alt="" class="img-fluid">
                   </div>
                 </div>
               </div>
               <div class="tab-pane" id="tab-2">
                 <div class="row">
                   <div class="col-lg-8 details order-2 order-lg-1">
-                    <h3>Et blanditiis nemo veritatis excepturi</h3>
-                    <p class="fst-italic">Qui laudantium consequatur laborum sit qui ad sapiente dila parde sonata raqer a videna mareta paulona marka</p>
-                    <p>Ea ipsum voluptatem consequatur quis est. Illum error ullam omnis quia et reiciendis sunt sunt est. Non aliquid repellendus itaque accusamus eius et velit ipsa voluptates. Optio nesciunt eaque beatae accusamus lerode pakto madirna desera vafle de nideran pal</p>
+                    <h3>Các món Tempura</h3>
+                    <p class="fst-italic">Tempura là một món ăn Nhật Bản phổ biến và được biết đến trên toàn thế giới.
+                       Đây là một phần của ẩm thực Nhật Bản được biết đến với sự nhẹ nhàng, giòn rụm và hương vị tuyệt vời.
+                        Tempura thường được làm từ các loại rau củ, hải sản hoặc thậm chí là thịt, 
+                        được phủ một lớp bột chiên giòn và chiên trong dầu nóng.</p>
+                    <p>Các thành phần thường được sử dụng trong tempura bao gồm tôm, cá, cua, khoai tây, bí ngô, cà rốt, hành tây,
+                       su hào, bông cải và nhiều loại rau khác.</p>
                   </div>
                   <div class="col-lg-4 text-center order-1 order-lg-2">
-                    <img src="assets/img/specials-2.png" alt="" class="img-fluid">
+                    <img src="assets/img/tempura.jpg" alt="" class="img-fluid">
                   </div>
                 </div>
               </div>
               <div class="tab-pane" id="tab-3">
                 <div class="row">
                   <div class="col-lg-8 details order-2 order-lg-1">
-                    <h3>Impedit facilis occaecati odio neque aperiam sit</h3>
-                    <p class="fst-italic">Eos voluptatibus quo. Odio similique illum id quidem non enim fuga. Qui natus non sunt dicta dolor et. In asperiores velit quaerat perferendis aut</p>
-                    <p>Iure officiis odit rerum. Harum sequi eum illum corrupti culpa veritatis quisquam. Neque necessitatibus illo rerum eum ut. Commodi ipsam minima molestiae sed laboriosam a iste odio. Earum odit nesciunt fugiat sit ullam. Soluta et harum voluptatem optio quae</p>
+                    <h3>Các món Sashimi</h3>
+                    <p class="fst-italic">Sashimi là một trong những món ăn truyền thống của Nhật Bản,
+                       đặc biệt nổi tiếng với vị tươi ngon và cách chế biến tinh tế. Không giống như sushi,
+                        sashimi là các lát cá, hải sản hoặc thậm chí là
+                       thịt được cắt mỏng và được phục vụ không kèm cơm trắng (sushi rice).</p>
+                    <p>Sashimi thường được làm từ các loại cá như cá hồi (salmon), cá ngừ (tuna),
+                       cá hấp (yellowtail), cá sò điệp (scallop), cá trích (mackerel) và nhiều loại khác. Ngoài ra,
+                       sashimi cũng có thể được làm từ các loại hải sản như tôm, sò điệp, sò điệp cua, bạch tuộc và hàu.</p>
                   </div>
                   <div class="col-lg-4 text-center order-1 order-lg-2">
-                    <img src="assets/img/specials-3.png" alt="" class="img-fluid">
+                    <img src="assets/img/sashimi.jpg" alt="" class="img-fluid">
                   </div>
                 </div>
               </div>
               <div class="tab-pane" id="tab-4">
                 <div class="row">
                   <div class="col-lg-8 details order-2 order-lg-1">
-                    <h3>Fuga dolores inventore laboriosam ut est accusamus laboriosam dolore</h3>
-                    <p class="fst-italic">Totam aperiam accusamus. Repellat consequuntur iure voluptas iure porro quis delectus</p>
-                    <p>Eaque consequuntur consequuntur libero expedita in voluptas. Nostrum ipsam necessitatibus aliquam fugiat debitis quis velit. Eum ex maxime error in consequatur corporis atque. Eligendi asperiores sed qui veritatis aperiam quia a laborum inventore</p>
+                    <h3>Các loại mì Udon</h3>
+                    <p class="fst-italic">Mì Udon là một trong những loại mì truyền thống của ẩm thực Nhật Bản.
+                       Nó được làm từ bột mỳ,
+                       nước và muối, có kết cấu dày và mềm mại, tạo cảm giác no lâu sau khi ăn.</p>
+                    <p>Mì udon được đặt trong một tô nước dùng dashi (nước dùng từ cá hoặc rong biển),
+                       thường kèm theo topping như mitsuba (loại rau Nhật tương tự như cần tây),
+                        hành phi, nori (tảo biển), hoặc tempura.
+                       Các loại mì udon Kake Udon, Tempura Udon, Yaki Udon, Nabeyaki Udon, Curry Udon.</p>
                   </div>
                   <div class="col-lg-4 text-center order-1 order-lg-2">
-                    <img src="assets/img/specials-4.png" alt="" class="img-fluid">
+                    <img src="assets/img/udom.jpg" alt="" class="img-fluid">
                   </div>
                 </div>
               </div>
               <div class="tab-pane" id="tab-5">
                 <div class="row">
                   <div class="col-lg-8 details order-2 order-lg-1">
-                    <h3>Est eveniet ipsam sindera pad rone matrelat sando reda</h3>
-                    <p class="fst-italic">Omnis blanditiis saepe eos autem qui sunt debitis porro quia.</p>
-                    <p>Exercitationem nostrum omnis. Ut reiciendis repudiandae minus. Omnis recusandae ut non quam ut quod eius qui. Ipsum quia odit vero atque qui quibusdam amet. Occaecati sed est sint aut vitae molestiae voluptate vel</p>
+                    <h3>Các loại bánh Mochi</h3>
+                    <p class="fst-italic">Bánh mochi là một món truyền thống của ẩm thực Nhật Bản,
+                       được làm từ gạo nếp (glutinous rice) hoặc bột gạo nếp, đường và nước.
+                       Bánh mochi có vị ngọt và có một kết cấu đặc trưng mềm, đàn hồi và nhồi nhét bên trong.</p>
+                    <p>Các loại bánh Daifuku Mochi, Ichigo Daifuku, Yomogi Mochi, Kirimochi, Sakuramochi, Kagami Mochi.
+                      Những loại bánh mochi này không chỉ ngon mà còn thể hiện sự đa dạng và sáng tạo trong ẩm thực Nhật Bản.
+                    </p>
                   </div>
                   <div class="col-lg-4 text-center order-1 order-lg-2">
-                    <img src="assets/img/specials-5.png" alt="" class="img-fluid">
+                    <img src="assets/img/mochi.jpg" alt="" class="img-fluid">
                   </div>
                 </div>
               </div>
@@ -279,25 +347,51 @@
             <div class="swiper-slide">
               <div class="row event-item">
                 <div class="col-lg-6">
-                  <img src="assets/img/event-birthday.jpg" class="img-fluid" alt="">
+                  <img src="assets/img/không gian 1.jpg" class="img-fluid" alt="">
                 </div>
                 <div class="col-lg-6 pt-4 pt-lg-0 content">
-                  <h3>Birthday Parties</h3>
-                  <div class="price">
-                    <p><span>$189</span></p>
-                  </div>
+                  <h3>Tổ chức sinh nhật</h3>
                   <p class="fst-italic">
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore
-                    magna aliqua.
+                  Hương Vị Đẳng Cấp Nhật Bản
                   </p>
-                  <ul>
-                    <li><i class="bi bi-check-circled"></i> Ullamco laboris nisi ut aliquip ex ea commodo consequat.</li>
-                    <li><i class="bi bi-check-circled"></i> Duis aute irure dolor in reprehenderit in voluptate velit.</li>
-                    <li><i class="bi bi-check-circled"></i> Ullamco laboris nisi ut aliquip ex ea commodo consequat.</li>
-                  </ul>
                   <p>
-                    Ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate
-                    velit esse cillum dolore eu fugiat nulla pariatur
+                  Với đội ngũ đầu bếp tài năng và kinh nghiệm, chúng tôi cam kết sử dụng những nguyên liệu tươi ngon nhất
+                   để tạo ra những món sushi đỉnh cao. Cá hồi đỏ lấp lánh, tôm tươi mọng, vàng vàng tempura, hay các loại rau củ tươi sạch -
+                   tất cả được kỹ lưỡng chế biến để mang đến cho bạn trải nghiệm ẩm thực không thể quên.
+                  </p>
+                  <p class="fst-italic">Không Gian Sang Trọng và Ấm Cúng </p>
+                  <p>Với thiết kế hiện đại và không gian thoải mái, nhà hàng Hono là nơi lý tưởng cho các buổi tiệc đặc biệt.
+                     Từ các bàn ghế tiện nghi đến ánh sáng dịu dàng, mọi chi tiết đều được chăm chút để tạo ra một không gian
+                      ấm áp và sang trọng.</p>
+                </div>
+              </div>
+            </div><!-- End testimonial item -->
+
+            <div class="swiper-slide">
+              <div class="row event-item">
+                <div class="col-lg-6">
+                  <img src="assets/img/không gian 2.jpg" class="img-fluid" alt="">
+                </div>
+                <div class="col-lg-6 pt-4 pt-lg-0 content">
+                  <h3>Tiệc riêng tư</h3>
+                  <p class="fst-italic">
+                    Không Gian Riêng Tư Sang Trọng
+                  </p>
+                  <p>
+                    Với các phòng tiệc riêng tư được thiết kế đẹp mắt và sang trọng,
+                    "Hana Sushi" là nơi lý tưởng cho các buổi tiệc sinh nhật, kỷ niệm, 
+                    họp mặt gia đình hoặc các sự kiện đặc biệt khác. Không gian rộng rãi
+                    và thoải mái sẽ mang đến cho bạn và khách mời một không gian riêng 
+                    biệt để tận hưởng những khoảnh khắc đáng nhớ.
+                  </p>
+                  <p class="fst-italic">
+                    Thực Đơn Phong Phú và Đa Dạng
+                  </p>
+                  <p>
+                    Với đội ngũ đầu bếp chuyên nghiệp và tài năng, "Góc Bếp Xanh" tự hào mang đến
+                    cho bạn một thực đơn phong phú và đa dạng. Chúng tôi cam kết sử dụng nguyên liệu tươi ngon
+                    và chất lượng nhất để tạo ra những món ăn ngon miệng và đáp ứng mọi yêu cầu dinh dưỡng
+                    và khẩu vị.
                   </p>
                 </div>
               </div>
@@ -306,53 +400,23 @@
             <div class="swiper-slide">
               <div class="row event-item">
                 <div class="col-lg-6">
-                  <img src="assets/img/event-private.jpg" class="img-fluid" alt="">
+                  <img src="assets/img/không gian 3.jpg" class="img-fluid" alt="">
                 </div>
                 <div class="col-lg-6 pt-4 pt-lg-0 content">
-                  <h3>Private Parties</h3>
-                  <div class="price">
-                    <p><span>$290</span></p>
-                  </div>
+                  <h3>Tiệc khác</h3>
                   <p class="fst-italic">
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore
-                    magna aliqua.
+                    Dịch Vụ Tận Tâm và Chuyên Nghiệp
                   </p>
-                  <ul>
-                    <li><i class="bi bi-check-circled"></i> Ullamco laboris nisi ut aliquip ex ea commodo consequat.</li>
-                    <li><i class="bi bi-check-circled"></i> Duis aute irure dolor in reprehenderit in voluptate velit.</li>
-                    <li><i class="bi bi-check-circled"></i> Ullamco laboris nisi ut aliquip ex ea commodo consequat.</li>
-                  </ul>
                   <p>
-                    Ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate
-                    velit esse cillum dolore eu fugiat nulla pariatur
-                  </p>
-                </div>
-              </div>
-            </div><!-- End testimonial item -->
-
-            <div class="swiper-slide">
-              <div class="row event-item">
-                <div class="col-lg-6">
-                  <img src="assets/img/event-custom.jpg" class="img-fluid" alt="">
-                </div>
-                <div class="col-lg-6 pt-4 pt-lg-0 content">
-                  <h3>Custom Parties</h3>
-                  <div class="price">
-                    <p><span>$99</span></p>
-                  </div>
-                  <p class="fst-italic">
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore
-                    magna aliqua.
-                  </p>
-                  <ul>
-                    <li><i class="bi bi-check-circled"></i> Ullamco laboris nisi ut aliquip ex ea commodo consequat.</li>
-                    <li><i class="bi bi-check-circled"></i> Duis aute irure dolor in reprehenderit in voluptate velit.</li>
-                    <li><i class="bi bi-check-circled"></i> Ullamco laboris nisi ut aliquip ex ea commodo consequat.</li>
-                  </ul>
-                  <p>
-                    Ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate
-                    velit esse cillum dolore eu fugiat nulla pariatur
-                  </p>
+                    Đội ngũ nhân viên của chúng tôi sẽ luôn sẵn lòng hỗ trợ bạn trong việc tổ chức 
+                    mọi chi tiết của buổi tiệc riêng tư. Từ việc lên kế hoạch thực đơn,
+                    trang trí không gian đến phục vụ và giải trí, chúng tôi sẽ đảm bảo 
+                    mọi thứ diễn ra một cách suôn sẻ và đáng nhớ.
+                </p>
+                <p class="fst-italic">Liên Hệ Và Đặt Tiệc Ngay Hôm Nay</p>
+                <p>Hãy để Nhà Hàng "Hana Sushi" là điểm đến lý tưởng cho bữa tiệc của bạn. 
+                  Đặt tiệc ngay hôm nay để trải nghiệm không gian ẩm thực tuyệt vời và dịch 
+                  vụ chuyên nghiệp tại chúng tôi. Chúng tôi mong được chào đón bạn đến với nhà hàng của chúng tôi!</p>
                 </div>
               </div>
             </div><!-- End testimonial item -->
@@ -582,76 +646,6 @@
       </div>
     </section><!-- End Gallery Section -->
 
-    <!-- ======= Chefs Section ======= -->
-    <section id="chefs" class="chefs">
-      <div class="container" data-aos="fade-up">
-
-        <div class="section-title">
-          <h2>Đầu Bếp</h2>
-          <p>Đầu Bếp Chuyên Nghiệp Của Chúng Tôi</p>
-        </div>
-
-        <div class="row">
-
-          <div class="col-lg-4 col-md-6">
-            <div class="member" data-aos="zoom-in" data-aos-delay="100">
-              <img src="assets/img/chefs/chefs-1.jpg" class="img-fluid" alt="">
-              <div class="member-info">
-                <div class="member-info-content">
-                  <h4>Walter White</h4>
-                  <span>Master Chef</span>
-                </div>
-                <div class="social">
-                  <a href=""><i class="bi bi-twitter"></i></a>
-                  <a href=""><i class="bi bi-facebook"></i></a>
-                  <a href=""><i class="bi bi-instagram"></i></a>
-                  <a href=""><i class="bi bi-linkedin"></i></a>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <div class="col-lg-4 col-md-6">
-            <div class="member" data-aos="zoom-in" data-aos-delay="200">
-              <img src="assets/img/chefs/chefs-2.jpg" class="img-fluid" alt="">
-              <div class="member-info">
-                <div class="member-info-content">
-                  <h4>Sarah Jhonson</h4>
-                  <span>Patissier</span>
-                </div>
-                <div class="social">
-                  <a href=""><i class="bi bi-twitter"></i></a>
-                  <a href=""><i class="bi bi-facebook"></i></a>
-                  <a href=""><i class="bi bi-instagram"></i></a>
-                  <a href=""><i class="bi bi-linkedin"></i></a>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <div class="col-lg-4 col-md-6">
-            <div class="member" data-aos="zoom-in" data-aos-delay="300">
-              <img src="assets/img/chefs/chefs-3.jpg" class="img-fluid" alt="">
-              <div class="member-info">
-                <div class="member-info-content">
-                  <h4>William Anderson</h4>
-                  <span>Cook</span>
-                </div>
-                <div class="social">
-                  <a href=""><i class="bi bi-twitter"></i></a>
-                  <a href=""><i class="bi bi-facebook"></i></a>
-                  <a href=""><i class="bi bi-instagram"></i></a>
-                  <a href=""><i class="bi bi-linkedin"></i></a>
-                </div>
-              </div>
-            </div>
-          </div>
-
-        </div>
-
-      </div>
-    </section><!-- End Chefs Section -->
-
     <!-- ======= Contact Section ======= -->
     <section id="contact" class="contact">
       <div class="container" data-aos="fade-up">
@@ -705,7 +699,8 @@
 
           <div class="col-lg-8 mt-5 mt-lg-0">
 
-            <form action="forms/contact.php" method="post" role="form" >
+            <form action="{{ route('send.feedback') }}" method="post" role="form" >
+              @csrf
               <div class="section-title">
                 <h2>Gửi Ý Kiến Góp Ý Của Bạn Cho Chúng Tôi</h2>
               </div>
@@ -720,12 +715,9 @@
               <div class="form-group mt-3">
                 <textarea class="form-control" name="message" rows="8" placeholder="Nội Dung" required></textarea>
               </div>
-              <div class="my-3">
-                <div class="loading">Loading</div>
-                <div class="error-message"></div>
-                <div class="sent-message">Your message has been sent. Thank you!</div>
+              <div class="text-center mt-3">
+                <button type="submit">Gửi Tin Nhắn</button>
               </div>
-              <div class="text-center"><button type="submit">Send Message</button></div>
             </form>
 
           </div>

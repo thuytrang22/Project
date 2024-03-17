@@ -1,5 +1,12 @@
 "use strict";
 
+let myDate = new Date();
+let date = ('0'+ myDate.getDate()).slice(-2) + '/' + ('0'+ (myDate.getMonth()+1)).slice(-2) + '/' + myDate.getFullYear();
+$(".datepicker").val(date);
+$('.datepicker').datepicker({
+  dateFormat: "dd/mm/yy"
+});
+
 function rangeDate(startDate, endDate) {
   var datesArray = [];
   var currentDate = startDate;
@@ -25,7 +32,7 @@ $.ajax({
   type: 'GET',
   data: {
     startDate: '2024-03-01',
-    endDate: '2024-03-10',
+    endDate: $(".datepicker").val(),
   },
   success: function(response) {
     var result = {

@@ -56,7 +56,7 @@
           <div class="flex items-center justify-between">
             <div class="widget-label">
               <h3>
-                Doanh Thu
+                Hiệu suất
               </h3>
               <h1>
                 {{ $data['performance'] }}
@@ -70,7 +70,7 @@
 
     @include('admins.dashboards.chart')
 
-    <div class="card has-table">
+    <div class="card has-table mb-6">
       <header class="card-header">
         <p class="card-header-title">
           <span class="icon"><i class="mdi mdi-account-multiple"></i></span>
@@ -128,5 +128,7 @@
         </ul>
       </div>
     </div>
+
+    @include('admins.dashboards.feedback')
   </section>
 @endsection

@@ -4,21 +4,20 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\SoftDeletes;
 
-class Seating extends Model
+class Feedback extends Model
 {
     use HasFactory;
-    use SoftDeletes;
-     /**
+    protected $table = 'feedbacks';
+
+    /**
      * The attributes that are mass assignable.
      *
      * @var array<int, string>
      */
     protected $fillable = [
-        'table_number',
-        'pending',
-        'working',
-        'empty_table'
+        'name',
+        'email',
+        'massage'
     ];
 }

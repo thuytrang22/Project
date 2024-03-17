@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Feedback;
 use App\Models\Infor;
 use App\Models\Seating;
 use App\Models\User;
@@ -24,6 +25,8 @@ class AdminController extends Controller
             ->select(DB::raw('max(name) as name, phone, count(id) as number_of_booking'))
             ->groupBy('phone')
             ->paginate(5);
+    
+        $feedbacks = Feedback::orderBy('id', 'desc')->paginate(5);
 
         $data = [
             'numberOfUser' => count($numberOfUser),
@@ -31,7 +34,8 @@ class AdminController extends Controller
             'performance' => $performance,
             'users' => $users,
         ];
-        return view('admins.dashboards.index', ['data' => $data]);
+
+        return view('admins.dashboards.index', ['data' => $data, 'feedbacks' => $feedbacks]);
     }
 
     public function profile()

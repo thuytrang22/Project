@@ -6,6 +6,7 @@
           <span class="icon"><i class="mdi mdi-finance"></i></span>
           Thống Kê Doanh Thu
         </p>
+        <input id="revenues-end-date" style="border-width: 1px;" type="text" class="datepicker">
         <a href="{{ url()->full() }}" class="card-header-icon">
           <span class="icon"><i class="mdi mdi-reload"></i></span>
         </a>

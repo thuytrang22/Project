@@ -71,6 +71,8 @@ Route::middleware(['auth'])->group(function () {
             Route::get('{id}/edit', [SeatingController::class, 'edit'])->name('seating.edit');
             Route::put('/update', [SeatingController::class, 'update'])->name('seating.update');
             Route::delete('/{id}', [SeatingController::class, 'destroy'])->name('seating.destroy');
+            Route::post('/update-checkbox', [BookingController::class, 'updateCheckbox'])->name('update.checkbox');
+            Route::post('/update-table', [BookingController::class, 'updateTable'])->name('update.table');
         });
 
         Route::prefix('/bills')->group(function () {

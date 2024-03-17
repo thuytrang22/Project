@@ -28,4 +28,18 @@ class BookingController extends Controller
         // Redirect hoặc trả về view với thông báo thành công
         return redirect()->back()->with('success', 'Your booking table request was sent. We will call back or send an email to confirm your reservation. Thank you!');
     }
+
+    public function updateCheckbox (Request $request) {
+        $booking = Booking::find($request->id);
+        $booking->status = $request->status;
+        $booking->save();
+        return redirect()->route('seatings')->with('update', 'success');
+    }
+
+    public function updateTable (Request $request) {
+        $booking = Booking::find($request->id);
+        $booking->seating_id = $request->seating_id;
+        $booking->save();
+        return redirect()->route('seatings')->with('update', 'success');
+    }
 }

@@ -91,15 +91,25 @@
                   <td>{{$booking->people}}</td>
                   <td>{{$booking->message}}</td>
                   <td>
-                    <input type="checkbox" class="bookingCheckbox" data-booking-id="{{$booking->id}}">
+                    <form>
+                      @csrf
+                      <input type="checkbox" name="status" value="{{$booking->status}}" class="bookingCheckbox" data-booking-id="{{$booking->id}}">
+                    </form>
                   </td>
                   <td>
-                    <select name="table_number" class="tableNumberSelect" data-booking-id="{{$booking->id}}">
-                        <option value="">Chọn bàn</option>
-                        @foreach($tableNumbers as $table)
-                        <option value="{{$table->id}}">{{$table->table_number}}</option>
-                        @endforeach
-                    </select>
+                    <form>
+                      @csrf
+                      <select name="table_number" class="tableNumberSelect" data-booking-id="{{$booking->id}}">
+                          <option value="">Chọn bàn</option>
+                          @foreach($tableNumbers as $table)
+                              @if($booking->seating_id == $table->table_number)
+                                  <option value="{{$table->table_number}}" selected>{{$table->table_number}}</option>
+                              @elseif($booking->seating_id != $table->table_number)
+                                  <option value="{{$table->table_number}}">{{$table->table_number}}</option>
+                              @endif
+                          @endforeach
+                      </select>
+                    </form>
                   </td>
                 </tr>
               @endforeach
@@ -126,4 +136,78 @@
         </ul>
     </div>
 </section>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script>
+$(document).ready(function () {
+  $('.bookingCheckbox').each(function() {
+    let value = $(this).val();
+    if (value == 1) {
+        $(this).prop('checked', true);
+    }
+  });
+
+  $('.bookingCheckbox').change(function () {
+      var bookingId = $(this).data('booking-id');
+      var isChecked = $(this).is(':checked');
+      if (isChecked) {
+        var token = $('meta[name="csrf-token"]').attr('content');
+        $.ajax({
+            url: '/admin/seating/update-checkbox',
+            method: 'POST',
+            data: {
+              _token: '{{ csrf_token() }}',
+              id: bookingId,
+              status: 1
+            },
+            success: function (response) {
+              alert('Dữ liệu đã được cập nhật thành công');
+            },
+            error: function (xhr, status, error) {
+                console.error(xhr.responseText);
+            }
+        });
+      } else {
+        $.ajax({
+            url: '/admin/seating/update-checkbox',
+            method: 'POST',
+            data: {
+              _token: '{{ csrf_token() }}',
+              id: bookingId,
+              status: 0
+            },
+            success: function (response) {
+              alert('Dữ liệu đã được cập nhật thành công');
+            },
+            error: function (xhr, status, error) {
+                console.error(xhr.responseText);
+            }
+        });
+      }
+  });
+
+  $('.tableNumberSelect').change(function () {
+  var bookingId = $(this).data('booking-id');
+  var tableNumber = $(this).val();
+  if (tableNumber) {
+      $.ajax({
+          url: '/admin/seating/update-table',
+          method: 'POST',
+          data: {
+              _token: '{{ csrf_token() }}',
+              id: bookingId,
+              seating_id: tableNumber
+          },
+          success: function (response) {
+            alert('Dữ liệu đã được cập nhật thành công');
+          },
+          error: function (xhr, status, error) {
+              console.error(xhr.responseText);
+          }
+      });
+  }
+  });
+
+  
+});
+</script>
 @endsection

@@ -26,19 +26,19 @@
             @enderror
         </div>
         <div class="form-check">
-            <input class="form-check-input" type="radio" name="flexRadioDefault" value="empty" checked>
+            <input class="form-check-input" type="radio" name="seating_status" value="empty_table" {{ $seating->empty_table ? 'checked' : '' }}>
             <label class="form-check-label">
                 Bàn trống
             </label>
         </div>
         <div class="form-check">
-            <input class="form-check-input" type="radio" name="flexRadioDefault" value="pending">
+            <input class="form-check-input" type="radio" name="seating_status" value="pending" {{ $seating->pending ? 'checked' : '' }}>
             <label class="form-check-label">
                 Đã đặt
             </label>
         </div>
         <div class="form-check">
-            <input class="form-check-input" type="radio" name="flexRadioDefault" value="working">
+            <input class="form-check-input" type="radio" name="seating_status" value="working" {{ $seating->working ? 'checked' : '' }}>
             <label class="form-check-label">
                 Đang sử dụng
             </label>

@@ -176,33 +176,42 @@
    * Menu isotope and filter
    */
   window.addEventListener('load', () => {
-    let menuContainer = select('.menu-container');
+    let menuContainer = document.querySelectorAll('.menu-container');
     if (menuContainer) {
-      let menuIsotope = new Isotope(menuContainer, {
-        itemSelector: '.menu-item',
-        layoutMode: 'fitRows'
+      let menuFilters = document.querySelectorAll('#menu-flters li');
+  
+      menuFilters.forEach(function(filter) {
+        filter.addEventListener('click', function(e) {
+          e.preventDefault();
+          let categoryId = this.getAttribute('data-filter');
+  
+          // Loại bỏ lớp 'filter-active' khỏi tất cả các tab category
+          menuFilters.forEach(function(item) {
+            item.classList.remove('filter-active');
+          });
+          // Thêm lớp 'filter-active' vào tab category được chọn
+          this.classList.add('filter-active');
+  
+          // Ẩn tất cả các mục
+          menuContainer.forEach(function(container) {
+            container.querySelectorAll('.menu-item').forEach(function(item) {
+              item.style.display = 'none';
+            });
+          });
+  
+          // Hiển thị các mục thuộc danh mục được chọn
+          menuContainer.forEach(function(container) {
+            container.querySelectorAll(categoryId).forEach(function(item) {
+              item.style.display = 'block';
+            });
+          });
+  
+          // Refresh AOS để cập nhật hiệu ứng
+          AOS.refresh();
+        });
       });
-
-      let menuFilters = select('#menu-flters li', true);
-
-      on('click', '#menu-flters li', function(e) {
-        e.preventDefault();
-        menuFilters.forEach(function(el) {
-          el.classList.remove('filter-active');
-        });
-        this.classList.add('filter-active');
-
-        menuIsotope.arrange({
-          filter: this.getAttribute('data-filter')
-        });
-        menuIsotope.on('arrangeComplete', function() {
-          AOS.refresh()
-        });
-      }, true);
     }
-
   });
-
   /**
    * Initiate glightbox 
    */

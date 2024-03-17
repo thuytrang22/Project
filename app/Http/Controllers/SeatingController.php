@@ -36,7 +36,7 @@ class SeatingController extends Controller
     
         if (!empty($keywords)) {
             $query->where(function ($query) use ($keywords) {
-                $query->where('name', 'like', '%' . $keywords . '%');
+                $query->where('table_number', 'like', '%' . $keywords . '%');
             });
         }
     
@@ -54,7 +54,7 @@ class SeatingController extends Controller
             'working' => 0,
             'empty_table' => 0,
         ];
-        $status[$request->input('flexRadioDefault')] = 1;
+        $status[$request->input('seating_status')] = 1;
         $data = [
             'table_number' => $request->input('table_number'),
         ];
@@ -72,8 +72,19 @@ class SeatingController extends Controller
 
     public function update(Request $request)
     {
+        $status = [
+            'pending' => 0,
+            'working' => 0,
+            'empty_table' => 0,
+        ];
+        $status[$request->seating_status] = 1;
+
         $seating = Seating::find($request->id);
-        $seating->name = $request->name;
+        $seating->table_number = $request->table_number;
+        $seating->empty_table = $status['empty_table'];
+        $seating->pending =  $status['pending'];
+        $seating->working =  $status['working'];
+        
         $seating->save();
 
         return redirect()->route('seating.manager')->with('update', 'success');

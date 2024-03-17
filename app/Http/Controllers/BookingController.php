@@ -9,7 +9,7 @@ use App\Mail\BookingConfirmation;
 
 class BookingController extends Controller
 {
-    public function bookTable (BookTableRequest $request) 
+    public function bookTable (BookTableRequest $request)
     {
         
         $booking = new Booking();
@@ -24,9 +24,7 @@ class BookingController extends Controller
 
         // Gửi email xác nhận cho khách hàng
         Mail::to($booking->email)->send(new BookingConfirmation($booking));
-
-        // Redirect hoặc trả về view với thông báo thành công
-        return redirect()->back()->with('success', 'Your booking table request was sent. We will call back or send an email to confirm your reservation. Thank you!');
+        return response('OK', 200);
     }
 
     public function updateCheckbox (Request $request) {

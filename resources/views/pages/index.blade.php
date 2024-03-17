@@ -156,16 +156,31 @@
           <div class="col-lg-12 d-flex justify-content-center">
             <ul id="menu-flters">
               <li data-filter="*" class="filter-active">Tất cả</li>
-              <li data-filter=".filter-starters">Món Khai Vị</li>
-              <li data-filter=".filter-salads">Món Salads</li>
-              <li data-filter=".filter-specialty">Món chính</li>
+              @foreach ($categorys as $category)
+              <li data-filter=".filter-{{ $category->id }}">{{ $category->name }}</li>
+              @endforeach
             </ul>
           </div>
         </div>
 
         <div class="row menu-container" data-aos="fade-up" data-aos-delay="200">
-          @foreach ($allMores as $dish)
-            <div class="col-lg-6 menu-item filter-starters">
+            @foreach ($appetizer as $dish)
+              <div class="col-lg-6 menu-item filter-1">
+                <img src="{{ asset('storage/' .substr($dish->public, 7)) }}" class="menu-img" alt="">
+                <div class="flex-container">
+                  <div class="menu-content">
+                    <a href="{{ url()->full() }}">{{ $dish->name }}</a><span>{{ number_format($dish->price) }} <u>đ</u></span>
+                  </div>
+                  <div class="menu-ingredients">
+                    <span>Thành phần: {{ ($dish->detail) }}</span>
+                  </div>
+                </div>
+              </div>
+            @endforeach
+        </div>
+        <div class="row menu-container" data-aos="fade-up" data-aos-delay="200">
+          @foreach ($mainDishes as $dish)
+            <div class="col-lg-6 menu-item filter-2">
               <img src="{{ asset('storage/' .substr($dish->public, 7)) }}" class="menu-img" alt="">
               <div class="flex-container">
                 <div class="menu-content">
@@ -179,23 +194,8 @@
           @endforeach
         </div>
         <div class="row menu-container" data-aos="fade-up" data-aos-delay="200">
-          @foreach ($allMores as $dish)
-            <div class="col-lg-6 menu-item filter-salads">
-              <img src="{{ asset('storage/' .substr($dish->public, 7)) }}" class="menu-img" alt="">
-              <div class="flex-container">
-                <div class="menu-content">
-                  <a href="{{ url()->full() }}">{{ $dish->name }}</a><span>{{ number_format($dish->price) }} <u>đ</u></span>
-                </div>
-                <div class="menu-ingredients">
-                  <span>Thành phần: {{ ($dish->detail) }}</span>
-                </div>
-              </div>
-            </div>
-          @endforeach
-        </div>
-        <div class="row menu-container" data-aos="fade-up" data-aos-delay="200">
-          @foreach ($allMores as $dish)
-            <div class="col-lg-6 menu-item filter-specialty">
+          @foreach ($dessert as $dish)
+            <div class="col-lg-6 menu-item filter-3">
               <img src="{{ asset('storage/' .substr($dish->public, 7)) }}" class="menu-img" alt="">
               <div class="flex-container">
                 <div class="menu-content">

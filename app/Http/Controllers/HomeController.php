@@ -12,8 +12,11 @@ use Illuminate\Support\Facades\DB;
 class HomeController extends Controller
 {
     public function index () {
-        $allMores = DB::table('menus')->get();
-        return view ('pages.index', compact('allMores'));
+        $appetizer = DB::table('menus')->where('id_category', '=', 1)->get();
+        $mainDishes = DB::table('menus')->where('id_category', '=', 2)->get();
+        $dessert = DB::table('menus')->where('id_category', '=', 3)->get();
+        $categorys = DB::table('categories')->get();
+        return view ('pages.index', compact('categorys', 'appetizer', 'mainDishes', 'dessert'));
     }
 
     public function home ($table)
@@ -52,8 +55,8 @@ class HomeController extends Controller
 
     public function dashboards(Request $request)
     {
-        $startDate = $request->query('startDate');
-        $endDate = $request->query('endDate');
+        $startDate = $this->_formatDate($request->query('startDate'));
+        $endDate = $this->_formatDate($request->query('endDate'));
         $revenues = []; //Doanh thu
         $expenses = []; //Chi phí
         $interest = []; //Tiền lãi
@@ -118,5 +121,16 @@ class HomeController extends Controller
             'interest' => $interest,
         ];
         return response()->json(['message' => 'Success', 'data' => $data]);
+    }
+
+    /**
+     * @param string $dateString
+     * 
+     * @return string
+     */
+    private function _formatDate(string $dateString): string
+    {
+        $date = DateTime::createFromFormat('d/m/Y', $dateString);
+        return $date->format('Y-m-d');
     }
 }

@@ -19,7 +19,7 @@ class AdminController extends Controller
     {
         $numberOfUser = Infor::select('phone')->groupBy('phone')->get();
         $totalTable = Seating::count();
-        $numberOfSeating = Seating::where('status', '<>', '0')->count();
+        $numberOfSeating = Seating::where('working', '<>', '0')->count();
         $performance = $totalTable ? $numberOfSeating / $totalTable * 100 . '%' : '0%';
         $users = DB::table('infor')
             ->select(DB::raw('max(name) as name, phone, count(id) as number_of_booking'))

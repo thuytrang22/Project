@@ -100,7 +100,7 @@
                     <form>
                       @csrf
                       <select name="table_number" class="tableNumberSelect" data-booking-id="{{$booking->id}}">
-                          <option value="">Chọn bàn</option>
+                          <option value="Chọn bàn">Chọn bàn</option>
                           @foreach($tableNumbers as $table)
                               @if($booking->seating_id == $table->table_number)
                                   <option value="{{$table->table_number}}" selected>{{$table->table_number}}</option>

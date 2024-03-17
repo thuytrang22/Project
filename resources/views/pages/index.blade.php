@@ -156,9 +156,12 @@
           <div class="col-lg-12 d-flex justify-content-center">
             <ul id="menu-flters">
               <li data-filter="*" class="filter-active">Tất cả</li>
-              <li data-filter=".filter-starters">Món Khai Vị</li>
+              @foreach ($categorys as $category)
+              <li data-filter=".filter-starters">{{ $category->name }}</li>
+              @endforeach
+              <!-- <li data-filter="*" class="filter-active">Tất cả</li>
               <li data-filter=".filter-salads">Món Salads</li>
-              <li data-filter=".filter-specialty">Món chính</li>
+              <li data-filter=".filter-specialty">Món chính</li> -->
             </ul>
           </div>
         </div>

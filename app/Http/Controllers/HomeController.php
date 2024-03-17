@@ -52,8 +52,8 @@ class HomeController extends Controller
 
     public function dashboards(Request $request)
     {
-        $startDate = $request->query('startDate');
-        $endDate = $request->query('endDate');
+        $startDate = $this->_formatDate($request->query('startDate'));
+        $endDate = $this->_formatDate($request->query('endDate'));
         $revenues = []; //Doanh thu
         $expenses = []; //Chi phí
         $interest = []; //Tiền lãi
@@ -118,5 +118,16 @@ class HomeController extends Controller
             'interest' => $interest,
         ];
         return response()->json(['message' => 'Success', 'data' => $data]);
+    }
+
+    /**
+     * @param string $dateString
+     * 
+     * @return string
+     */
+    private function _formatDate(string $dateString): string
+    {
+        $date = DateTime::createFromFormat('d/m/Y', $dateString);
+        return $date->format('Y-m-d');
     }
 }

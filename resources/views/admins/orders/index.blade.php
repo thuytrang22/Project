@@ -74,7 +74,7 @@
               <th>Số Điện Thoại</th>
               <th>Số Bàn</th>
               <th>Thời Gian</th>
-              <th width="280px">Hành Động</th>
+              <th width="200px">Hành Động</th>
             </tr>
           </thead>
           <tbody>
@@ -124,15 +124,15 @@
         <!-- pagination -->
         <ul class="pagination flex float-right">
           <li class="page-item {{ ($orders->currentPage() == 1) ? 'disabled' : '' }}">
-            <a class="page-link" href="{{ $orders->url(1) }}"><span aria-hidden="true">&laquo;</span></a>
+            <a class="page-link" href="{{ $orders->appends(['keywords' => $keywords])->url(1) }}"><span aria-hidden="true">&laquo;</span></a>
           </li>
           @for ($i = 1; $i <= $orders->lastPage(); $i++)
             <li class="page-item {{ ($orders->currentPage() == $i) ? 'active' : '' }}">
-              <a class="page-link" href="{{ $orders->url($i) }}">{{ $i }}</a>
+              <a class="page-link" href="{{ $orders->appends(['keywords' => $keywords])->url($i) }}">{{ $i }}</a>
             </li>
             @endfor
             <li class="page-item {{ ($orders->currentPage() == $orders->lastPage()) ? 'disabled' : '' }}">
-              <a class="page-link" href="{{ $orders->url($orders->lastPage()) }}"><span aria-hidden="true">&raquo;</span></a>
+              <a class="page-link" href="{{ $orders->appends(['keywords' => $keywords])->url($orders->lastPage()) }}"><span aria-hidden="true">&raquo;</span></a>
             </li>
         </ul>
       </div>

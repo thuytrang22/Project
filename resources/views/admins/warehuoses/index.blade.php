@@ -82,7 +82,6 @@
                 <th>Số Lượng</th>
                 <th>Đơn Vị</th>
                 <th>Ngày</th>
-                <!-- <th width="280px">Hành Động</th> -->
             </tr>
           </thead>
           <tbody>

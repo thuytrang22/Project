@@ -1,21 +1,22 @@
 @php
-    $statuses = [
-        0 => 'Chưa thanh toán',
-        1 => 'Đã thanh toán'
-    ];
+$statuses = [
+0 => 'Chưa thanh toán',
+1 => 'Đã thanh toán'
+];
 @endphp
 <!DOCTYPE html>
 <html lang="en" class="">
+
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Hana Sushi</title>
 
-  <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png"/>
-  <link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png"/>
-  <link rel="icon" type="image/png" sizes="16x16" href="favicon-16x16.png"/>
-  <link rel="mask-icon" href="safari-pinned-tab.svg" color="#00b4b6"/>
+  <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png" />
+  <link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png" />
+  <link rel="icon" type="image/png" sizes="16x16" href="favicon-16x16.png" />
+  <link rel="mask-icon" href="safari-pinned-tab.svg" color="#00b4b6" />
 
   <meta name="description" content="Admin Hana Sushi">
 
@@ -40,6 +41,7 @@
   <script async src="https://www.googletagmanager.com/gtag/js?id=UA-130795909-1"></script>
 
 </head>
+
 <body>
   <section class="is-title-bar">
     <div style="text-align: center;">
@@ -47,7 +49,7 @@
     </div>
   </section>
   <div>
-      <h3>Chi tiết hóa đơn</h3> 
+    <h3>Chi tiết hóa đơn</h3>
   </div>
   <div>
     <div style="padding-left: 40px;">
@@ -57,44 +59,51 @@
       <p><b>Tổng Thanh Toán :</b> {{number_format($bill->total_order)}}đ</p>
       <p><b>Trạng Thái :</b> {{$statuses[$bill->status]}}</p>
     </div>
-      <table style="border-collapse: collapse; width: 100%; border-spacing: 0; border-color: #fff;">
-          <thead>
-          <tr class="table-active">
-              <th>STT</th>
-              <th>Tên Món Ăn</th>
-              <th>Số lượng</th>
-              <th>Giá</th>
-              <th>Ngày</th>
-          </tr>
-          </thead>
-          <tbody>
-              @if(!empty($bill->order))
-              @foreach($bill->order->orderMenus as $key => $orderMenu)
-              <tr class="text-center">
-                  <td>{{ $key + 1 }}</td>
-                  <td>{{$orderMenu->menu->name}}</td>
-                  <td>{{$orderMenu->amount}}</td>
-                  <td>{{number_format($orderMenu->menu->price)}}đ</td>
-                  <td>{{date('d/m/Y', strtotime($orderMenu->created_at))}}</td>
-              </tr>
-              @endforeach
-              @else
-              <tr>
-                  <td colspan="7" class="text-center">Không có dữ liệu</td>
-              </tr>
-              @endif
-          </tbody>
-      </table>
+    <table style="border-collapse: collapse; width: 100%; border-spacing: 0; border-color: #fff;">
+      <thead>
+        <tr class="table-active">
+          <th>STT</th>
+          <th>Tên Món Ăn</th>
+          <th>Số lượng</th>
+          <th>Giá</th>
+          <th>Ngày</th>
+        </tr>
+      </thead>
+      <tbody>
+        @if(!empty($bill->order))
+        @foreach($bill->order->orderMenus as $key => $orderMenu)
+        <tr class="text-center">
+          <td>{{ $key + 1 }}</td>
+          <td>{{$orderMenu->menu->name}}</td>
+          <td>{{$orderMenu->amount}}</td>
+          <td>{{number_format($orderMenu->menu->price)}}đ</td>
+          <td>{{date('d/m/Y', strtotime($orderMenu->created_at))}}</td>
+        </tr>
+        @endforeach
+        <tr>
+          <td></td>
+          <td></td>
+          <td>VAT</td>
+          <td>{{$vat}}%</td>
+        </tr>
+        @else
+        <tr>
+          <td colspan="7" class="text-center">Không có dữ liệu</td>
+        </tr>
+        @endif
+      </tbody>
+    </table>
   </div>
-<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.min.js"></script>
-<script type="text/javascript" src="/js/chart.sample.min.js"></script>
-<link rel="stylesheet" href="https://cdn.materialdesignicons.com/4.9.95/css/materialdesignicons.min.css">
-<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-<script>
-  function printPage() {
+  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.min.js"></script>
+  <script type="text/javascript" src="/js/chart.sample.min.js"></script>
+  <link rel="stylesheet" href="https://cdn.materialdesignicons.com/4.9.95/css/materialdesignicons.min.css">
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <script>
+    function printPage() {
       window.print();
-  }
-  printPage()
-</script>
+    }
+    printPage()
+  </script>
 </body>
+
 </html>

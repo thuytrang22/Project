@@ -51,7 +51,7 @@
                   </th>
                   <th>Tên Tài Khoản</th>
                   <th>Quyền</th>
-                  <th width="280px">Hành Động</th>
+                  <th width="200px">Hành Động</th>
               </tr>
           </thead>
           <tbody>

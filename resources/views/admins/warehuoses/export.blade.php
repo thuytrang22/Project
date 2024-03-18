@@ -90,7 +90,7 @@
                 <th>Đơn Vị</th>
                 <th>Đơn Giá</th>
                 <th>Ngày</th>
-                <th width="280px">Hành Động</th>
+                <th width="200px">Hành Động</th>
             </tr>
           </thead>
           <tbody>
@@ -104,7 +104,7 @@
                 <td>{{number_format($mwarehouse->price)}}</td>
                 <td>{{date('d/m/Y', strtotime($mwarehouse->created_at))}}</td>
                 <td>
-                    <div class="flex gap-10">
+                    <div class="flex gap-10 justify-center">
                         <!-- feature update -->
                         <a class="btn btn-icon btn-outline-warning btnEdit" href="{{route('warehouses.edit', ['id' => $mwarehouse->id, 'type' => 2])}}">
                             <img src="/images/editing.png" alt="">

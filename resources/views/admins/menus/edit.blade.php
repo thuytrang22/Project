@@ -3,7 +3,7 @@
 <form action="{{route('menus.update', ['category' => $category->id])}}" method="POST" class="card mt-3" enctype="multipart/form-data">
     <div class="modal-header">
         <h4 class="modal-title">Sửa Món Ăn</h4>
-        <a class="btn btn-outline-warning"  href="{{ route('category.menus', ['category' => $category->id]) }}">Back</a>
+        <a class="btn btn-outline-warning"  href="{{ route('category.menus', ['category' => $category->id]) }}">Quay lại</a>
     </div>
     <div class="card-body">
         @method('PUT')

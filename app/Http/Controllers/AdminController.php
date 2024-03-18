@@ -14,18 +14,20 @@ use Illuminate\Support\Facades\DB;
 
 class AdminController extends Controller
 {
-
     public function index()
     {
         $numberOfUser = Infor::select('phone')->groupBy('phone')->get();
         $totalTable = Seating::count();
-        $numberOfSeating = Seating::where('working', '<>', '0')->count();
+        $numberOfSeating = Seating::where('working', '<>', '0')
+            ->orWhere('pending', '<>', '0')
+            ->count();
         $performance = $totalTable ? $numberOfSeating / $totalTable * 100 . '%' : '0%';
         $users = DB::table('infor')
             ->select(DB::raw('max(name) as name, phone, count(id) as number_of_booking'))
             ->groupBy('phone')
+            ->orderBy('number_of_booking', 'DESC')
             ->paginate(5);
-    
+
         $feedbacks = Feedback::orderBy('id', 'desc')->paginate(5);
 
         $data = [
@@ -44,8 +46,9 @@ class AdminController extends Controller
             return view('admins.dashboards.profile');
         }
     }
-    
-    public function editProfile (Request $request) {
+
+    public function editProfile(Request $request)
+    {
         $userID = Auth::id();
         $user = User::find($userID);
         $user->name = $request->name;
@@ -64,7 +67,8 @@ class AdminController extends Controller
         return redirect()->route('profile')->with('update', 'success');
     }
 
-    public function changePassword (Request $request) {
+    public function changePassword(Request $request)
+    {
         $request->validate([
             'current_password' => 'required',
             'password' => 'required|confirmed|min:8',
@@ -80,20 +84,21 @@ class AdminController extends Controller
         }
         return back()->withErrors(['current_password' => 'Mật khẩu hiện tại không đúng.'])->withInput();
     }
-    
-    public function listUsers (Request $request) {
+
+    public function listUsers(Request $request)
+    {
         $keywords = $request->input('keywords');
         $sortBy = $request->input('sortBy', 'id');
         $sortDirection = $request->input('sortDirection', 'desc');
-    
+
         $query = User::orderBy($sortBy, $sortDirection);
-    
+
         if (!empty($keywords)) {
             $query->where(function ($query) use ($keywords) {
                 $query->where('name', 'like', '%' . $keywords . '%');
             });
         }
-    
+
         $users = $query->paginate(5);
 
         return view('admins.dashboards.list-users', compact('users', 'keywords', 'sortBy', 'sortDirection'));

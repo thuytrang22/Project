@@ -97,7 +97,7 @@
             <th>Số Tiền</th>
             <th>Loại</th>
             <th>Ngày</th>
-            <!-- <th width="280px">Hành Động</th> -->
+            <!-- <th width="200px">Hành Động</th> -->
           </tr>
         </thead>
         <tbody>

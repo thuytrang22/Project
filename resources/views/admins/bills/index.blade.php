@@ -52,7 +52,7 @@ $statuses = [
           <!-- feature search -->
           <form action="?" class="col-auto ms-auto navbar-end">
             <div class="input-group">
-              <input type="text" name="keywords" class="form-control" placeholder="Tìm kiếm khách hàng..." />
+              <input type="text" name="keywords" class="form-control" placeholder="Tìm kiếm khách hàng..." value="{{$keywords}}"/>
               <button type="submit" class="button green">Tìm Kiếm </button>
             </div>
           </form>
@@ -75,7 +75,7 @@ $statuses = [
               <th>Tên Khách Hàng</th>
               <th>Tổng hóa đơn</th>
               <th>Trạng thái</th>
-              <th width="280px">Hành Động</th>
+              <th width="200px">Hành Động</th>
             </tr>
           </thead>
           <tbody>
@@ -118,15 +118,15 @@ $statuses = [
         <!-- pagination -->
         <ul class="pagination flex float-right">
           <li class="page-item {{ ($bills->currentPage() == 1) ? 'disabled' : '' }}">
-            <a class="page-link" href="{{ $bills->url(1) }}"><span aria-hidden="true">&laquo;</span></a>
+            <a class="page-link" href="{{ $bills->appends(['keywords' => $keywords])->url(1) }}"><span aria-hidden="true">&laquo;</span></a>
           </li>
           @for ($i = 1; $i <= $bills->lastPage(); $i++)
             <li class="page-item {{ ($bills->currentPage() == $i) ? 'active' : '' }}">
-              <a class="page-link" href="{{ $bills->url($i) }}">{{ $i }}</a>
+              <a class="page-link" href="{{ $bills->appends(['keywords' => $keywords])->url($i) }}">{{ $i }}</a>
             </li>
             @endfor
             <li class="page-item {{ ($bills->currentPage() == $bills->lastPage()) ? 'disabled' : '' }}">
-              <a class="page-link" href="{{ $bills->url($bills->lastPage()) }}"><span aria-hidden="true">&raquo;</span></a>
+              <a class="page-link" href="{{ $bills->appends(['keywords' => $keywords])->url($bills->lastPage()) }}"><span aria-hidden="true">&raquo;</span></a>
             </li>
         </ul>
       </div>

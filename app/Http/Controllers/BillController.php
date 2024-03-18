@@ -13,6 +13,8 @@ class BillController extends Controller
 {
     const BILL_STATUS_NONE = 0;
     const BILL_STATUS_DONE = 1;
+    const VAT = 10;
+
     /**
      * Display a listing of the resource.
      *
@@ -69,10 +71,11 @@ class BillController extends Controller
             $total += ($orderMenu->amount * $orderMenu->menu->price);
         }
 
+        $vat = (self::VAT / 100) * $total;
         $data = [
             'order_id' => $orderId,
             'status' => self::BILL_STATUS_NONE,
-            'total_order' => $total,
+            'total_order' => $total + $vat,
         ];
         $bill = Bill::create($data);
 
@@ -88,8 +91,9 @@ class BillController extends Controller
     public function show($id)
     {
         $bill = Bill::with(['order', 'order.infor', 'order.orderMenus'])->findOrFail($id);
+        $vat = self::VAT;
 
-        return view('admins.bills.detail', ['bill' => $bill]);
+        return view('admins.bills.detail', ['bill' => $bill, 'vat' => $vat]);
     }
 
     /**
@@ -133,18 +137,22 @@ class BillController extends Controller
     public function payment($id)
     {
         $bill = Bill::with(['order', 'order.infor', 'order.orderMenus'])->findOrFail($id);
+        $vat = self::VAT;
 
         return view('admins.bills.payment', [
-            'bill' => $bill
+            'bill' => $bill,
+            'vat' => $vat
         ]);
     }
 
     public function print($id)
     {
         $bill = Bill::with(['order', 'order.infor', 'order.orderMenus'])->findOrFail($id);
+        $vat = self::VAT;
 
         return view('admins.bills.print', [
-            'bill' => $bill
+            'bill' => $bill,
+            'vat' => $vat
         ]);
     }
 }

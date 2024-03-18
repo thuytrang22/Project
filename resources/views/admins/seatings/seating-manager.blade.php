@@ -50,7 +50,7 @@
           <!-- feature search -->
           <form action="?" class="col-auto ms-auto navbar-end">
             <div class="input-group">
-              <input type="text" name="keywords" class="form-control" placeholder="Tìm kiếm danh mục..." />
+              <input type="text" name="keywords" class="form-control" placeholder="Tìm kiếm danh mục..." value="{{$keywords}}"/>
               <button type="submit" class="button green">Tìm Kiếm </button>
             </div>
           </form>
@@ -73,7 +73,7 @@
               <th>Bàn Trống</th>
               <th>Đã Đặt</th>
               <th>Đang sử dụng</th>
-              <th width="280px">Hành Động</th>
+              <th width="200px">Hành Động</th>
             </tr>
           </thead>
           <tbody>

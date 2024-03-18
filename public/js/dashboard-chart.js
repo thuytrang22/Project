@@ -158,6 +158,13 @@ let loadChart = function (startDate, endDate) {
                         mode: "nearest",
                         intersect: 0,
                         position: "nearest",
+                        callbacks: {
+                            label: function(tooltipItem, data) {
+                                var dataset = data.datasets[tooltipItem.datasetIndex]
+                                var currentValue = dataset.data[tooltipItem.index]
+                                return currentValue.toLocaleString('en-US') + 'đ'
+                            }
+                        }
                     },
                     scales: {
                         yAxes: [
@@ -171,6 +178,9 @@ let loadChart = function (startDate, endDate) {
                                 ticks: {
                                     padding: 20,
                                     fontColor: "#9a9a9a",
+                                    callback: function(value, index, values) {
+                                        return value.toLocaleString('en-US') + 'đ'
+                                    }
                                 },
                             },
                         ],

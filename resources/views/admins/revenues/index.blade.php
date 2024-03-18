@@ -35,9 +35,6 @@
           <span class="icon"><i class="mdi mdi-buffer"></i></span>
           Biểu Đồ Thống Kê Doanh Thu
         </p>
-        <a href="{{ url()->full() }}" class="card-header-icon">
-          <span class="icon"><i class="mdi mdi-reload"></i></span>
-        </a>
       </header>
     <div class="card-body">
     <div class="row justify-content-between">

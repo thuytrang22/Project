@@ -53,7 +53,7 @@
             <!-- feature search -->
             <form action="?" class="col-auto ms-auto navbar-end">
                 <div class="input-group">
-                    <input type="text" name="keywords" class="form-control" placeholder="Tìm kiếm món ăn..." />
+                    <input type="text" name="keywords" class="form-control" placeholder="Tìm kiếm món ăn..." value="{{$keywords}}"/>
                     <button type="submit" class="button green">Tìm kiếm</button>
                 </div>
             </form>
@@ -135,15 +135,15 @@
       <!-- pagination -->
 <ul class="pagination flex float-right">
     <li class="page-item {{ ($menus->currentPage() == 1) ? 'disabled' : '' }}">
-        <a class="page-link" href="{{ $menus->url(1) }}"><span aria-hidden="true">&laquo;</span></a>
+        <a class="page-link" href="{{ $menus->appends(['keywords' => $keywords])->url(1) }}"><span aria-hidden="true">&laquo;</span></a>
     </li>
     @for ($i = 1; $i <= $menus->lastPage(); $i++)
         <li class="page-item {{ ($menus->currentPage() == $i) ? 'active' : '' }}">
-            <a class="page-link" href="{{ $menus->url($i) }}">{{ $i }}</a>
+            <a class="page-link" href="{{ $menus->appends(['keywords' => $keywords])->url($i) }}">{{ $i }}</a>
         </li>
         @endfor
         <li class="page-item {{ ($menus->currentPage() == $menus->lastPage()) ? 'disabled' : '' }}">
-            <a class="page-link" href="{{ $menus->url($menus->lastPage()) }}"><span aria-hidden="true">&raquo;</span></a>
+            <a class="page-link" href="{{ $menus->appends(['keywords' => $keywords])->url($menus->lastPage()) }}"><span aria-hidden="true">&raquo;</span></a>
         </li>
 </ul>
     </div>

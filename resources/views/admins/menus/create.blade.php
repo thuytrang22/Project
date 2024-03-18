@@ -4,7 +4,7 @@
 <form action="{{ route('menus.store', ['category' => $category->id]) }}" method="POST" class="card mt-3" enctype="multipart/form-data">
     <div class="modal-header">
         <h4 class="modal-title">Thêm Món</h4>
-        <a class="btn btn-outline-warning"  href="{{ route('category.menus', ['category' => $category->id]) }}">Back</a>
+        <a class="btn btn-outline-warning"  href="{{ route('category.menus', ['category' => $category->id]) }}">Quay lại</a>
     </div>
     <div class="card-body">
         @csrf

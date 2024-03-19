@@ -24,6 +24,7 @@
     <ul>
       <li>Admin</li>
       <li>Doanh Thu</li>
+      <li>Chi Phí Vận hành</li>
     </ul>
   </div>
 </section>

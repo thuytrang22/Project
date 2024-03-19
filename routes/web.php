@@ -138,6 +138,7 @@ Route::middleware(['auth'])->group(function () {
             ->name('maintenance.cost.export');
         Route::post('/maintenance-cost/import', [MaintenanceCostController::class, 'import'])
             ->name('maintenance.cost.import');
+        Route::get('/revenue-list', [RevenueController::class, 'revenueList'])->name('revenue.list');
     });
 });
 

@@ -42,9 +42,9 @@
           <a class="button blue" href="{{ route('maintenance.cost') }}">
             Chi Phí Vận Hành
           </a>
-          <!-- <a class="button blue" style="margin-left:10px ;" href="{{ route('maintenance.cost') }}">
+          <a class="button blue" style="margin-left:10px ;" href="{{ route('revenue.list') }}">
             Doanh Thu
-          </a> -->
+          </a>
         </div>
       </div>
       <div class="card-content">

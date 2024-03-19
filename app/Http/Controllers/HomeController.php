@@ -40,10 +40,11 @@ class HomeController extends Controller
 
     public function order()
     {
-        $dishs = DB::table('menus')->where('id_category', '=', 1)->get();
-        $drinks = DB::table('menus')->where('id_category', '=', 2)->get();
-        $allMores = DB::table('menus')->get();
-        return view('homes.order', compact('dishs', 'drinks', 'allMores'));
+        $appetizer = DB::table('menus')->where('id_category', '=', 1)->get();
+        $mainDishes = DB::table('menus')->where('id_category', '=', 2)->get();
+        $dessert = DB::table('menus')->where('id_category', '=', 3)->get();
+        $categorys = DB::table('categories')->get();
+        return view('homes.order', compact('categorys', 'appetizer', 'mainDishes', 'dessert'));
     }
 
     public function getMenu (Request $request, $table, $option)

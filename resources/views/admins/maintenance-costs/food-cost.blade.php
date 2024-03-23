@@ -22,6 +22,8 @@
     <ul>
       <li>Admin</li>
       <li>Doanh Thu</li>
+      <li>Chi Phí Vận hành</li>
+      <li>Chi Phí Thực Phẩm</li>
     </ul>
   </div>
 </section>
@@ -30,7 +32,7 @@
       <header class="card-header">
         <p class="card-header-title">
           <span class="icon"><i class="mdi mdi-buffer"></i></span>
-          Danh Sách Doanh Thu
+          Danh Sách Chi Phí Thực Phẩm
         </p>
       </header>
     <div class="card-body">
@@ -51,7 +53,7 @@
           <thead>
           <tr class="text-center table-active">
                 <th>
-                    <a class="flex content-center items-center" href="{{ route('revenue.list', ['sortBy' => 'id', 'sortDirection' => ($sortDirection == 'asc' && $sortBy == 'id') ? 'desc' : 'asc']) }}">
+                    <a class="flex content-center items-center" href="{{ route('food.cost', ['sortBy' => 'id', 'sortDirection' => ($sortDirection == 'asc' && $sortBy == 'id') ? 'desc' : 'asc']) }}">
                         STT
                         <div class="sort">
                             <div class="arrow-up"></div>
@@ -59,17 +61,23 @@
                         </div>
                     </a>
                 </th>
-                <th>Mã Hóa Đơn</th>
-                <th>Tổng Tiền Hóa Đơn</th>
+                <th>Tên Thực Phẩm</th>
+                <th>Số Lượng</th>
+                <th>Đơn Vị</th>
+                <th>Đơn Giá</th>
+                <th>Thành Tiền</th>
             </tr>
           </thead>
           <tbody>
-            @if(count($bills) > 0)
-              @foreach($bills as $bill)
+            @if(count($warehouses) > 0)
+              @foreach($warehouses as $warehouses)
                 <tr class="text-center">
-                  <td>{{$bill->id}}</td>
-                  <td>{{$bill->order_id}}</td>
-                  <td>{{$bill->total_order}}</td>
+                  <td>{{$warehouses->id}}</td>
+                  <td>{{$warehouses->name}}</td>
+                  <td>{{$warehouses->quantity}}</td>
+                  <td>{{$warehouses->measure}}</td>
+                  <td>{{$warehouses->price}}</td>
+                  <td>{{$warehouses->price * $warehouses->quantity}}</td>
                 </tr>
               @endforeach
             @else
@@ -79,22 +87,7 @@
             @endif
         </tbody>
       </table>
-      <!-- pagination -->
-        <ul class="pagination flex float-right">
-          <li class="page-item {{ ($bills->currentPage() == 1) ? 'disabled' : '' }}">
-              <a class="page-link" href="{{ $bills->appends(['keywords' => $keywords])->url(1) }}"><span aria-hidden="true">&laquo;</span></a>
-          </li>
-          @for ($i = 1; $i <= $bills->lastPage(); $i++)
-            <li class="page-item {{ ($bills->currentPage() == $i) ? 'active' : '' }}">
-              <a class="page-link" href="{{ $bills->appends(['keywords' => $keywords])->url($i) }}">{{ $i }}</a>
-            </li>
-          @endfor
-            <li class="page-item {{ ($bills->currentPage() == $bills->lastPage()) ? 'disabled' : '' }}">
-              <a class="page-link" href="{{ $bills->appends(['keywords' => $keywords])->url($bills->lastPage()) }}"><span aria-hidden="true">&raquo;</span></a>
-            </li>
-        </ul>
-        </div>
-        
+     
     </div>
     
   </section>

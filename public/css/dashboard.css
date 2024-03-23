@@ -235,3 +235,75 @@ th, td {
     border-bottom-right-radius: calc(0.3rem - 1px);
     border-bottom-left-radius: calc(0.3rem - 1px);
 }
+
+#revenues-start-date, 
+#revenues-end-date {
+    border-width: 1px; 
+    width: 115px; 
+    height: 40px; 
+    margin: 5px 0; 
+    border-radius: 5px;
+}
+
+#big-line-chart {
+    height: 400px; 
+    width: 1197px;
+}
+
+#noteRed {
+    width: 10px;
+    height: 10px;
+    background-color: #FF3860;
+    margin-right: 5px;
+}
+
+#noteGreen{
+    width: 10px;
+    height: 10px;
+    background-color: #00D1B2;
+    margin-right: 5px;
+}
+
+#noteBlue{
+    width: 10px;
+    height: 10px;
+    background-color: #209CEE;
+    margin-right: 5px;
+}
+
+.alert {
+    position: relative;
+    padding: 1rem 1rem;
+    margin-bottom: 1rem;
+    border: 1px solid transparent;
+    border-radius: .25rem;
+}
+
+.alert-success {
+    color: #0f5132;
+    background-color: #d1e7dd;
+    border-color: #badbcc;
+}
+
+.alert-warning {
+    color: #664d03;
+    background-color: #fff3cd;
+    border-color: #ffecb5;
+}
+
+.alert-danger {
+    color: #842029;
+    background-color: #f8d7da;
+    border-color: #f5c2c7;
+}
+
+.bt-table {
+    border-top: 1px solid black;
+}
+.bb-table{
+    border-bottom: 1px solid black;
+}
+
+th, td {
+    padding: 5px;
+}

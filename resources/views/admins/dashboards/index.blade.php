@@ -59,7 +59,7 @@
               Hiệu suất
             </h3>
             <h1>
-              {{ $data['performance'] }}
+            {{ number_format(floatval($data['performance']), 1) }}%
             </h1>
           </div>
           <span class="icon widget-icon text-red-500"><i class="mdi mdi-finance mdi-48px"></i></span>

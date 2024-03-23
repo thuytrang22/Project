@@ -491,70 +491,19 @@
         <div class="testimonials-slider swiper" data-aos="fade-up" data-aos-delay="100">
           <div class="swiper-wrapper">
 
+            @foreach($feedbacks as $feedback)
             <div class="swiper-slide">
               <div class="testimonial-item">
                 <p>
                   <i class="bx bxs-quote-alt-left quote-icon-left"></i>
-                  Proin iaculis purus consequat sem cure digni ssim donec porttitora entum suscipit rhoncus. Accusantium quam, ultricies eget id, aliquam eget nibh et. Maecen aliquam, risus at semper.
+                    {{ $feedback->message }}
                   <i class="bx bxs-quote-alt-right quote-icon-right"></i>
                 </p>
-                <img src="assets/img/testimonials/testimonials-1.jpg" class="testimonial-img" alt="">
-                <h3>Saul Goodman</h3>
-                <h4>Ceo &amp; Founder</h4>
+                <img src="assets/img/testimonials/user.png" class="testimonial-img" alt="">
+                {{ $feedback->name }}
               </div>
             </div><!-- End testimonial item -->
-
-            <div class="swiper-slide">
-              <div class="testimonial-item">
-                <p>
-                  <i class="bx bxs-quote-alt-left quote-icon-left"></i>
-                  Export tempor illum tamen malis malis eram quae irure esse labore quem cillum quid cillum eram malis quorum velit fore eram velit sunt aliqua noster fugiat irure amet legam anim culpa.
-                  <i class="bx bxs-quote-alt-right quote-icon-right"></i>
-                </p>
-                <img src="assets/img/testimonials/testimonials-2.jpg" class="testimonial-img" alt="">
-                <h3>Sara Wilsson</h3>
-                <h4>Designer</h4>
-              </div>
-            </div><!-- End testimonial item -->
-
-            <div class="swiper-slide">
-              <div class="testimonial-item">
-                <p>
-                  <i class="bx bxs-quote-alt-left quote-icon-left"></i>
-                  Enim nisi quem export duis labore cillum quae magna enim sint quorum nulla quem veniam duis minim tempor labore quem eram duis noster aute amet eram fore quis sint minim.
-                  <i class="bx bxs-quote-alt-right quote-icon-right"></i>
-                </p>
-                <img src="assets/img/testimonials/testimonials-3.jpg" class="testimonial-img" alt="">
-                <h3>Jena Karlis</h3>
-                <h4>Store Owner</h4>
-              </div>
-            </div><!-- End testimonial item -->
-
-            <div class="swiper-slide">
-              <div class="testimonial-item">
-                <p>
-                  <i class="bx bxs-quote-alt-left quote-icon-left"></i>
-                  Fugiat enim eram quae cillum dolore dolor amet nulla culpa multos export minim fugiat minim velit minim dolor enim duis veniam ipsum anim magna sunt elit fore quem dolore labore illum veniam.
-                  <i class="bx bxs-quote-alt-right quote-icon-right"></i>
-                </p>
-                <img src="assets/img/testimonials/testimonials-4.jpg" class="testimonial-img" alt="">
-                <h3>Matt Brandon</h3>
-                <h4>Freelancer</h4>
-              </div>
-            </div><!-- End testimonial item -->
-
-            <div class="swiper-slide">
-              <div class="testimonial-item">
-                <p>
-                  <i class="bx bxs-quote-alt-left quote-icon-left"></i>
-                  Quis quorum aliqua sint quem legam fore sunt eram irure aliqua veniam tempor noster veniam enim culpa labore duis sunt culpa nulla illum cillum fugiat legam esse veniam culpa fore nisi cillum quid.
-                  <i class="bx bxs-quote-alt-right quote-icon-right"></i>
-                </p>
-                <img src="assets/img/testimonials/testimonials-5.jpg" class="testimonial-img" alt="">
-                <h3>John Larson</h3>
-                <h4>Entrepreneur</h4>
-              </div>
-            </div><!-- End testimonial item -->
+            @endforeach
 
           </div>
           <div class="swiper-pagination"></div>
@@ -699,31 +648,28 @@
 
           <div class="col-lg-8 mt-5 mt-lg-0">
 
-            <form action="{{ route('send.feedback') }}" method="post" role="form" >
+            <form action="{{ route('send.feedback') }}" method="post" role="form" id="feedback">
               @csrf
               <div class="section-title">
                 <h2>Gửi Ý Kiến Góp Ý Của Bạn Cho Chúng Tôi</h2>
               </div>
               <div class="row">
                 <div class="col-md-6 form-group">
-                  <input type="text" name="name" class="form-control" id="name" placeholder="Tên Của Bạn" required>
+                  <input type="text" name="name" class="form-control" id="nameFeedback" placeholder="Tên Của Bạn" required>
                 </div>
                 <div class="col-md-6 form-group mt-3 mt-md-0">
-                  <input type="email" class="form-control" name="email" id="email" placeholder="Email Của Bạn" required>
+                  <input type="email" class="form-control" name="email" id="emailFeedback" placeholder="Email Của Bạn" required>
                 </div>
               </div>
               <div class="form-group mt-3">
-                <textarea class="form-control" name="message" rows="8" placeholder="Nội Dung" required></textarea>
+                <textarea class="form-control" name="message" id="contentFeedback" rows="8" placeholder="Nội Dung" required></textarea>
               </div>
               <div class="text-center mt-3">
-                <button type="submit">Gửi Tin Nhắn</button>
+                <button type="submit" class="btn-form" id="sendMessage">Gửi Tin Nhắn</button>
               </div>
             </form>
-
           </div>
-
         </div>
-
       </div>
     </section><!-- End Contact Section -->
 
@@ -737,55 +683,39 @@
 
           <div class="col-lg-3 col-md-6">
             <div class="footer-info">
-              <h3>NHÀ HÀNG</h3>
+              <h3>Địa Chỉ Nhà Hàng</h3>
               <p>
               số 90 Nguyễn Trãi, <br>
               Quận Thanh Xuân, Hà Nội.
-                <br><br>
-                <strong>Phone:</strong> +84 332 412 298<br>
-                <strong>Email:</strong> hanasushi@gmail.com<br>
               </p>
-              <div class="social-links mt-3">
-                <a href="{{ url()->full() }}" class="twitter"><i class="bx bxl-twitter"></i></a>
-                <a href="{{ url()->full() }}" class="facebook"><i class="bx bxl-facebook"></i></a>
-                <a href="{{ url()->full() }}" class="instagram"><i class="bx bxl-instagram"></i></a>
-                <a href="{{ url()->full() }}" class="google-plus"><i class="bx bxl-skype"></i></a>
-                <a href="{{ url()->full() }}" class="linkedin"><i class="bx bxl-linkedin"></i></a>
-              </div>
             </div>
+          </div>
+
+          <div class="col-lg-4 col-md-6 footer-newsletter">
+          <div class="footer-info">
+          <h3>Liên Hệ</h3>
+            <p>
+              <strong>Phone:</strong> +84 332 412 298<br>
+              <strong>Email:</strong> hanasushi@gmail.com<br>             
+            </p>
+          </div>
           </div>
 
           <div class="col-lg-2 col-md-6 footer-links">
             <h4>Danh Mục</h4>
             <ul>
-              <li><i class="bx bx-chevron-right"></i> <a href="{{ url()->full() }}">Tràn Chủ</a></li>
+              <li><i class="bx bx-chevron-right"></i> <a href="{{ url()->full() }}">Trang Chủ</a></li>
               <li><i class="bx bx-chevron-right"></i> <a href="{{ url()->full() }}">Về Chúng Tôi</a></li>
-              <li><i class="bx bx-chevron-right"></i> <a href="{{ url()->full() }}">Dịch Vụ</a></li>
-              <li><i class="bx bx-chevron-right"></i> <a href="{{ url()->full() }}">Điều Khoản Dịch Vụ</a></li>
-              <li><i class="bx bx-chevron-right"></i> <a href="{{ url()->full() }}">Chính Sách Bảo Mật</a></li>
             </ul>
           </div>
 
           <div class="col-lg-3 col-md-6 footer-links">
-            <h4>Our Services</h4>
+            <h4>Dịch Vụ và chính Sách</h4>
             <ul>
-              <li><i class="bx bx-chevron-right"></i> <a href="{{ url()->full() }}">Web Design</a></li>
-              <li><i class="bx bx-chevron-right"></i> <a href="{{ url()->full() }}">Web Development</a></li>
-              <li><i class="bx bx-chevron-right"></i> <a href="{{ url()->full() }}">Product Management</a></li>
-              <li><i class="bx bx-chevron-right"></i> <a href="{{ url()->full() }}">Marketing</a></li>
-              <li><i class="bx bx-chevron-right"></i> <a href="{{ url()->full() }}">Graphic Design</a></li>
+              <li><i class="bx bx-chevron-right"></i> <a href="{{ url()->full() }}">Dịch Vụ</a></li>
+              <li><i class="bx bx-chevron-right"></i> <a href="{{ url()->full() }}">Chính Sách Bảo Mật</a></li>
             </ul>
           </div>
-
-          <div class="col-lg-4 col-md-6 footer-newsletter">
-            <h4>Our Newsletter</h4>
-            <p>Tamen quem nulla quae legam multos aute sint culpa legam noster magna</p>
-            <form action="" method="post">
-              <input type="email" name="email"><input type="submit" value="Subscribe">
-            </form>
-
-          </div>
-
         </div>
       </div>
     </div>

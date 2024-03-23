@@ -286,3 +286,7 @@
   });
 
 })()
+
+$("#sendMessage").click(function() {
+  confirm("Bạn có chắc muốn gửi đánh giá này đến nhà hàng?")
+});

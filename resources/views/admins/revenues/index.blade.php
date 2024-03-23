@@ -8,13 +8,13 @@
 @endif
 
 @if ( session('update'))
-  <div id="update" class="alert alert-success alert-dismissible fade show mt-2" role="alert">
+  <div id="update" class="alert alert-warning alert-dismissible fade show mt-2" role="alert">
     Sửa danh mục thành công!!!
   </div>
 @endif
 
 @if ( session('destroy'))
-  <div id="destroy" class="alert alert-success alert-dismissible fade show mt-2" role="alert">
+  <div id="destroy" class="alert alert-danger alert-dismissible fade show mt-2" role="alert">
     Xóa danh mục thành công!!!
   </div>
 @endif

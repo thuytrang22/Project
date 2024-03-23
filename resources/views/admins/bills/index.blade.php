@@ -8,7 +8,7 @@
 @endif
 
 @if ( session('update'))
-<div id="update" class="alert alert-success alert-dismissible fade show mt-2" role="alert">
+<div id="update" class="alert alert-warning alert-dismissible fade show mt-2" role="alert">
   Thanh toán thành công!!!
 </div>
 @endif
@@ -91,7 +91,7 @@ $statuses = [
                 <div class="flex gap-10 justify-center">
                   <!-- feature show -->
                   <a class="flex justify-center btn btn-icon btn-outline-warning" href="{{ route('bills.show', ['id' => $bill->id]) }}">
-                    <img src="/images/menu.png" alt="">
+                    <img src="/images/bill.png" alt="">
                   </a>
 
                   @if($bill->status == 0)
@@ -101,7 +101,7 @@ $statuses = [
                   </a>
                   @else
                   <a class="flex justify-center btn btn-icon btn-outline-warning btnEdit" href="{{route('bills.print', ['id' => $bill->id])}}" target="_blank">
-                    <img src="/images/check-list.png" alt="In Hóa Đơn">
+                    <img src="/images/printer.png" alt="In Hóa Đơn">
                   </a>
                   @endif
                 </div>

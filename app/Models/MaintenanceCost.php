@@ -19,5 +19,6 @@ class MaintenanceCost extends Model
     protected $fillable = [
         'name',
         'expense',
+        'type',
     ];
 }

@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\PaymentType;
 use App\Http\Requests\StorePaymentTypeRequest;
 use App\Http\Requests\UpdatePaymentTypeRequest;
+use Illuminate\Http\Request;
 
 class PaymentTypeController extends Controller
 {
@@ -13,9 +14,22 @@ class PaymentTypeController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function paymentList(Request $request)
     {
-        //
+        $keywords = $request->input('keywords');
+        $sortBy = $request->input('sortBy', 'id');
+        $sortDirection = $request->input('sortDirection', 'desc');
+    
+        $query = PaymentType::orderBy($sortBy, $sortDirection);
+    
+        if (!empty($keywords)) {
+            $query->where(function ($query) use ($keywords) {
+                $query->where('name', 'like', '%' . $keywords . '%');
+            });
+        }
+    
+        $paymentTypes = $query->paginate(5);
+        return view ('admins.payments.index', compact('paymentTypes', 'keywords', 'sortBy', 'sortDirection'));
     }
 
     /**
@@ -25,7 +39,7 @@ class PaymentTypeController extends Controller
      */
     public function create()
     {
-        //
+        return view('admins.payments.create');
     }
 
     /**
@@ -34,31 +48,26 @@ class PaymentTypeController extends Controller
      * @param  \App\Http\Requests\StorePaymentTypeRequest  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(StorePaymentTypeRequest $request)
-    {
-        //
-    }
-
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Models\PaymentType  $paymentType
-     * @return \Illuminate\Http\Response
-     */
-    public function show(PaymentType $paymentType)
-    {
-        //
+    public function store(Request $request)
+    {        
+        $data = [
+            'name' => $request->input('name')
+        ];
+        PaymentType::create($data);
+        return redirect()->route('payment.list')->with('store', 'success');
     }
 
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\PaymentType  $paymentType
+     * @param  \App\Models\PaymentType  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit(PaymentType $paymentType)
+    public function edit(PaymentType $id)
     {
-        //
+        return view('admins.payments.edit', [
+            'payment' => $id
+        ]);
     }
 
     /**
@@ -68,9 +77,13 @@ class PaymentTypeController extends Controller
      * @param  \App\Models\PaymentType  $paymentType
      * @return \Illuminate\Http\Response
      */
-    public function update(UpdatePaymentTypeRequest $request, PaymentType $paymentType)
+    public function update(Request $request)
     {
-        //
+        $payment = PaymentType::find($request->id);
+        $payment->name = $request->name;
+        $payment->save();
+
+        return redirect()->route('payment.list')->with('update', 'success');
     }
 
     /**
@@ -79,8 +92,9 @@ class PaymentTypeController extends Controller
      * @param  \App\Models\PaymentType  $paymentType
      * @return \Illuminate\Http\Response
      */
-    public function destroy(PaymentType $paymentType)
+    public function destroy($id)
     {
-        //
+        PaymentType::destroy($id);
+        return redirect()->route('payment.list')->with('destroy', 'success');
     }
 }

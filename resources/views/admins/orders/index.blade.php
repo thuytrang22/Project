@@ -48,6 +48,9 @@
     <div class="card-body">
       <div class="row justify-content-between">
         <div class="flex gap-10" style="padding: 10px">
+          <a class="button blue" href="{{route('payment.list')}}">
+            Quản lý thanh toán
+          </a>
           <!-- feature search -->
           <form action="?" class="col-auto ms-auto navbar-end">
             <div class="input-group">
@@ -74,12 +77,13 @@
               <th>Số Điện Thoại</th>
               <th>Số Bàn</th>
               <th>Thời Gian</th>
+              <th>Thanh Toán</th>
               <th width="200px">Hành Động</th>
             </tr>
           </thead>
           <tbody>
             @if(count($orders) > 0)
-            @foreach($orders as $order)
+            @foreach($orders as $order )
             <tr class="text-center">
               <td>{{$order->id}}</td>
               <td>{{$order->name}}</td>
@@ -87,16 +91,34 @@
               <td>{{$order->table_number}}</td>
               <td>{{date('d/m/Y', strtotime($order->created_at))}}</td>
               <td>
+                <form>
+                  @csrf
+                  <select name="name" class="paymentType" data-payment-id="{{$order->id}}">
+                      <option value="Chọn bàn">Chọn phương thức</option>
+                        @foreach($paymentType as $payment)
+                            @if($order->payment_type_id == $payment->name)
+                                <option value="{{$payment->id}}" selected>{{$payment->name}}</option>
+                            @elseif($order->payment_type_id != $payment->name)
+                                <option value="{{$payment->id}}">{{$payment->name}}</option>
+                            @endif
+                        @endforeach
+                  </select>
+                </form>
+              </td>
+              <td>
                 <div class="flex justify-center gap-10">
                   <!-- feature detail -->
-                  <a class="flex justify-center btn btn-icon btn-outline-warning btnEdit" href="{{ route('order.show', ['id' => $order->id]) }}">
+                  <a class="flex justify-center btn btn-icon btn-outline-warning btnEdit"
+                  data-bs-toggle="tooltip" data-bs-placement="top"  title="Xem chi tiết đơn hàng"
+                  href="{{ route('order.show', ['id' => $order->id]) }}">
                     <img src="/images/eye.png" alt="Chi tiết">
                   </a>
 
                   <form action="{{ route('bills.store') }}" method="POST" class="card mt-3" enctype="multipart/form-data">
                     @csrf
                     <input type="hidden" name="order_id" value="{{ $order->id }}">
-                    <button type="submit" class="flex justify-center btn btn-icon btn-outline-warning btnEdit">
+                    <button type="submit" class="flex justify-center btn btn-icon btn-outline-warning btnEdit"
+                    data-bs-toggle="tooltip" data-bs-placement="top"  title="Thanh toán thẻ">
                       <img src="/images/pay-card.png" alt="Thanh toán">
                     </button>
                   </form>
@@ -105,7 +127,8 @@
                   <form method="POST" action="{{ route('order.destroy', ['id' => $order->id])}}">
                     @csrf
                     @method('DELETE')
-                    <button type="submit" class="flex justify-center btn btn-outline-warning btn-icon">
+                    <button type="submit" class="flex justify-center btn btn-outline-warning btn-icon"
+                    data-bs-toggle="tooltip" data-bs-placement="top"  title="Xác nhập xóa">
                       <img src="/images/delete.png" alt="Xóa">
                     </button>
                   </form>
@@ -136,8 +159,33 @@
             </li>
         </ul>
       </div>
-
-
 </section>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script>
+$(document).ready(function () {
+$('.paymentType').change(function () {
+  var orderid = $(this).data('payment-id');
+  var paymentId = $(this).val();
+  if (paymentId) {
+      $.ajax({
+          url: '/admin/payment/update-payment',
+          method: 'POST',
+          data: {
+              _token: '{{ csrf_token() }}',
+              id: orderid,
+              payment_type_id: paymentId
+          },
+          success: function (response) {
+            alert('Dữ liệu đã được cập nhật thành công');
+          },
+          error: function (xhr, status, error) {
+              console.error(xhr.responseText);
+          }
+      });
+  }
+  });
 
+  
+});
+</script>
 @endsection

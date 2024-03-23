@@ -46,13 +46,12 @@
     <div class="card-body">
     <div class="row justify-content-between" style="padding: 10px">
         <div class="flex gap-10" style="padding-bottom: 10px">
-                <a class="button blue" href="{{route('warehouses.import.list')}}">
-                  Quản lý nhập kho
-                </a>
-                <a class="button blue" href="{{route('warehouses.export.list')}}">
-                  Quản lý xuất kho
-                </a>
-                
+            <a class="button blue" href="{{route('warehouses.import.list')}}">
+              Quản lý nhập kho
+            </a>
+            <a class="button blue" href="{{route('warehouses.export.list')}}">
+              Quản lý xuất kho
+            </a>
             <!-- feature search -->
             <form action="?" class="col-auto ms-auto navbar-end">
                 <div class="input-group">

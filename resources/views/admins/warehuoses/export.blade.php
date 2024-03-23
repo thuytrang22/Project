@@ -7,14 +7,13 @@
   </div>
 @endif
 @if (session('update'))
-  <div id="update" class="bg-green-500 text-white px-4 py-2 rounded-md border border-green-600 mt-2" role="alert">
+  <div id="update" class="alert alert-warning alert-dismissible fade show mt-2" role="alert">
     Sửa thành công!!!
   </div>
 @endif
 
-
 @if ( session('destroy'))
-  <div id="destroy" class="alert alert-success alert-dismissible fade show mt-2" role="alert">
+  <div id="destroy" class="alert alert-danger alert-dismissible fade show mt-2" role="alert">
     Xóa thành công
   </div>
 @endif

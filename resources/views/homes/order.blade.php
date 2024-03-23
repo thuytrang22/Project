@@ -124,17 +124,18 @@
       Tổng:
       <input id="gia" type="text"></div>
       <form id="formOrder" action="{{route('order.store')}}" method="POST" enctype="multipart/form-data">
-      @csrf
-      @if(session('infor_id'))
-        <input type="hidden" name="infor_id" value="{{ session('infor_id') }}">
-        <button type="submit" class="btn btn-primary" id="btnOrder">Đặt món</button>
-      @else
-      <div class="d-flex justify-content-end">
-        <button type="submit" class="btn btn-primary" id="btnOrder" disabled>Đặt món</button>
-      </div>
-        
-        <p style="color: red;">Bạn phải quét Qr lại để đặt món</p>
-      @endif
+        @csrf
+        @if(session('infor_id'))
+          <input type="hidden" name="infor_id" value="{{ session('infor_id') }}">
+          <button type="submit" class="btn btn-primary" id="btnOrder">Đặt món</button>
+        @else
+        <div class="d-flex justify-content-end">
+          <button type="submit" class="btn btn-primary" id="btnOrder" disabled>Đặt món</button>
+        </div>
+        <!-- <div class="mb-3"> -->
+          <p style="color: red;">Bạn phải quét Qr lại để đặt món</p>
+        <!-- </div> -->
+        @endif
       </form>
     </div>
   </nav>

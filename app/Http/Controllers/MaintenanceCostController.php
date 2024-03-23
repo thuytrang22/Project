@@ -6,6 +6,7 @@ use App\Exports\MaintenanceCostExport;
 use App\Imports\MaintenanceCostImport;
 use App\Models\CostType;
 use App\Models\MaintenanceCost;
+use App\Models\Warehouse;
 use Illuminate\Http\Request;
 use Maatwebsite\Excel\Facades\Excel;
 
@@ -72,49 +73,51 @@ class MaintenanceCostController extends Controller
     }
 
     /**
-     * Display the specified resource.
-     *
-     * @param  \App\Models\MaintennanceCost  $maintennanceCost
-     * @return \Illuminate\Http\Response
-     */
-    public function show()
-    {
-        //
-    }
-
-    /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\MaintennanceCost  $maintennanceCost
+     * @param  \App\Models\MaintenanceCost  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit()
+    public function edit(MaintenanceCost $id)
     {
-        //
+        $costTypes = CostType::get();
+        return view('admins.maintenance-costs.edit', [
+            'maintenanceCost' => $id
+        ], ['costTypes' => $costTypes]);
     }
 
     /**
      * Update the specified resource in storage.
      *
      * @param  \App\Http\Requests\UpdateMaintennanceCostRequest  $request
-     * @param  \App\Models\MaintennanceCost  $maintennanceCost
+     * @param  \App\Models\MaintenanceCost  $maintennanceCost
      * @return \Illuminate\Http\Response
      */
-    public function update()
+    public function update(Request $request)
     {
-        //
+        $maintenanceCost = MaintenanceCost::find($request->id);
+        $maintenanceCost->name = $request->name;
+        $maintenanceCost->expense = $request->expense;
+        $maintenanceCost->type = $request->type;
+        $maintenanceCost->save();
+
+        return redirect()->route('maintenance.cost')->with('update', 'success');
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\MaintennanceCost  $maintennanceCost
+     * @param  \App\Models\MaintenanceCost  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy()
+    public function destroy($id)
     {
-        //
+        $maintenanceCost = MaintenanceCost::findOrFail($id);
+        $maintenanceCost->delete();
+
+        return redirect()->route('maintenance.cost')->with('destroy', 'success');
     }
+
 
     public function export(Request $request)
     {
@@ -133,5 +136,23 @@ class MaintenanceCostController extends Controller
         }
 
         return redirect()->route('maintenance.cost')->with('success', 'All good!');
+    }
+
+    public function foodCost(Request $request) {
+        $keywords = $request->input('keywords');
+        $sortBy = $request->input('sortBy', 'id');
+        $sortDirection = $request->input('sortDirection', 'desc');
+
+        $query = Warehouse::where('type', 1)
+        ->orderBy($sortBy, $sortDirection);
+
+        if (!empty($keywords)) {
+            $query->where(function ($query) use ($keywords) {
+                $query->where('name', 'like', '%' . $keywords . '%');
+            });
+        }
+        $warehouses = $query->paginate(5);
+        return view('admins.maintenance-costs.food-cost', 
+        compact('warehouses', 'keywords', 'sortBy', 'sortDirection'));
     }
 }

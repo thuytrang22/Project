@@ -8,6 +8,7 @@ use App\Http\Requests\StoreOrderRequest;
 use App\Models\Bill;
 use App\Models\Infor;
 use App\Models\OrderMenu;
+use App\Models\PaymentType;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
@@ -28,14 +29,20 @@ class OrderController extends Controller
             ->join('infor', 'infor.id', '=', 'orders.infor_id')
             ->select('orders.*', 'infor.name', 'infor.phone', 'infor.table_number')
             ->whereNull('orders.deleted_at')
+            ->whereNotExists(function ($subquery) {
+                $subquery->select(DB::raw(1))
+                         ->from('bills')
+                         ->whereRaw('bills.order_id = orders.id');
+            })
             ->orderBy($sortBy, $sortDirection);
 
         if (!empty($keywords)) {
             $query->where('infor.name', 'like', '%' . $keywords . '%');
         }
 
+        $paymentType = PaymentType::all();
         $orders = $query->paginate(5);
-        return view('admins.orders.index', compact('orders', 'keywords', 'sortBy', 'sortDirection', 'infor'));
+        return view('admins.orders.index', compact('orders', 'keywords', 'sortBy', 'sortDirection', 'infor', 'paymentType'));
     }
 
     /**
@@ -51,7 +58,7 @@ class OrderController extends Controller
 
         $orderData = [
             'infor_id' => $inforId,
-            'payment_type_id' => 0,
+            'payment_type_id' => 1,
         ];
         if($inforId) {
             $order = Order::create($orderData);
@@ -67,9 +74,9 @@ class OrderController extends Controller
             OrderMenu::create($orderMenuData);
         }
     }
-        $seating = Infor::find(24);
+        $seating = Infor::find($inforId);
         $seating->table_number;
-        
+
         $dishs = DB::table('menus')->where('id_category', '=', 1)->get();
         $drinks = DB::table('menus')->where('id_category', '=', 2)->get();
         $allMores = DB::table('menus')->get();
@@ -121,5 +128,12 @@ class OrderController extends Controller
         DB::commit();
 
         return redirect()->route('order.list')->with('destroy', $message);
+    }
+
+    public function updatePayment (Request $request) {
+        $payment = Order::find($request->id);
+        $payment->payment_type_id = $request->payment_type_id;
+        $payment->save();
+        return redirect()->route('payment.list')->with('update', 'success');
     }
 }

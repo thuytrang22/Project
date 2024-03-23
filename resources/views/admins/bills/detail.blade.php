@@ -32,7 +32,8 @@ $statuses = [
                 <th>STT</th>
                 <th>Tên Món Ăn</th>
                 <th>Số lượng</th>
-                <th>Giá</th>
+                <th>Đơn giá</th>
+                <th>Tổng tiền</th>
             </tr>
         </thead>
         <tbody>
@@ -43,18 +44,17 @@ $statuses = [
                 <td>{{$orderMenu->menu->name}}</td>
                 <td>{{$orderMenu->amount}}</td>
                 <td>{{number_format($orderMenu->menu->price)}}đ</td>
+                <td>{{number_format($orderMenu->menu->price * $orderMenu->amount)}}đ</td>
             </tr>
             @endforeach
             <tr>
-                <td></td>
-                <td></td>
                 <td>VAT</td>
+                <td colspan="3"></td>
                 <td>{{$vat}}%</td>
             </tr>
             <tr>
-                <td><b>Tổng Thanh Toán :</b></td>
-                <td></td>
-                <td></td>
+                <td><b>Tổng tiền thanh toán:</b></td>
+                <td colspan="3"></td>
                 <td><b>{{number_format($bill->total_order)}}đ</b></td>
             </tr>
             @else

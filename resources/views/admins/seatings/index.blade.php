@@ -8,13 +8,13 @@
 @endif
 
 @if ( session('update'))
-  <div id="update" class="alert alert-success alert-dismissible fade show mt-2" role="alert">
+  <div id="update" class="alert alert-warning alert-dismissible fade show mt-2" role="alert">
     Sửa danh mục thành công!!!
   </div>
 @endif
 
 @if ( session('destroy'))
-  <div id="destroy" class="alert alert-success alert-dismissible fade show mt-2" role="alert">
+  <div id="destroy" class="alert alert-danger alert-dismissible fade show mt-2" role="alert">
     Xóa danh mục thành công!!!
   </div>
 @endif
@@ -93,7 +93,8 @@
                   <td>
                     <form>
                       @csrf
-                      <input type="checkbox" name="status" value="{{$booking->status}}" class="bookingCheckbox" data-booking-id="{{$booking->id}}">
+                      <input type="checkbox" name="status" value="{{$booking->status}}" class="bookingCheckbox" 
+                      data-booking-id="{{$booking->id}}" data-bs-toggle="tooltip" data-bs-placement="top"  title="Đã liên hệ khách hàng">
                     </form>
                   </td>
                   <td>

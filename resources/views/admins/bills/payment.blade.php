@@ -28,27 +28,28 @@ $statuses = [
     </div>
     <table style="border-collapse: collapse; width: 100%; border-spacing: 0; border-color: #fff;">
         <thead>
-            <tr class="table-active">
+            <tr class="table-active bt-table">
                 <th>STT</th>
-                <th>Tên Món Ăn</th>
+                <th>Tên món ăn</th>
                 <th>Số lượng</th>
-                <th>Giá</th>
+                <th>Đơn giá</th>
+                <th>Tổng tiền</th>
             </tr>
         </thead>
         <tbody>
             @if(!empty($bill->order))
             @foreach($bill->order->orderMenus as $key => $orderMenu)
-            <tr class="text-center">
+            <tr class="text-center bb-table">
                 <td>{{ $key + 1 }}</td>
                 <td>{{$orderMenu->menu->name}}</td>
                 <td>{{$orderMenu->amount}}</td>
                 <td>{{number_format($orderMenu->menu->price)}}đ</td>
+                <td>{{number_format($orderMenu->menu->price * $orderMenu->amount)}}đ</td>
             </tr>
             @endforeach
             <tr>
-                <td></td>
-                <td></td>
                 <td>VAT</td>
+                <td colspan="3"></td>
                 <td>{{$vat}}%</td>
             </tr>
             @else

@@ -11,6 +11,7 @@ $canServe = [
         <ul>
             <li>Admin</li>
             <li>Đơn hàng</li>
+            <li>Chi tiết đơn hàng</li>
         </ul>
     </div>
 </section>

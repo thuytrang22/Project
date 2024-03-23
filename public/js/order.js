@@ -78,3 +78,7 @@ function decreaseQuantity(button) {
         removeFromCart(dishId, quantityInput.value, price);
     }
 }
+
+$('.infor_id').click(function() {
+    alert('Bạn phải quét lại mã Qr để đặt món!')
+})

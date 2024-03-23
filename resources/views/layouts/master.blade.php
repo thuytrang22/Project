@@ -84,16 +84,16 @@
         </li>
         @endif
         @if(auth()->user()->role_id == "1" || auth()->user()->role_id == "5" || auth()->user()->role_id == "3")
-        <li class="{{ request()->routeIs('seatings') ? 'active' : '' }}">
-            <a href="{{route('seatings')}}">
+        <li class="{{ request()->routeIs('order.list') ? 'active' : '' }}">
+            <a href="{{route('order.list')}}">
                 <span class="icon"><i class="mdi mdi-table"></i></span>
                 <span class="menu-item-label">Đơn hàng</span>
             </a>
         </li> 
         @endif
-        @if(auth()->user()->role_id == "1" || auth()->user()->role_id == "5" || auth()->user()->role_id == "3")
-        <li class="{{ request()->routeIs('order.list') ? 'active' : '' }}">
-            <a href="{{route('order.list')}}">
+        @if(auth()->user()->role_id == "1" ||  auth()->user()->role_id == "3")
+        <li class="{{ request()->routeIs('seatings') ? 'active' : '' }}">
+            <a href="{{route('seatings')}}">
                 <span class="icon"><i class="mdi mdi-table"></i></span>
                 <span class="menu-item-label">Đặt Bàn</span>
             </a>
@@ -104,6 +104,14 @@
             <a href="{{route('bills.list')}}">
                 <span class="icon"><i class="mdi mdi-table"></i></span>
                 <span class="menu-item-label">Hóa đơn</span>
+            </a>
+        </li> 
+        @endif
+        @if(auth()->user()->role_id == "1" || auth()->user()->role_id == "2")
+        <li class="{{ request()->routeIs('revenues') ? 'active' : '' }}">
+            <a href="{{route('revenues')}}">
+                <span class="icon"><i class="mdi mdi-table"></i></span>
+                <span class="menu-item-label">Doanh Thu</span>
             </a>
         </li> 
         @endif

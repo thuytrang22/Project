@@ -14,6 +14,7 @@ use App\Http\Controllers\RevenueController;
 use App\Http\Controllers\SeatingController;
 use App\Http\Controllers\FeedbackController;
 use App\Http\Controllers\MaintenanceCostController;
+use App\Http\Controllers\PaymentTypeController;
 
 /*
 |--------------------------------------------------------------------------
@@ -56,6 +57,16 @@ Route::middleware(['auth'])->group(function () {
             Route::delete('/', [OrderController::class, 'remove']);
         });
 
+        Route::prefix('/payment')->group(function () {
+            Route::get('/', [PaymentTypeController::class, 'paymentList'])->name('payment.list');
+            Route::get('/create', [PaymentTypeController::class, 'create'])->name('payment.create');
+            Route::post('/store', [PaymentTypeController::class, 'store'])->name('payment.store');
+            Route::get('{id}/edit', [PaymentTypeController::class, 'edit'])->name('payment.edit');
+            Route::put('/update', [PaymentTypeController::class, 'update'])->name('payment.update');
+            Route::delete('/{id}', [PaymentTypeController::class, 'destroy'])->name('payment.destroy');
+            Route::post('/update-payment', [OrderController::class, 'updatePayment'])->name('update.payment');
+        });
+        
         Route::prefix('/profile')->group(function () {
             Route::get('/', [AdminController::class, 'profile'])->name('profile');
             Route::get('/list_users', [AdminController::class, 'listUsers'])->name('list.users');
@@ -130,6 +141,7 @@ Route::middleware(['auth'])->group(function () {
 
     Route::prefix('/revenue')->group(function () {
         Route::get('/', [RevenueController::class, 'index'])->name('revenues');
+        Route::get('/revenue-list', [RevenueController::class, 'revenueList'])->name('revenue.list');
         Route::get('/maintenance-cost', [MaintenanceCostController::class, 'index'])->name('maintenance.cost');
         Route::get('/maintenance-cost/create', [MaintenanceCostController::class, 'create'])
             ->name('maintenance.cost.create');
@@ -138,8 +150,15 @@ Route::middleware(['auth'])->group(function () {
             ->name('maintenance.cost.export');
         Route::post('/maintenance-cost/import', [MaintenanceCostController::class, 'import'])
             ->name('maintenance.cost.import');
-        Route::get('/revenue-list', [RevenueController::class, 'revenueList'])->name('revenue.list');
+        Route::get('{id}/edit', [MaintenanceCostController::class, 'edit'])->name('maintenance.cost.edit');
+        Route::put('/update', [MaintenanceCostController::class, 'update'])->name('maintenance.cost.update');
+        Route::delete('/{id}', [MaintenanceCostController::class, 'destroy'])->name('maintenance.cost.destroy');
+        Route::get('/food-cost', [MaintenanceCostController::class, 'foodCost'])->name('food.cost');
     });
+});
+
+Route::fallback(function () {
+    return view('errors.404');
 });
 
 require __DIR__.'/auth.php';

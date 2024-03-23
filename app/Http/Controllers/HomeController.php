@@ -16,7 +16,8 @@ class HomeController extends Controller
         $mainDishes = DB::table('menus')->where('id_category', '=', 2)->get();
         $dessert = DB::table('menus')->where('id_category', '=', 3)->get();
         $categorys = DB::table('categories')->get();
-        return view ('pages.index', compact('categorys', 'appetizer', 'mainDishes', 'dessert'));
+        $feedbacks = DB::table('feedbacks')->get();
+        return view ('pages.index', compact('categorys', 'appetizer', 'mainDishes', 'dessert', 'feedbacks'));
     }
 
     public function home ($table)
@@ -65,8 +66,8 @@ class HomeController extends Controller
         $bills = DB::table('bills')
             ->select(DB::raw('DATE(created_at) AS created_at, sum(total_order) as total'))
             ->groupBy(DB::raw('DATE(created_at)'))
-            ->where('created_at', '>', $startDate)
-            ->where('created_at', '<=', $endDate)
+            ->whereDate('created_at', '>', $startDate)
+            ->whereDate('created_at', '<=', $endDate)
             ->whereNull('deleted_at')
             ->get();
 
@@ -77,16 +78,16 @@ class HomeController extends Controller
         $maintenanceCosts = DB::table('maintenance_costs')
             ->select(DB::raw('DATE(created_at) AS created_at, sum(expense) as total'))
             ->groupBy(DB::raw('DATE(created_at)'))
-            ->where('created_at', '>', $startDate)
-            ->where('created_at', '<=', $endDate)
+            ->whereDate('created_at', '>', $startDate)
+            ->whereDate('created_at', '<=', $endDate)
             ->whereNull('deleted_at')
             ->get();
 
         $ingredientCosts = DB::table('warehouses')
             ->select(DB::raw('DATE(created_at) AS created_at, sum(quantity * price) as total'))
             ->groupBy(DB::raw('DATE(created_at)'))
-            ->where('created_at', '>', $startDate)
-            ->where('created_at', '<=', $endDate)
+            ->whereDate('created_at', '>', $startDate)
+            ->whereDate('created_at', '<=', $endDate)
             ->whereNull('deleted_at')
             ->get();
 

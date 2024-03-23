@@ -1,16 +1,16 @@
 @component('mail::message')
-# Booking Table Confirmation
+# Nhà hàng Hana Sushi cảm ơn Quý khách hàng đã đặt bàn tại nhà hàng chúng tôi.
 
-Dear {{ $booking->name }},
+Chào {{ $booking->name }},
 
-Your booking table request has been received. We will get in touch with you shortly to confirm your reservation.
+Yêu cầu đặt bàn của bạn đã được nhận. Chúng tôi sẽ gọi điện xác nhận sớm nhất tới bạn.
 
-Thank you for choosing us!
+Cảm ơn vì đã chọn chúng tôi!
 
 @component('mail::button', ['url' => ''])
-Visit our website
+Truy cập trang web của chúng tôi
 @endcomponent
 
-Thanks,<br>
+Cảm ơn,<br>
 {{ config('app.name') }}
 @endcomponent

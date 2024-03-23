@@ -1205,9 +1205,9 @@ section {
   border-radius: 0;
   box-shadow: none;
   font-size: 14px;
-  background: #0c0b09;
+  background: #fff;
   border-color: #625b4b;
-  color: white;
+  color: #000;
 }
 
 .book-a-table .php-email-form input::-moz-placeholder,

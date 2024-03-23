@@ -45,28 +45,24 @@ $statuses = [
 <body>
   <section class="is-title-bar">
     <div style="text-align: center;">
-      <h2>Hóa Đơn</h2>
+      <h2>HANA SUSHI</h2>
     </div>
   </section>
   <div>
-    <h3>Chi tiết hóa đơn</h3>
-  </div>
-  <div>
     <div style="padding-left: 40px;">
-      <p><b>ID :</b>{{$bill->id}}</p>
-      <p><b>Khách Hàng :</b> {{$bill->order->infor->name}}</p>
-      <p><b>Bàn :</b> {{$bill->order->infor->table_number}}</p>
-      <p><b>Tổng Thanh Toán :</b> {{number_format($bill->total_order)}}đ</p>
-      <p><b>Trạng Thái :</b> {{$statuses[$bill->status]}}</p>
+      <p><b>Ngày giờ :</b> {{$bill->created_at}}</p>
+      <p><b>Số hóa đơn :</b> {{$bill->id}}</p>
+      <p><b>Khách hàng :</b> {{$bill->order->infor->name}}</p>
+      <p><b>Số bàn :</b> {{$bill->order->infor->table_number}}</p>
     </div>
-    <table style="border-collapse: collapse; width: 100%; border-spacing: 0; border-color: #fff;">
+    <table class="table-fixed" style="border-collapse: collapse; width: 100%; border-spacing: 0; border-color: #fff;">
       <thead>
-        <tr class="table-active">
+        <tr class="table-active bt-table">
           <th>STT</th>
-          <th>Tên Món Ăn</th>
+          <th>Tên món ăn</th>
           <th>Số lượng</th>
-          <th>Giá</th>
-          <th>Ngày</th>
+          <th>Đơn giá</th>
+          <th>Tổng tiền</th>
         </tr>
       </thead>
       <tbody>
@@ -77,14 +73,18 @@ $statuses = [
           <td>{{$orderMenu->menu->name}}</td>
           <td>{{$orderMenu->amount}}</td>
           <td>{{number_format($orderMenu->menu->price)}}đ</td>
-          <td>{{date('d/m/Y', strtotime($orderMenu->created_at))}}</td>
+          <td>{{number_format($orderMenu->menu->price * $orderMenu->amount)}}đ</td>
         </tr>
         @endforeach
-        <tr>
-          <td></td>
-          <td></td>
+        <tr class="bt-table">
           <td>VAT</td>
+          <td colspan="3"></td>
           <td>{{$vat}}%</td>
+        </tr>
+        <tr>
+          <td>Tổng tiền thanh toán :</td>
+          <td colspan="3"></td>
+          <td>{{number_format($bill->total_order)}}đ</td>
         </tr>
         @else
         <tr>

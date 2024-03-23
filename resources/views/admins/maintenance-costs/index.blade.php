@@ -8,13 +8,13 @@
 @endif
 
 @if ( session('update'))
-  <div id="update" class="alert alert-success alert-dismissible fade show mt-2" role="alert">
+  <div id="update" class="alert alert-warning alert-dismissible fade show mt-2" role="alert">
     Sửa danh mục thành công!!!
   </div>
 @endif
 
 @if ( session('destroy'))
-  <div id="destroy" class="alert alert-success alert-dismissible fade show mt-2" role="alert">
+  <div id="destroy" class="alert alert-danger alert-dismissible fade show mt-2" role="alert">
     Xóa danh mục thành công!!!
   </div>
 @endif
@@ -47,6 +47,9 @@
           <div class="flex gap-10" style="padding-bottom: 10px">
             <a class="button blue" href="{{route('revenues')}}">
               Quay lại
+            </a>
+            <a class="button blue" href="{{route('food.cost')}}">
+              Chi phí thực phẩm
             </a>
             <!-- feature search -->
             <form action="?" class="col-auto ms-auto navbar-end">
@@ -103,13 +106,28 @@
         </thead>
         <tbody>
           @if(count($maintenanceCosts) > 0)
-          @foreach($maintenanceCosts as $key => $maintenanceCost)
+          @foreach($maintenanceCosts as $maintenanceCost)
           <tr class="text-center">
-            <td>{{$key + 1}}</td>
+            <td>{{$maintenanceCost->id}}</td>
             <td>{{$maintenanceCost->name}}</td>
             <td>{{number_format($maintenanceCost->expense)}}đ</td>
             <td>{{$types[$maintenanceCost->type]}}</td>
             <td>{{date('d/m/Y', strtotime($maintenanceCost->created_at))}}</td>
+            <td class="flex gap-10 justify-center">
+                <!-- feature update -->
+                <a class="flex justify-center btn btn-icon btn-outline-warning btnEdit" href="{{route('maintenance.cost.edit',$maintenanceCost->id)}}">
+                  <img src="/images/editing.png" alt="">
+                </a>
+
+                <!-- feature delete -->
+                <form method="POST" action="{{ route('maintenance.cost.destroy', ['id' => $maintenanceCost->id]) }}">
+                  @csrf
+                  @method('DELETE')
+                  <button type="submit" class="flex justify-center btn btn-outline-warning btn-icon">
+                    <img src="/images/delete.png" alt="">
+                  </button>
+                </form>
+            </td>
           </tr>
           @endforeach
           @else

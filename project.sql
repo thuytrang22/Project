@@ -24,20 +24,6 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
--- Cấu trúc bảng cho bảng `bills`
---
-
-CREATE TABLE `bills` (
-  `id` bigint(20) UNSIGNED NOT NULL,
-  `order_id` varchar(255) NOT NULL,
-  `status` varchar(255) NOT NULL,
-  `total_order` varchar(255) NOT NULL,
-  `deleted_at` timestamp NULL DEFAULT NULL,
-  `created_at` timestamp NULL DEFAULT NULL,
-  `updated_at` timestamp NULL DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
-
---
 -- Đang đổ dữ liệu cho bảng `bills`
 --
 
@@ -57,26 +43,6 @@ INSERT INTO `bills` (`id`, `order_id`, `status`, `total_order`, `deleted_at`, `c
 (13, '27', '1', '0', NULL, '2024-03-24 02:08:04', '2024-03-24 09:29:39');
 
 -- --------------------------------------------------------
-
---
--- Cấu trúc bảng cho bảng `bookings`
---
-
-CREATE TABLE `bookings` (
-  `id` bigint(20) UNSIGNED NOT NULL,
-  `name` varchar(255) NOT NULL,
-  `email` varchar(255) NOT NULL,
-  `phone` varchar(255) NOT NULL,
-  `booking_date` date NOT NULL,
-  `time` varchar(255) NOT NULL,
-  `message` varchar(255) NOT NULL,
-  `created_at` timestamp NULL DEFAULT NULL,
-  `updated_at` timestamp NULL DEFAULT NULL,
-  `people` int(11) NOT NULL,
-  `status` int(11) DEFAULT NULL,
-  `seating_id` varchar(255) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
-
 --
 -- Đang đổ dữ liệu cho bảng `bookings`
 --
@@ -110,19 +76,6 @@ INSERT INTO `bookings` (`id`, `name`, `email`, `phone`, `booking_date`, `time`, 
 (26, 'Lỗ thị thuỳ trang', 'nhimtrang10@gmail.com', '0833769160', '2024-11-11', '23:11', 'hhhh', '2024-03-23 00:34:41', '2024-03-23 23:17:57', 4, 1, 'B2');
 
 -- --------------------------------------------------------
-
---
--- Cấu trúc bảng cho bảng `categories`
---
-
-CREATE TABLE `categories` (
-  `id` bigint(20) UNSIGNED NOT NULL,
-  `name` varchar(255) NOT NULL,
-  `created_at` timestamp NULL DEFAULT NULL,
-  `updated_at` timestamp NULL DEFAULT NULL,
-  `deleted_at` timestamp NULL DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
-
 --
 -- Đang đổ dữ liệu cho bảng `categories`
 --
@@ -133,19 +86,6 @@ INSERT INTO `categories` (`id`, `name`, `created_at`, `updated_at`, `deleted_at`
 (3, 'Món Tráng Miệng', '2024-03-18 06:13:44', '2024-03-18 06:13:44', NULL);
 
 -- --------------------------------------------------------
-
---
--- Cấu trúc bảng cho bảng `cost_types`
---
-
-CREATE TABLE `cost_types` (
-  `id` bigint(20) UNSIGNED NOT NULL,
-  `code` int(11) NOT NULL,
-  `name` varchar(255) NOT NULL,
-  `created_at` timestamp NULL DEFAULT NULL,
-  `updated_at` timestamp NULL DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
-
 --
 -- Đang đổ dữ liệu cho bảng `cost_types`
 --
@@ -155,36 +95,6 @@ INSERT INTO `cost_types` (`id`, `code`, `name`, `created_at`, `updated_at`) VALU
 (2, 2, 'tiền nước', '2024-03-19 00:18:52', '2024-03-19 00:18:52');
 
 -- --------------------------------------------------------
-
---
--- Cấu trúc bảng cho bảng `failed_jobs`
---
-
-CREATE TABLE `failed_jobs` (
-  `id` bigint(20) UNSIGNED NOT NULL,
-  `uuid` varchar(255) NOT NULL,
-  `connection` text NOT NULL,
-  `queue` text NOT NULL,
-  `payload` longtext NOT NULL,
-  `exception` longtext NOT NULL,
-  `failed_at` timestamp NOT NULL DEFAULT current_timestamp()
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
-
--- --------------------------------------------------------
-
---
--- Cấu trúc bảng cho bảng `feedbacks`
---
-
-CREATE TABLE `feedbacks` (
-  `id` bigint(20) UNSIGNED NOT NULL,
-  `name` varchar(255) NOT NULL,
-  `email` varchar(255) NOT NULL,
-  `message` varchar(255) NOT NULL,
-  `created_at` timestamp NULL DEFAULT NULL,
-  `updated_at` timestamp NULL DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
-
 --
 -- Đang đổ dữ liệu cho bảng `feedbacks`
 --
@@ -220,20 +130,6 @@ INSERT INTO `feedbacks` (`id`, `name`, `email`, `message`, `created_at`, `update
 (31, 'vv', 'nhimtrang10@gmail.com', 'vv', '2024-03-23 02:10:17', '2024-03-23 02:10:17');
 
 -- --------------------------------------------------------
-
---
--- Cấu trúc bảng cho bảng `infor`
---
-
-CREATE TABLE `infor` (
-  `id` bigint(20) UNSIGNED NOT NULL,
-  `name` varchar(255) NOT NULL,
-  `phone` varchar(255) NOT NULL,
-  `table_number` varchar(255) NOT NULL,
-  `created_at` timestamp NULL DEFAULT NULL,
-  `updated_at` timestamp NULL DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
-
 --
 -- Đang đổ dữ liệu cho bảng `infor`
 --
@@ -273,33 +169,6 @@ INSERT INTO `infor` (`id`, `name`, `phone`, `table_number`, `created_at`, `updat
 -- --------------------------------------------------------
 
 --
--- Cấu trúc bảng cho bảng `ingredients`
---
-
-CREATE TABLE `ingredients` (
-  `id` bigint(20) UNSIGNED NOT NULL,
-  `name` varchar(255) NOT NULL,
-  `created_at` timestamp NULL DEFAULT NULL,
-  `updated_at` timestamp NULL DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
-
--- --------------------------------------------------------
-
---
--- Cấu trúc bảng cho bảng `maintenance_costs`
---
-
-CREATE TABLE `maintenance_costs` (
-  `id` bigint(20) UNSIGNED NOT NULL,
-  `name` varchar(255) NOT NULL,
-  `expense` varchar(255) NOT NULL,
-  `deleted_at` timestamp NULL DEFAULT NULL,
-  `created_at` timestamp NULL DEFAULT NULL,
-  `updated_at` timestamp NULL DEFAULT NULL,
-  `type` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
-
---
 -- Đang đổ dữ liệu cho bảng `maintenance_costs`
 --
 
@@ -308,24 +177,6 @@ INSERT INTO `maintenance_costs` (`id`, `name`, `expense`, `deleted_at`, `created
 (2, 'Nước tháng 8', '500000', NULL, '2024-03-16 02:07:00', '2024-03-16 02:07:00', 2),
 (3, 'Nước tháng 8', '500000', NULL, '2024-03-16 03:28:16', '2024-03-16 03:28:16', 2),
 (4, 'Điện tháng 8', '1000000', NULL, '2024-03-16 03:28:16', '2024-03-16 03:28:16', 1);
-
--- --------------------------------------------------------
-
---
--- Cấu trúc bảng cho bảng `menus`
---
-
-CREATE TABLE `menus` (
-  `id` bigint(20) UNSIGNED NOT NULL,
-  `name` varchar(255) NOT NULL,
-  `public` varchar(255) NOT NULL,
-  `detail` varchar(255) NOT NULL,
-  `price` varchar(255) NOT NULL,
-  `deleted_at` timestamp NULL DEFAULT NULL,
-  `created_at` timestamp NULL DEFAULT NULL,
-  `updated_at` timestamp NULL DEFAULT NULL,
-  `id_category` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
 -- Đang đổ dữ liệu cho bảng `menus`
@@ -337,18 +188,6 @@ INSERT INTO `menus` (`id`, `name`, `public`, `detail`, `price`, `deleted_at`, `c
 (3, 'Sashimi', 'public/jHy2Wd6SOh2yW7b4Sf9vNCUFHdNs0RrhPHOE9m3w.jpg', 'Cá hồi (salmon), cá ngừ (tuna), cá hồng (yellowtail), cá trích (mackerel), cá saba (mackerel), cá hòa bình (halibut), và cá hải cẩu (sea bream), mực, tôm, sò điệp, sò điệp Nhật Bản (scallop), ốc, ốc hương (abalone).', '200000', NULL, '2024-02-21 06:37:08', '2024-03-18 11:43:04', 2),
 (4, 'Sushi Cá Hồi', 'public/ANternLfYCgot8JRdcQaJLWrCUnFQ4nsuJ0Lmjbz.jpg', 'Gạo trắng đã được nấu và pha với giấm gạo, đường và muối, cá hồi, wasabi, gừng ướp chua ngọt, lá nori (tảo biển)', '100000', NULL, '2024-02-21 06:43:24', '2024-03-18 11:50:26', 2),
 (5, 'Chawanmushi', 'public/YfEASqgCVihlAU4AgSIdsjh3FRejhs6z1BtZ4IF1.jpg', 'mushrooms, seafood, thin waste ginkgo seeds.', '60000', NULL, '2024-02-21 07:27:24', '2024-02-21 10:21:00', 1);
-
--- --------------------------------------------------------
-
---
--- Cấu trúc bảng cho bảng `migrations`
---
-
-CREATE TABLE `migrations` (
-  `id` int(10) UNSIGNED NOT NULL,
-  `migration` varchar(255) NOT NULL,
-  `batch` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
 -- Đang đổ dữ liệu cho bảng `migrations`
@@ -398,22 +237,6 @@ INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
 (67, '2024_03_17_092633_create_seatings_table', 22),
 (68, '2024_03_17_113458_add_column_in_bookings_table', 23);
 
--- --------------------------------------------------------
-
---
--- Cấu trúc bảng cho bảng `orders`
---
-
-CREATE TABLE `orders` (
-  `id` bigint(20) UNSIGNED NOT NULL,
-  `infor_id` int(11) NOT NULL,
-  `payment_type_id` int(11) NOT NULL,
-  `deleted_at` timestamp NULL DEFAULT NULL,
-  `created_at` timestamp NULL DEFAULT NULL,
-  `updated_at` timestamp NULL DEFAULT NULL,
-  `status` int(11) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
-
 --
 -- Đang đổ dữ liệu cho bảng `orders`
 --
@@ -456,24 +279,6 @@ INSERT INTO `orders` (`id`, `infor_id`, `payment_type_id`, `deleted_at`, `create
 (35, 29, 0, NULL, '2024-03-23 02:19:12', '2024-03-23 02:19:12', NULL),
 (36, 30, 0, NULL, '2024-03-23 18:49:20', '2024-03-23 18:49:20', NULL);
 
--- --------------------------------------------------------
-
---
--- Cấu trúc bảng cho bảng `order_menus`
---
-
-CREATE TABLE `order_menus` (
-  `id` bigint(20) UNSIGNED NOT NULL,
-  `order_id` int(11) NOT NULL,
-  `menu_id` int(11) NOT NULL,
-  `amount` int(11) NOT NULL,
-  `can_serve` tinyint(4) NOT NULL,
-  `actual_amount` int(11) NOT NULL,
-  `deleted_at` timestamp NULL DEFAULT NULL,
-  `created_at` timestamp NULL DEFAULT NULL,
-  `updated_at` timestamp NULL DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
-
 --
 -- Đang đổ dữ liệu cho bảng `order_menus`
 --
@@ -515,38 +320,12 @@ INSERT INTO `order_menus` (`id`, `order_id`, `menu_id`, `amount`, `can_serve`, `
 (34, 35, 5, 1, 1, 0, NULL, '2024-03-23 02:19:12', '2024-03-23 02:19:12'),
 (35, 36, 1, 2, 1, 0, NULL, '2024-03-23 18:49:20', '2024-03-23 18:49:20');
 
--- --------------------------------------------------------
-
---
--- Cấu trúc bảng cho bảng `password_resets`
---
-
-CREATE TABLE `password_resets` (
-  `email` varchar(255) NOT NULL,
-  `token` varchar(255) NOT NULL,
-  `created_at` timestamp NULL DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
-
 --
 -- Đang đổ dữ liệu cho bảng `password_resets`
 --
 
 INSERT INTO `password_resets` (`email`, `token`, `created_at`) VALUES
 ('admin@gmail.com', '$2y$10$tXpAhh1OoMaq9NGX1p2wdO4.aup4IoSS52ovipC8LxiuH2wOncjuq', '2024-02-29 17:32:55');
-
--- --------------------------------------------------------
-
---
--- Cấu trúc bảng cho bảng `payment_types`
---
-
-CREATE TABLE `payment_types` (
-  `id` bigint(20) UNSIGNED NOT NULL,
-  `name` varchar(255) NOT NULL,
-  `deleted_at` timestamp NULL DEFAULT NULL,
-  `created_at` timestamp NULL DEFAULT NULL,
-  `updated_at` timestamp NULL DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
 -- Đang đổ dữ liệu cho bảng `payment_types`
@@ -555,39 +334,6 @@ CREATE TABLE `payment_types` (
 INSERT INTO `payment_types` (`id`, `name`, `deleted_at`, `created_at`, `updated_at`) VALUES
 (1, 'Tiền Thẻ', NULL, '2024-03-24 03:56:26', '2024-03-24 03:59:54'),
 (2, 'Tiền Mặt', NULL, '2024-03-24 03:57:55', '2024-03-24 03:57:55');
-
--- --------------------------------------------------------
-
---
--- Cấu trúc bảng cho bảng `personal_access_tokens`
---
-
-CREATE TABLE `personal_access_tokens` (
-  `id` bigint(20) UNSIGNED NOT NULL,
-  `tokenable_type` varchar(255) NOT NULL,
-  `tokenable_id` bigint(20) UNSIGNED NOT NULL,
-  `name` varchar(255) NOT NULL,
-  `token` varchar(64) NOT NULL,
-  `abilities` text DEFAULT NULL,
-  `last_used_at` timestamp NULL DEFAULT NULL,
-  `expires_at` timestamp NULL DEFAULT NULL,
-  `created_at` timestamp NULL DEFAULT NULL,
-  `updated_at` timestamp NULL DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
-
--- --------------------------------------------------------
-
---
--- Cấu trúc bảng cho bảng `roles`
---
-
-CREATE TABLE `roles` (
-  `id` bigint(20) UNSIGNED NOT NULL,
-  `key` int(11) NOT NULL,
-  `name` varchar(255) NOT NULL,
-  `created_at` timestamp NULL DEFAULT NULL,
-  `updated_at` timestamp NULL DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
 -- Đang đổ dữ liệu cho bảng `roles`
@@ -599,23 +345,6 @@ INSERT INTO `roles` (`id`, `key`, `name`, `created_at`, `updated_at`) VALUES
 (3, 3, 'Nhân viên', '2024-02-28 17:00:00', '2024-02-28 17:00:00'),
 (4, 4, 'Kho', '2024-02-28 17:00:00', '2024-02-28 17:00:00'),
 (5, 5, 'Bếp', '2024-02-28 17:00:00', '2024-02-28 17:00:00');
-
--- --------------------------------------------------------
-
---
--- Cấu trúc bảng cho bảng `seatings`
---
-
-CREATE TABLE `seatings` (
-  `id` bigint(20) UNSIGNED NOT NULL,
-  `table_number` varchar(255) NOT NULL,
-  `pending` int(11) NOT NULL,
-  `working` int(11) NOT NULL,
-  `empty_table` int(11) NOT NULL,
-  `deleted_at` timestamp NULL DEFAULT NULL,
-  `created_at` timestamp NULL DEFAULT NULL,
-  `updated_at` timestamp NULL DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
 -- Đang đổ dữ liệu cho bảng `seatings`
@@ -629,25 +358,6 @@ INSERT INTO `seatings` (`id`, `table_number`, `pending`, `working`, `empty_table
 (5, 'B5', 0, 0, 1, NULL, '2024-03-23 03:32:39', '2024-03-23 03:32:39'),
 (6, 'B6', 0, 0, 1, NULL, '2024-03-23 03:39:37', '2024-03-23 03:39:37');
 
--- --------------------------------------------------------
-
---
--- Cấu trúc bảng cho bảng `users`
---
-
-CREATE TABLE `users` (
-  `id` bigint(20) UNSIGNED NOT NULL,
-  `name` varchar(255) NOT NULL,
-  `email` varchar(255) NOT NULL,
-  `email_verified_at` timestamp NULL DEFAULT NULL,
-  `password` varchar(255) NOT NULL,
-  `remember_token` varchar(100) DEFAULT NULL,
-  `created_at` timestamp NULL DEFAULT NULL,
-  `updated_at` timestamp NULL DEFAULT NULL,
-  `role_id` int(11) NOT NULL,
-  `image` varchar(255) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
-
 --
 -- Đang đổ dữ liệu cho bảng `users`
 --
@@ -658,24 +368,6 @@ INSERT INTO `users` (`id`, `name`, `email`, `email_verified_at`, `password`, `re
 (5, 'Nhân Viên', 'nhanvien@gmal.com', NULL, '$2y$10$4N0PdWwHINjJM507VaJRVehJaLzlsbek0bjbjU/r2rUzkM0Or/LjC', NULL, '2024-03-05 07:49:08', '2024-03-05 07:49:08', 3, ''),
 (6, 'Kế Toán', 'ketoan@gmal.com', NULL, '$2y$10$1CVcJuxR7fYhBzdqBfZ.YuPhQdKmGunuAMwIgJs7vm0R4MjNGh0Em', NULL, '2024-03-05 07:52:44', '2024-03-05 07:52:44', 2, ''),
 (7, 'Bếp', 'bep@gmail.com', NULL, '$2y$10$3G4.ctzlymby7RD2PCDA7uMfPgDNx9KQgL1/8Up62pSwv7E7P/ZmO', NULL, '2024-03-05 07:57:40', '2024-03-05 07:57:40', 5, '');
-
--- --------------------------------------------------------
-
---
--- Cấu trúc bảng cho bảng `warehouses`
---
-
-CREATE TABLE `warehouses` (
-  `id` bigint(20) UNSIGNED NOT NULL,
-  `name` varchar(255) NOT NULL,
-  `quantity` int(11) NOT NULL,
-  `measure` varchar(255) NOT NULL,
-  `price` varchar(255) NOT NULL,
-  `type` varchar(255) NOT NULL,
-  `deleted_at` timestamp NULL DEFAULT NULL,
-  `created_at` timestamp NULL DEFAULT NULL,
-  `updated_at` timestamp NULL DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
 -- Đang đổ dữ liệu cho bảng `warehouses`
